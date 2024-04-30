@@ -1,0 +1,24 @@
+ARG TAG
+
+FROM dreg.cloud.sdu.dk/ucloud-apps/base-ubuntu:TAG
+
+LABEL course="" \
+      author="" \
+      description=""
+
+## Use bash instead of sh
+SHELL ["/bin/bash", "-o", "pipefail", "-c"]
+
+USER 0
+
+ENV HOME=/home/$USER
+
+WORKDIR ${HOME}
+
+USER ${USERID}
+
+## Add entrypoint script
+COPY --chown=$USER:$USER  start_app.sh /usr/bin/start_app
+RUN chmod 755 /usr/bin/start_app
+
+WORKDIR /work

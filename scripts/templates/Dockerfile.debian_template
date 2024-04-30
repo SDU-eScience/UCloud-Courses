@@ -1,0 +1,23 @@
+ARG TAG
+
+FROM dreg.cloud.sdu.dk/ucloud-apps/base-debian:TAG
+
+LABEL course="" \
+      author="SDU eScience Center" \
+      description=""
+
+SHELL ["/bin/bash", "-o", "pipefail", "-c"]
+
+USER 0
+
+ENV HOME=/home/$USER
+
+WORKDIR ${HOME}
+
+## Add entrypoint script
+COPY --chown=$USER:$USER  start_app.sh /usr/bin/start_app
+RUN chmod 755 /usr/bin/start_app
+
+USER ${USERID}
+
+WORKDIR /work

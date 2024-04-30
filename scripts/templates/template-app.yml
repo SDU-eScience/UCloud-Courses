@@ -1,0 +1,54 @@
+---
+application: v1
+
+title:
+name: COURSE_NAME
+version: COURSE_TAG
+
+website: # add link to documentation or software website
+
+applicationType: # BATCH, WEB, VNC
+
+### VNC type
+# vnc:
+#   password: $PASSWORD
+#   port: $PORT
+
+### WEB type
+# web:
+#   port: $PORT
+
+tool:
+  name: COURSE_NAME
+  version: COURSE_TAG
+
+authors:
+
+description: >
+
+fileExtensions:
+
+allowAdditionalMounts: $ADDITIONAL_MOUNTS
+allowPublicLink: $PUBLIC_LINK
+allowPublicIp: $PUBLIC_IP
+allowMultiNode: $MULTI_NODE
+
+container:
+  runAsRoot: $ROOT
+
+invocation:
+  - start_app
+  - type: var
+    vars: initialization
+    prefixGlobal: '-s '
+
+parameters:
+  initialization:
+    title: "Initialization"
+    type: input_file
+    description: >
+      Run initialization of pip packages (*.txt), Conda packages (*.yml/yaml), or Bash script (*.sh)
+    optional: true
+
+outputFileGlobs:
+  - "*"

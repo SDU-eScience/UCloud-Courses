@@ -1,0 +1,22 @@
+ARG TAG
+
+FROM dreg.cloud.sdu.dk/ucloud-apps/rstudio:TAG
+
+LABEL course="" \
+      author="" \
+      description=""
+
+USER 0
+
+## Use bash instead of sh
+SHELL ["/bin/bash", "-o", "pipefail", "-c"]
+
+USER ${USERID}
+
+WORKDIR /home/${USER}
+
+## Add entrypoint script
+COPY --chown=${USERID}:${GROUPID} start_app /usr/bin/start_app
+RUN chmod 755 /usr/bin/start_app
+
+WORKDIR /work
