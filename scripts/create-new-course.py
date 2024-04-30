@@ -89,9 +89,9 @@ def get_invalid_release_values(res_list):
     if res_list[0] is False:
         invalid += "\n* YEAR (must be 2024 or later) "
     if res_list[1] is False:
-        invalid += "\n* MONTH (must be in the range 1-12) "
+        invalid += "\n* MONTH (must be in the range 01-12) "
     if res_list[2] is False:
-        invalid += "\n* DAY (must be in the range 1-31) "
+        invalid += "\n* DAY (must be in the range 01-31) "
     return invalid
 
 
