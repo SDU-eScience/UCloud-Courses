@@ -48,7 +48,7 @@ def parse_arguments():
     """
     parser = argparse.ArgumentParser(description="Create a new course in UCloud.")
     parser.add_argument('-n', '--name', type=str, help='Course name', required=True)
-    parser.add_argument('-r', '--release', type=str, help='Course release', required=True)
+    parser.add_argument('-r', '--release', type=str, help='Course start time (YYYY-MM-DD).', required=True) # Maybe we should do a check on ths input to ensure its validity?
     parser.add_argument('-b', '--baseimage', type=str, help='base image', required=True, choices=['almalinux', 'alpine', 'centos', 'debian', 'ubuntu', 'conda', 'jupyterlab', 'rstudio', 'ubuntu-xfce', 'almalinux-xfce'])
     return parser.parse_args()
 
