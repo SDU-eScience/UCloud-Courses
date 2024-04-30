@@ -4,6 +4,7 @@
 import os # For portable handling of paths 
 import argparse # For passing command line arguments
 import shutil # For a portable way of copying files  
+import re 
 
 def join_paths(abspath_head, tail):
     """
@@ -52,8 +53,20 @@ def parse_arguments():
     parser.add_argument('-b', '--baseimage', type=str, help='base image', required=True, choices=['almalinux', 'alpine', 'centos', 'debian', 'ubuntu', 'conda', 'jupyterlab', 'rstudio', 'ubuntu-xfce', 'almalinux-xfce'])
     return parser.parse_args()
 
+def check_release(release_str):
+    return(re.fullmatch("^(20[2-3][4-9])(-)(0[1-9]|1[0-2])(-)(0[1-9]|1[0-9]|2[0-9]|3[0-1])$", release_str) is not None)
+
+
 if __name__ == "__main__":
     args = parse_arguments()
+
+    # Check if format for -r option is valid
+    try: 
+        check_res = check_release(args.release)
+        if not check_res:
+            raise ValueError("Invalid course start date given to the-r option. The format must be: YYYY-MM-DD.")
+    except ValueError as e: 
+        exit(str(e))
 
     cwd = get_cwd() # NB: It is (currently) the users responsibility that the working directory is correct. (Although if it is wrong, an error is likely in create_dir(.) below.)
 
