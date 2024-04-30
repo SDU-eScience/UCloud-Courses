@@ -62,8 +62,7 @@ if __name__ == "__main__":
 
     # Check if format for -r option is valid
     try: 
-        check_res = check_release(args.release)
-        if not check_res:
+        if not check_release(args.release):
             raise ValueError("Invalid course start date given to the-r option. The format must be: YYYY-MM-DD.")
     except ValueError as e: 
         exit(str(e))
