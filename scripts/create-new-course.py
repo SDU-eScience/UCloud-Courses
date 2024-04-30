@@ -49,21 +49,64 @@ def parse_arguments():
     """
     parser = argparse.ArgumentParser(description="Create a new course in UCloud.")
     parser.add_argument('-n', '--name', type=str, help='Course name', required=True)
-    parser.add_argument('-r', '--release', type=str, help='Course start time (YYYY-MM-DD).', required=True) # Maybe we should do a check on ths input to ensure its validity?
+    parser.add_argument('-r', '--release', type=str, help='Course start date (YYYY-MM-DD).', required=True) # Maybe we should do a check on ths input to ensure its validity?
     parser.add_argument('-b', '--baseimage', type=str, help='base image', required=True, choices=['almalinux', 'alpine', 'centos', 'debian', 'ubuntu', 'conda', 'jupyterlab', 'rstudio', 'ubuntu-xfce', 'almalinux-xfce'])
     return parser.parse_args()
 
-def check_release(release_str):
-    return(re.fullmatch("^(20[2-3][4-9])(-)(0[1-9]|1[0-2])(-)(0[1-9]|1[0-9]|2[0-9]|3[0-1])$", release_str) is not None)
+def check_release_format(release_str):
+    """
+    Checks if the release date follows the format dddd-dd-dd (where d stands for digit)
+
+    @param args.release
+    @return: True iff release_str has the right format
+    """
+    return(re.fullmatch("^\d{4}(-)\d{2}(-)\d{2}$", release_str) is not None)
+
+def check_release_values(release_str):
+    """
+    Checks the values of the provided course start date
+
+    @param release_str args.release
+    @return (True iff. all the values are valid, list of length 3 which indicates which values are valid)
+    """
+    year = int(release_str[:4]) 
+    month = int(release_str[5:7])
+    day = int(release_str[8:10])
+    res = []
+    res.append(year >= 2024)
+    res.append(month in range(1,13))
+    res.append(day in range(1,32))
+    invalid = []
+    return (all(res) is True, res)
+
+def get_invalid_release_values(res_list):
+    """
+    Procudes a string showing which values of the provided course start date were invalid
+    @param res_list A boolean list of length 3. Intended to be the second element of the tuple returned from check_release_values()
+    @return A string
+    """
+    invalid = ""
+    if res_list[0] is False:
+        invalid += "\n* YEAR (must be 2024 or later) "
+    if res_list[1] is False:
+        invalid += "\n* MONTH (must be in the range 1-12) "
+    if res_list[2] is False:
+        invalid += "\n* DAY (must be in the range 1-31) "
+    return invalid
+
 
 
 if __name__ == "__main__":
     args = parse_arguments()
 
+    check_release_values(args.release)
+
     # Check if format for -r option is valid
     try: 
-        if not check_release(args.release):
-            raise ValueError("Invalid course start date given to the-r option. The format must be: YYYY-MM-DD.")
+        if not check_release_format(args.release):
+            raise ValueError("The format of the provided course start date ({}) is invalid. \n The format must be: YYYY-MM-DD.".format(args.release))
+        if not check_release_values(args.release)[0]:
+            raise ValueError("Some values of the provided start date ({}) are invalid.\nThe following values for the course start date were invalid: {}.".format(args.release, get_invalid_release_values(check_release_values(args.release)[1])))
     except ValueError as e: 
         exit(str(e))
 
