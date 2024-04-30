@@ -1,0 +1,24 @@
+---
+tool: v1
+
+title:
+name: COURSE_NAME
+version: COURSE_TAG
+
+container: dreg.cloud.sdu.dk/ucloud-apps/COURSE_NAME:COURSE_TAG
+
+authors:
+
+description: >
+
+defaultTimeAllocation:
+  hours: 1
+  minutes: 0
+  seconds: 0
+
+defaultNumberOfNodes: 1
+defaultTasksPerNode: 1
+
+license:
+
+backend: DOCKER
