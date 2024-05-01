@@ -49,25 +49,25 @@ def parse_arguments():
     """
     parser = argparse.ArgumentParser(description="Create a new course in UCloud.")
     parser.add_argument('-n', '--name', type=str, help='Course name', required=True)
-    parser.add_argument('-r', '--release', type=str, help='Course start date (YYYY-MM-DD).', required=True) # Maybe we should do a check on ths input to ensure its validity?
-    parser.add_argument('-b', '--baseimage', type=str, help='base image', required=True, choices=['almalinux', 'alpine', 'centos', 'debian', 'ubuntu', 'conda', 'jupyterlab', 'rstudio', 'ubuntu-xfce', 'almalinux-xfce'])
+    parser.add_argument('-r', '--release', type=str, help='Course start date (YYYY-MM-DD).', required=True) 
+    parser.add_argument('-b', '--baseimage', type=str, help='Base image', required=True, choices=['almalinux', 'alpine', 'centos', 'debian', 'ubuntu', 'conda', 'jupyterlab', 'rstudio', 'ubuntu-xfce', 'almalinux-xfce'])
     return parser.parse_args()
 
 def check_release_format(release_str):
     """
-    Checks if the release date follows the format dddd-dd-dd (where d stands for digit)
+    Checks if the release date follows the format dddd-dd-dd (where d denoates a digit)
 
-    @param args.release
-    @return: True iff release_str has the right format
+    @param release_str A string
+    @return: True if release_str has the format dddd-dd-dd. False otherwise.
     """
     return(re.fullmatch("^\d{4}(-)\d{2}(-)\d{2}$", release_str) is not None)
 
 def check_release_values(release_str):
     """
-    Checks the values of the provided course start date
+    Checks the validity of the values of the provided course start date. Requires that release check_release_format(release_str) == True.
 
-    @param release_str args.release
-    @return (True iff. all the values are valid, list of length 3 which indicates which values are valid)
+    @param release_str A string
+    @return A tuple of length 2: (True iff. all the values are valid, list of length 3 which indicates which values are valid)
     """
     year = int(release_str[:4]) 
     month = int(release_str[5:7])
@@ -81,7 +81,8 @@ def check_release_values(release_str):
 
 def get_invalid_release_values(res_list):
     """
-    Procudes a string showing which values of the provided course start date were invalid
+    Procudes a string showing which values of the provided course start date are invalid
+
     @param res_list A boolean list of length 3. Intended to be the second element of the tuple returned from check_release_values()
     @return A string
     """
@@ -108,9 +109,20 @@ if __name__ == "__main__":
     except ValueError as e: 
         exit(str(e))
 
-    cwd = get_cwd() # NB: It is (currently) the users responsibility that the working directory is correct. (Although if it is wrong, an error is likely in create_dir(.) below.)
+    # Get the working directory
+    # # NB: It is the user's responsibility that the working directory is correct. (Although if it is wrong, an error is likely in create_dir(.) below.)
+    cwd = get_cwd() 
 
     # Create the course folder structure 
+    # UCloud-Courses/
+    #  |- Apps/
+    #    |- <course name>/
+    #      |- <course start date>/
+    #         |- Dockerfile 
+    #         |- README.md 
+    #         |- *.yml 
+    #         |- start_app.sh
+
     course_root_dir = os.path.abspath(os.path.join(os.path.split(cwd)[0], 'Courses', args.name))
     course_release_dir = join_paths(course_root_dir, args.release)
     
