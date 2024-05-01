@@ -88,11 +88,11 @@ def get_invalid_release_values(res_list):
     """
     invalid = ""
     if res_list[0] is False:
-        invalid += "\n* YEAR (must be 2024 or later) "
+        invalid += "\n* YEAR (must be 2024 or later)."
     if res_list[1] is False:
-        invalid += "\n* MONTH (must be in the range 01-12) "
+        invalid += "\n* MONTH (must be in the range 01-12)."
     if res_list[2] is False:
-        invalid += "\n* DAY (must be in the range 01-31) "
+        invalid += "\n* DAY (must be in the range 01-31)."
     return invalid
 
 if __name__ == "__main__":
@@ -103,7 +103,7 @@ if __name__ == "__main__":
         if not check_release_format(args.release):
             raise ValueError("The format of the provided course start date ({}) is invalid. \n The format must be: YYYY-MM-DD.".format(args.release))
         if not check_release_values(args.release)[0]:
-            raise ValueError("Some values of the provided start date ({}) are invalid.\nThe following values for the course start date were invalid: {}.".format(args.release, get_invalid_release_values(check_release_values(args.release)[1])))
+            raise ValueError("Some values of the provided start date ({}) are invalid.\nThe following values for the course start date were invalid: {}".format(args.release, get_invalid_release_values(check_release_values(args.release)[1])))
     except ValueError as e: 
         exit(str(e))
 
