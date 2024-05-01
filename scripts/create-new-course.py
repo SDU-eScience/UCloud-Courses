@@ -95,8 +95,6 @@ def get_invalid_release_values(res_list):
         invalid += "\n* DAY (must be in the range 01-31) "
     return invalid
 
-
-
 if __name__ == "__main__":
     args = parse_arguments()
 
