@@ -34,6 +34,7 @@ def create_dir(dir):
 
 def copy_file(source, dest):
     """
+    NB: Not used.
     Used to populate the directories in the app's file tree with templates. 
 
     @param: The absolute path of the source file to be copied.
@@ -98,7 +99,7 @@ def get_invalid_release_values(res_list):
 if __name__ == "__main__":
     args = parse_arguments()
 
-    # Check if format for input for -r is valid
+    # Check that format and values for input for -r is valid
     try: 
         if not check_release_format(args.release):
             raise ValueError("The format of the provided course start date ({}) is invalid. \n The format must be: YYYY-MM-DD.".format(args.release))
@@ -111,7 +112,7 @@ if __name__ == "__main__":
     # # NB: It is the user's responsibility that the working directory is correct. (Although if it is wrong, an error is likely in create_dir(.) below.)
     cwd = get_cwd() 
 
-    # Create the course folder structure 
+    # Create the course file tree
     # UCloud-Courses/
     #  |- Courses/
     #    |- <course name>/
@@ -129,16 +130,54 @@ if __name__ == "__main__":
     for dir in dir_list:
         create_dir(dir)
 
-    # Insert the proper information (course name, release etc.) into the template files before copying them into the course folders
-    # TODO: When the templates are finalized
-
     # Populate the course folders
     templates_dir = join_paths(cwd, 'templates')
 
-    copy_file(join_paths(templates_dir, 'README.md.template'), join_paths(course_release_dir, 'README.md'))
-    copy_file(join_paths(templates_dir, 'Dockerfile.%s_template'%(args.baseimage)), join_paths(course_release_dir, 'Dockerfile'))
-    copy_file(join_paths(templates_dir, 'template-app.yml'), join_paths(course_release_dir, '%s-app.yml'%(args.name)))
-    copy_file(join_paths(templates_dir, 'template-tool.yml'), join_paths(course_release_dir, '%s-tool.yml'%(args.name)))
-    copy_file(join_paths(templates_dir, 'start_app.template'), join_paths(course_release_dir, 'start_app.sh'))
+    template_readme = join_paths(templates_dir, 'README.md.template') 
+    template_dockerfile = join_paths(templates_dir, 'Dockerfile.%s_template'%(args.baseimage))
+    template_appyml = join_paths(templates_dir, 'template-app.yml')
+    template_toolyml = join_paths(templates_dir, 'template-tool.yml')
+    template_startapp = join_paths(templates_dir, 'start_app.template')
 
-    # To remove the course file tree use: rm -r ../Courses/<course name>
+    with (
+       open(template_readme, 'r') as f1,
+       open(template_dockerfile, 'r') as f2,
+       open(template_appyml, 'r') as f3,
+       open(template_toolyml, 'r') as f4,
+       open(template_startapp, 'r') as f5
+
+    ):
+        readme = f1.read()
+        f1.close()
+        dockerfile = f2.read()
+        f2.close()
+        appyml = f3.read()
+        f3.close()
+        toolyml = f4.read()
+        f4.close()
+        startapp = f5.read()
+        f5.close()
+
+    # Edit the contents of the templates based on input from user
+    # TODO
+
+    # Write to edited contents from the tempate files to the course folder
+    with (
+        open(join_paths(course_release_dir, 'README.md'), 'w') as f1,
+        open(join_paths(course_release_dir, 'Dockerfile'), 'w') as f2,
+        open(join_paths(course_release_dir, '%s-app.yml'%(args.name)), 'w') as f3,
+        open(join_paths(course_release_dir, '%s-tool.yml'%(args.name)), 'w') as f4,
+        open(join_paths(course_release_dir, 'start_app.sh'), 'w') as f5
+    ):
+        f1.write(readme)
+        f1.close()
+        f2.write(dockerfile)
+        f2.close()
+        f3.write(appyml)
+        f3.close()
+        f4.write(toolyml)
+        f4.close()
+        f5.write(startapp)
+        f5.close()
+
+    # To remove the course file tree use: rm -rf ../Courses/<course name>
