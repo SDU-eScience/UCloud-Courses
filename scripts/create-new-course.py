@@ -99,9 +99,7 @@ def get_invalid_release_values(res_list):
 if __name__ == "__main__":
     args = parse_arguments()
 
-    check_release_values(args.release)
-
-    # Check if format for -r option is valid
+    # Check if format for input for -r is valid
     try: 
         if not check_release_format(args.release):
             raise ValueError("The format of the provided course start date ({}) is invalid. \n The format must be: YYYY-MM-DD.".format(args.release))
