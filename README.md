@@ -41,11 +41,7 @@ When a course is completed, it will remain available on UCloud by default. This 
 
 It is possible to have a course removed from UCloud. If this is desired, the teacher requests the removal of the courses. When the request has been approved, the course in question will be scheduled for removal and will be marked as such in UCloud. The removal will only take place in the next [bi-annual update](ucloud-courses-requirements.md#course-updates-are-conducted-bi-annually) to ensure that any ongoing use of the course by others can be completed before the removal.
 
-::: {note}
-
-It is never possible to remove course materials from the GitHub repository. Thus, removing a course from UCloud will *not* remove the corresponding course material from the GitHub repository. 
-
-:::
+> It is never possible to remove course materials from the GitHub repository. Thus, removing a course from UCloud will *not* remove the corresponding course material from the GitHub repository. 
 
 ## Outline of Services Offered 
 
