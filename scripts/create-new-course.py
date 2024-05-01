@@ -113,7 +113,7 @@ if __name__ == "__main__":
 
     # Create the course folder structure 
     # UCloud-Courses/
-    #  |- Apps/
+    #  |- Courses/
     #    |- <course name>/
     #      |- <course start date>/
     #         |- Dockerfile 
