@@ -120,8 +120,6 @@ if __name__ == "__main__":
 
     args.name = replace_whitespace(args.name)
 
-    print(args)
-
     # Check that format and values for input for -r is valid
     try: 
         if not check_release_format(args.release):
