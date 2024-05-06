@@ -58,7 +58,7 @@ def parse_arguments():
     @return: Parsed arguments.
     """
     parser = argparse.ArgumentParser(description="Create a new course in UCloud.")
-    parser.add_argument('-n', '--name', type=str, help='Course name', required=True)
+    parser.add_argument('-n', '--name', type=str, help='Course name.', required=True)
     parser.add_argument('-r', '--release', type=str, help='Course start date (YYYY-MM-DD).', required=True) 
     parser.add_argument('-b', '--baseimage', type=str, help='Base image', required=True, choices=['almalinux', 'alpine', 'centos', 'debian', 'ubuntu', 'conda', 'jupyterlab', 'rstudio', 'ubuntu-xfce', 'almalinux-xfce'])
     return parser.parse_args()
@@ -105,8 +105,22 @@ def get_invalid_release_values(res_list):
         invalid += "\n* DAY (must be in the range 01-31)."
     return invalid
 
+def replace_whitespace(str):
+    """
+    If the user provides a course name containing whitespace, these are replaced with dashes.
+    
+    :param str 
+    :return str with whitespaces replaced with dashes
+    """
+    # Remove excess whitespace, and replace remaining whitespaces with a dash
+    return(re.sub(' +', '-', str))
+
 if __name__ == "__main__":
     args = parse_arguments()
+
+    args.name = replace_whitespace(args.name)
+
+    print(args)
 
     # Check that format and values for input for -r is valid
     try: 
@@ -120,6 +134,21 @@ if __name__ == "__main__":
     # Get the working directory
     # # NB: It is the user's responsibility that the working directory is correct. (Although if it is wrong, an error is likely in create_dir(.) below.)
     cwd = get_cwd() 
+
+    # Check if cwd is correct. 
+    # NB: This error check does not guarantee the correct cwd, but for all practical purposes it should suffice. 
+    try:
+        files_in_cwd = os.listdir(cwd)
+        path_split = os.path.split(cwd)
+        path_tail = path_split[1]
+        path_tail_of_head = os.path.split(path_split[0])[1] 
+        if (not "create-new-course.py" in files_in_cwd) or (not "templates" in files_in_cwd):
+            raise OSError("Current working directory ({}) is incorrect.\nYou must be in UCloud-Courses/scripts.".format(cwd))
+        if (not path_tail == "scripts") or (not path_tail_of_head == "UCloud-Courses"):
+            raise OSError("Current working directory ({}) is incorrect.\nYou must be in UCloud-Courses/scripts.".format(cwd))
+    except OSError as e:
+            exit(str(e))
+   
 
     # Create the course file tree
     # UCloud-Courses/
