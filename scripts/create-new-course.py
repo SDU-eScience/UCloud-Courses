@@ -1,5 +1,14 @@
-### Script for teachers to set up the development environment for new courses in UCloud.
-### The script is portable across operating systems. 
+"""
+Script for teachers to set up the development environment for new courses in UCloud.
+The script is portable across operating systems. 
+
+Usage: python3 create-new-course.py -n <course name> -r <course start date> -b <base image>
+"""
+__author__ = "Jonas Whittlestone"
+__version__ = "0.1"
+__maintainer__ = "SDU eScience Center"
+__email__ = "support@escience.sdu.dk"
+__status__ = "Development"
 
 import os # For portable handling of paths 
 import argparse # For passing command line arguments
