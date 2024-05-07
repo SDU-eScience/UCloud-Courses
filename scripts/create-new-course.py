@@ -123,9 +123,9 @@ if __name__ == "__main__":
     # Check that format and values for input for -r is valid
     try: 
         if not check_release_format(args.release):
-            raise ValueError("The format of the provided course start date ({}) is invalid. \n The format must be: YYYY-MM-DD.".format(args.release))
+            raise ValueError("ERROR ...\nThe format of the provided course start date ({}) is invalid. \n The format must be: YYYY-MM-DD.".format(args.release))
         if not check_release_values(args.release)[0]:
-            raise ValueError("Some values of the provided start date ({}) are invalid.\nThe following values for the course start date were invalid: {}".format(args.release, get_invalid_release_values(check_release_values(args.release)[1])))
+            raise ValueError("ERROR ...\nSome values of the provided start date ({}) are invalid.\nThe following values for the course start date were invalid: {}".format(args.release, get_invalid_release_values(check_release_values(args.release)[1])))
     except ValueError as e: 
         exit(str(e))
 
@@ -141,9 +141,9 @@ if __name__ == "__main__":
         path_tail = path_split[1]
         path_tail_of_head = os.path.split(path_split[0])[1] 
         if (not "create-new-course.py" in files_in_cwd) or (not "templates" in files_in_cwd):
-            raise OSError("Current working directory ({}) is incorrect.\nYou must be in UCloud-Courses/scripts.".format(cwd))
+            raise OSError("ERROR ...\nCurrent working directory ({}) is incorrect.\nYou must be in UCloud-Courses/scripts.".format(cwd))
         if (not path_tail == "scripts") or (not path_tail_of_head == "UCloud-Courses"):
-            raise OSError("Current working directory ({}) is incorrect.\nYou must be in UCloud-Courses/scripts.".format(cwd))
+            raise OSError("ERROR ...\nCurrent working directory ({}) is incorrect.\nYou must be in UCloud-Courses/scripts.".format(cwd))
     except OSError as e:
             exit(str(e))
    
@@ -195,7 +195,8 @@ if __name__ == "__main__":
         f5.close()
 
     # Edit the contents of the templates based on input from user
-    # TODO
+    # TODO: Insert course name and base image tag into the template files
+    # appyml = re.sub("COURSE_NAME", args.name, appyml)
 
     # Write to edited contents from the tempate files to the course folder
     with (
