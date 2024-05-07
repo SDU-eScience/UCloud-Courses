@@ -116,105 +116,111 @@ def replace_whitespace(str):
     return(re.sub(' +', '-', str))
 
 if __name__ == "__main__":
-    args = parse_arguments()
-
-    args.name = replace_whitespace(args.name)
-
-    # Check that format and values for input for -r is valid
-    try: 
-        if not check_release_format(args.release):
-            raise ValueError("ERROR ...\nThe format of the provided course start date ({}) is invalid. \n The format must be: YYYY-MM-DD.".format(args.release))
-        if not check_release_values(args.release)[0]:
-            raise ValueError("ERROR ...\nSome values of the provided start date ({}) are invalid.\nThe following values for the course start date were invalid: {}".format(args.release, get_invalid_release_values(check_release_values(args.release)[1])))
-    except ValueError as e: 
-        exit(str(e))
-
-    # Get the working directory
-    # # NB: It is the user's responsibility that the working directory is correct. (Although if it is wrong, an error is likely in create_dir(.) below.)
-    cwd = get_cwd() 
-
-    # Check if cwd is correct. 
-    # NB: This error check does not guarantee the correct cwd, but for all practical purposes it should suffice. 
     try:
-        files_in_cwd = os.listdir(cwd)
-        path_split = os.path.split(cwd)
-        path_tail = path_split[1]
-        path_tail_of_head = os.path.split(path_split[0])[1] 
-        if (not "create-new-course.py" in files_in_cwd) or (not "templates" in files_in_cwd):
-            raise OSError("ERROR ...\nCurrent working directory ({}) is incorrect.\nYou must be in UCloud-Courses/scripts.".format(cwd))
-        if (not path_tail == "scripts") or (not path_tail_of_head == "UCloud-Courses"):
-            raise OSError("ERROR ...\nCurrent working directory ({}) is incorrect.\nYou must be in UCloud-Courses/scripts.".format(cwd))
-    except OSError as e:
+        args = parse_arguments()
+
+        args.name = replace_whitespace(args.name)
+
+        # Check that format and values for input for -r is valid
+        try: 
+            if not check_release_format(args.release):
+                raise ValueError("ERROR ...\nThe format of the provided course start date ({}) is invalid.\nThe format must be: YYYY-MM-DD.".format(args.release))
+            if not check_release_values(args.release)[0]:
+                raise ValueError("ERROR ...\nSome values of the provided start date ({}) are invalid.\nThe following values for the course start date were invalid: {}".format(args.release, get_invalid_release_values(check_release_values(args.release)[1])))
+        except ValueError as e: 
             exit(str(e))
-   
 
-    # Create the course file tree
-    # UCloud-Courses/
-    #  |- Courses/
-    #    |- <course name>/
-    #      |- <course start date>/
-    #         |- Dockerfile 
-    #         |- README.md 
-    #         |- *.yml 
-    #         |- start_app.sh
+        # Get the working directory
+        # # NB: It is the user's responsibility that the working directory is correct. (Although if it is wrong, an error is likely in create_dir(.) below.)
+        cwd = get_cwd() 
 
-    course_root_dir = os.path.abspath(os.path.join(os.path.split(cwd)[0], 'Courses', args.name))
-    course_release_dir = join_paths(course_root_dir, args.release)
+        # Check if cwd is correct. 
+        # NB: This error check does not guarantee the correct cwd, but for all practical purposes it should suffice. 
+        try:
+            files_in_cwd = os.listdir(cwd)
+            path_split = os.path.split(cwd)
+            path_tail = path_split[1]
+            path_tail_of_head = os.path.split(path_split[0])[1] 
+            if (not "create-new-course.py" in files_in_cwd) or (not "templates" in files_in_cwd):
+                raise OSError("ERROR ...\nCurrent working directory ({}) is incorrect.\nYou must be in UCloud-Courses/scripts.".format(cwd))
+            if (not path_tail == "scripts") or (not path_tail_of_head == "UCloud-Courses"):
+                raise OSError("ERROR ...\nCurrent working directory ({}) is incorrect.\nYou must be in UCloud-Courses/scripts.".format(cwd))
+        except OSError as e:
+                exit(str(e))
     
-    dir_list = [course_root_dir, course_release_dir]
 
-    for dir in dir_list:
-        create_dir(dir)
+        # Create the course file tree
+        # UCloud-Courses/
+        #  |- Courses/
+        #    |- <course name>/
+        #      |- <course start date>/
+        #         |- Dockerfile 
+        #         |- README.md 
+        #         |- *.yml 
+        #         |- start_app.sh
 
-    # Populate the course folders
-    templates_dir = join_paths(cwd, 'templates')
+        course_root_dir = os.path.abspath(os.path.join(os.path.split(cwd)[0], 'Courses', args.name))
+        course_release_dir = join_paths(course_root_dir, args.release)
+        
+        dir_list = [course_root_dir, course_release_dir]
 
-    template_readme = join_paths(templates_dir, 'README.md.template') 
-    template_dockerfile = join_paths(templates_dir, 'Dockerfile.%s_template'%(args.baseimage))
-    template_appyml = join_paths(templates_dir, 'template-app.yml')
-    template_toolyml = join_paths(templates_dir, 'template-tool.yml')
-    template_startapp = join_paths(templates_dir, 'start_app.template')
+        for dir in dir_list:
+            create_dir(dir)
 
-    with (
-       open(template_readme, 'r') as f1,
-       open(template_dockerfile, 'r') as f2,
-       open(template_appyml, 'r') as f3,
-       open(template_toolyml, 'r') as f4,
-       open(template_startapp, 'r') as f5
+        # Populate the course folders
+        templates_dir = join_paths(cwd, 'templates')
 
-    ):
-        readme = f1.read()
-        f1.close()
-        dockerfile = f2.read()
-        f2.close()
-        appyml = f3.read()
-        f3.close()
-        toolyml = f4.read()
-        f4.close()
-        startapp = f5.read()
-        f5.close()
+        template_readme = join_paths(templates_dir, 'README.md.template') 
+        template_dockerfile = join_paths(templates_dir, 'Dockerfile.%s_template'%(args.baseimage))
+        template_appyml = join_paths(templates_dir, 'template-app.yml')
+        template_toolyml = join_paths(templates_dir, 'template-tool.yml')
+        template_startapp = join_paths(templates_dir, 'start_app.template')
 
-    # Edit the contents of the templates based on input from user
-    # TODO: Insert course name and base image tag into the template files
-    # appyml = re.sub("COURSE_NAME", args.name, appyml)
+        with (
+        open(template_readme, 'r') as f1,
+        open(template_dockerfile, 'r') as f2,
+        open(template_appyml, 'r') as f3,
+        open(template_toolyml, 'r') as f4,
+        open(template_startapp, 'r') as f5
 
-    # Write to edited contents from the tempate files to the course folder
-    with (
-        open(join_paths(course_release_dir, 'README.md'), 'w') as f1,
-        open(join_paths(course_release_dir, 'Dockerfile'), 'w') as f2,
-        open(join_paths(course_release_dir, '%s-app.yml'%(args.name)), 'w') as f3,
-        open(join_paths(course_release_dir, '%s-tool.yml'%(args.name)), 'w') as f4,
-        open(join_paths(course_release_dir, 'start_app.sh'), 'w') as f5
-    ):
-        f1.write(readme)
-        f1.close()
-        f2.write(dockerfile)
-        f2.close()
-        f3.write(appyml)
-        f3.close()
-        f4.write(toolyml)
-        f4.close()
-        f5.write(startapp)
-        f5.close()
+        ):
+            readme = f1.read()
+            f1.close()
+            dockerfile = f2.read()
+            f2.close()
+            appyml = f3.read()
+            f3.close()
+            toolyml = f4.read()
+            f4.close()
+            startapp = f5.read()
+            f5.close()
 
-    # To remove the course file tree use: rm -rf ../Courses/<course name>
+        # Edit the contents of the templates based on input from user
+        # TODO: Insert course name and base image tag into the template files
+        # appyml = re.sub("COURSE_NAME", args.name, appyml)
+
+        # Write to edited contents from the tempate files to the course folder
+        with (
+            open(join_paths(course_release_dir, 'README.md'), 'w') as f1,
+            open(join_paths(course_release_dir, 'Dockerfile'), 'w') as f2,
+            open(join_paths(course_release_dir, '%s-app.yml'%(args.name)), 'w') as f3,
+            open(join_paths(course_release_dir, '%s-tool.yml'%(args.name)), 'w') as f4,
+            open(join_paths(course_release_dir, 'start_app.sh'), 'w') as f5
+        ):
+            f1.write(readme)
+            f1.close()
+            f2.write(dockerfile)
+            f2.close()
+            f3.write(appyml)
+            f3.close()
+            f4.write(toolyml)
+            f4.close()
+            f5.write(startapp)
+            f5.close()
+    
+    # Clean up in case of error after the creating of the course file tree
+    except Exception as e:
+        print("Error encountered. Error message: {}\nCleaning up ...".format(e))
+        shutil.rmtree(course_root_dir)
+        exit("Cleaning completed.")
+
