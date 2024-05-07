@@ -13,7 +13,7 @@ __status__ = "Development"
 import os # For portable handling of paths 
 import argparse # For passing command line arguments
 import shutil # For a portable way of copying files  
-import re 
+import re # For string manipulation
 
 def join_paths(abspath_head, tail):
     """
