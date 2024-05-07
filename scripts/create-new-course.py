@@ -112,8 +112,8 @@ def replace_whitespace(str):
     :param str 
     :return str with whitespaces replaced with dashes
     """
-    # Remove excess whitespace, and replace remaining whitespaces with a dash
-    return(re.sub(' +', '-', str))
+    # Remove excess/leading/trailing whitespace, and replace remaining whitespaces with a dash. 
+    return(re.sub(' +', '-', str.strip()))
 
 if __name__ == "__main__":
     try:
