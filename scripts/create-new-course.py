@@ -14,6 +14,8 @@ import os # For portable handling of paths
 import argparse # For passing command line arguments
 import shutil # For a portable way of copying files  
 import re # For string manipulation
+import datetime as dt # For fetching the current month and year 
+import requests # Portable library for making HTTP requests
 
 def join_paths(abspath_head, tail):
     """
@@ -60,7 +62,7 @@ def parse_arguments():
     parser = argparse.ArgumentParser(description="Create a new course in UCloud.")
     parser.add_argument('-n', '--name', type=str, help='Course name.', required=True)
     parser.add_argument('-r', '--release', type=str, help='Course start date (YYYY-MM-DD).', required=True) 
-    parser.add_argument('-b', '--baseimage', type=str, help='Base image', required=True, choices=['almalinux', 'alpine', 'centos', 'debian', 'ubuntu', 'conda', 'jupyterlab', 'rstudio', 'ubuntu-xfce', 'almalinux-xfce'])
+    parser.add_argument('-b', '--baseimage', type=str, help='Base image', required=True, choices=['almalinux', 'alpine', 'debian', 'ubuntu', 'conda', 'jupyterlab', 'rstudio', 'ubuntu-xfce', 'almalinux-xfce'])
     return parser.parse_args()
 
 def check_release_format(release_str):
@@ -114,6 +116,55 @@ def replace_whitespace(str):
     """
     # Remove excess/leading/trailing whitespace, and replace remaining whitespaces with a dash. 
     return(re.sub(' +', '-', str.strip()))
+
+def get_month_year():
+    """
+    :return String with month-year base image tag.
+    """
+    d = dt.datetime.now()
+    return(d.strftime("%B")[0:3] + str(d.year))
+
+def get_baseimage_newest_tag(baseimage):
+    """
+    Fetches newest release for baseimage.
+
+    :param baseimage A base image from {jupyterlab, conda, rstudio}
+    :return The newest release of the software
+    """
+    if(baseimage in ["ubuntu", "almalinux", "debian", "alpine"]):
+        return(get_month_year())
+    if(baseimage in ["almalinux-xfce", "ubuntu-xfce"]):
+        return(get_month_year() + "-xfce")
+    if(baseimage == "conda"):
+        ret = requests.get("https://api.github.com/repos/conda-forge/miniforge/releases/latest").json()
+        ret = ret["tag_name"]
+        ret = re.sub("-", ".", ret) # Replace '-' with '.'
+        return(ret)
+    if(baseimage == "jupyterlab"):
+        ret = requests.get("https://api.github.com/repos/jupyterlab/jupyterlab/releases/latest").json()
+        ret = ret["tag_name"]
+        ret = re.sub("v", "", ret) # Replace 'v' with ''
+        return(ret)
+    if(baseimage == "rstudio"):
+        ret = requests.get("https://svn.r-project.org/R/tags/").text
+        sion_list = re.findall("R[-]\d+[-]\d+[-]\d+", ret)
+        sion_list = [re.sub("R-", "", e) for e in sion_list] 
+        sion_list = [re.sub("-", ".", e) for e in sion_list]
+        return(max(sion_list)) 
+    
+def get_baseimage_name(baseimage):
+    """
+    Maps the base image string given in args.baseimage to the name of the baseimage in the Docker registry
+
+    :param A base image name from the valid names in args.baseimage 
+    :return The base image name from the Docker registry
+    """
+    if(baseimage in ["almalinux", "alpine", "debian", "ubuntu"]):
+        return("base-" + baseimage)
+    if(baseimage == "conda"):
+        return("conda")
+    # TODO: What are the base image names for *-xfce, rstudio, and jupyterlab?
+    return("BASEIMAGE_NAME")
 
 if __name__ == "__main__":
     try:
@@ -176,6 +227,12 @@ if __name__ == "__main__":
         template_toolyml = join_paths(templates_dir, 'template-tool.yml')
         template_startapp = join_paths(templates_dir, 'start_app.template')
 
+        # Get name and tag for args.baseimage
+        baseimage_name = get_baseimage_name(args.baseimage)
+        baseimage_tag = get_baseimage_newest_tag(args.baseimage)
+
+        print("Baseimage name: {}. Baseimage newest tag: {}". format(baseimage_name, baseimage_tag)) # For testing only
+
         with (
         open(template_readme, 'r') as f1,
         open(template_dockerfile, 'r') as f2,
@@ -218,9 +275,14 @@ if __name__ == "__main__":
             f5.write(startapp)
             f5.close()
     
-    # Clean up in case of error after the creating of the course file tree
+    # Clean up in case of error after the creating of the course file tree. Prompt the user before cleanup.
     except Exception as e:
-        print("Error encountered. Error message: {}\nCleaning up ...".format(e))
-        shutil.rmtree(course_root_dir)
-        exit("Cleaning completed.")
+        print("Error encountered. Error message: {}".format(e))
+        if(input("Do you want the folder {}, and all its contents, to be PERMANENTLY and IRREVERSIBLY deleted? (yes/no): ".format(course_root_dir)) != "yes"):
+            exit("Exiting.")
+        else:
+            print("Cleaning up...")
+            shutil.rmtree(course_root_dir)
+            print("Cleanup completed.")
+            exit("Exiting.")
 
