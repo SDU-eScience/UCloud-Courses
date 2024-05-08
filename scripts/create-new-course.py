@@ -159,17 +159,18 @@ def get_baseimage_name(baseimage):
     :param A base image name from the valid names in args.baseimage 
     :return The base image name from the Docker registry
     """
-    if(baseimage in ["almalinux", "alpine", "debian", "ubuntu"]):
+    if(baseimage in ["almalinux", "alpine", "debian", "ubuntu", "ubuntu-xfce", "almalinux-xfce"]):
         return("base-" + baseimage)
     if(baseimage == "conda"):
         return("conda")
-    # TODO: What are the base image names for *-xfce, rstudio, and jupyterlab?
-    return("BASEIMAGE_NAME")
+    if(baseimage == "rstudio"):
+        return("rstudio")
+    if(baseimage == "jupyterlab"):
+        return("jupyter-all-spark")
 
 if __name__ == "__main__":
     try:
         args = parse_arguments()
-
         args.name = replace_whitespace(args.name)
 
         # Check that format and values for input for -r is valid
@@ -230,8 +231,6 @@ if __name__ == "__main__":
         # Get name and tag for args.baseimage
         baseimage_name = get_baseimage_name(args.baseimage)
         baseimage_tag = get_baseimage_newest_tag(args.baseimage)
-
-        print("Baseimage name: {}. Baseimage newest tag: {}". format(baseimage_name, baseimage_tag)) # For testing only
 
         with (
         open(template_readme, 'r') as f1,
