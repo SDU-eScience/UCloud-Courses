@@ -168,10 +168,11 @@ def get_baseimage_name(baseimage):
 
 if __name__ == "__main__":
     try:
+        # Parse and clean the user input
         args = parse_arguments()
         args.name = replace_whitespace(args.name)
 
-        # Check that format and values for input for -r is valid
+        # Check that format and values for input for -r are valid
         try: 
             if not check_release_format(args.release):
                 raise ValueError("ERROR ...\nThe format of the provided course start date ({}) is invalid.\nThe format must be: YYYY-MM-DD.".format(args.release))
@@ -181,7 +182,6 @@ if __name__ == "__main__":
             exit(str(e))
 
         # Get the working directory
-        # # NB: It is the user's responsibility that the working directory is correct. (Although if it is wrong, an error is likely in create_dir(.) below.)
         cwd = get_cwd() 
 
         # Check if cwd is correct. 
@@ -211,6 +211,18 @@ if __name__ == "__main__":
 
         course_root_dir = os.path.abspath(os.path.join(os.path.split(cwd)[0], 'Courses', args.name))
         course_release_dir = join_paths(course_root_dir, args.release)
+
+        # Check if course name is available
+        courses_list = list()
+        for root, dirs, files in os.walk(os.path.split(course_root_dir)[0]):
+            for course in dirs:
+                courses_list.append(course)
+
+        try: 
+            if args.name in courses_list:
+                raise OSError("Error ...\nA course with the the title '{}' already exists.".format(args.name))
+        except OSError as e:
+            exit(str(e)) 
         
         dir_list = [course_root_dir, course_release_dir]
 
