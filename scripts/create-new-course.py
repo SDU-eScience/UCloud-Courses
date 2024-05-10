@@ -282,12 +282,5 @@ if __name__ == "__main__":
     
     # Clean up in case of error after the creating of the course file tree. Prompt the user before cleanup.
     except Exception as e:
-        print("Error encountered. Error message: {}".format(e))
-        if(input("Do you want the folder {}, and all its contents, to be PERMANENTLY and IRREVERSIBLY deleted? (yes/no): ".format(course_root_dir)) != "yes"):
-            exit("Exiting.")
-        else:
-            print("Cleaning up...")
-            shutil.rmtree(course_root_dir)
-            print("Cleanup completed.")
-            exit("Exiting.")
+        exit(str(e))
 
