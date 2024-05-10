@@ -250,9 +250,17 @@ if __name__ == "__main__":
             f5.close()
 
         # Edit the contents of the templates based on input from user
-        # TODO: Insert course name and base image tag into the template files
-        # appyml = re.sub("COURSE_NAME", args.name, appyml)
+        # Edit Dockerfile
+        dockerfile = re.sub("TAG", baseimage_tag, dockerfile)
 
+        # Edit template-app.yml
+        appyml = re.sub("COURSE_NAME", args.name, appyml)
+        appyml = re.sub("COURSE_TAG", args.release, appyml)
+
+        # Edit template-tool.yml
+        toolyml = re.sub("COURSE_NAME", args.name, toolyml)
+        toolyml = re.sub("COURSE_TAG", args.release, toolyml)        
+        
         # Write to edited contents from the tempate files to the course folder
         with (
             open(join_paths(course_release_dir, 'README.md'), 'w') as f1,
