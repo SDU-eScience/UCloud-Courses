@@ -131,10 +131,8 @@ def get_baseimage_newest_tag(baseimage):
     :param baseimage A base image from {jupyterlab, conda, rstudio}
     :return The newest release of the software
     """
-    if(baseimage in ["ubuntu", "almalinux", "debian", "alpine"]):
+    if(baseimage in ["ubuntu", "almalinux", "debian", "alpine", "almalinux-xfce", "ubuntu-xfce"]):
         return(get_month_year())
-    if(baseimage in ["almalinux-xfce", "ubuntu-xfce"]):
-        return(get_month_year() + "-xfce")
     if(baseimage == "conda"):
         ret = requests.get("https://api.github.com/repos/conda-forge/miniforge/releases/latest").json()
         ret = ret["tag_name"]
