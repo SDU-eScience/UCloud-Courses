@@ -3,6 +3,9 @@ Script for teachers to set up the development environment for new courses in UCl
 The script is portable across operating systems. 
 
 Usage: python3 create-new-course.py -n <course name> -r <course start date> -b <base image>
+
+The script was build using the Python 3.10.14 interpreter and standard library. 
+For module requirements outside the Python standard library, see requirements.txt.
 """
 __author__ = "Jonas Whittlestone"
 __version__ = "0.1"
