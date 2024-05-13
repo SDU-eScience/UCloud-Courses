@@ -262,6 +262,10 @@ if __name__ == "__main__":
             f5.close()
 
         # Edit the contents of the templates based on input from user
+
+        # Edit README
+        readme = re.sub("COURSE_NAME", args.name, readme)
+
         # Edit Dockerfile
         dockerfile = re.sub("TAG", baseimage_tag, dockerfile)
 
