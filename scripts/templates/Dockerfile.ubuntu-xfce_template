@@ -1,5 +1,3 @@
-ARG TAG
-
 FROM dreg.cloud.sdu.dk/ucloud-apps/ubuntu:TAG-xfce
 
 LABEL course="" \

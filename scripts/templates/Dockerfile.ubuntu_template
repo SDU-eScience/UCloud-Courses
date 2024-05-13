@@ -1,5 +1,3 @@
-ARG TAG
-
 FROM dreg.cloud.sdu.dk/ucloud-apps/base-ubuntu:TAG
 
 LABEL course="" \

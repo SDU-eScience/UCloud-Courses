@@ -1,5 +1,3 @@
-ARG TAG
-
 FROM dreg.cloud.sdu.dk/ucloud-apps/jupyter-base:TAG
 
 MAINTAINER ""
