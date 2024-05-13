@@ -7,7 +7,6 @@ Usage: python3 create-new-course.py -n <course name> -r <course start date> -b <
 The script was build using the Python 3.10.14 interpreter and standard library. 
 For module requirements outside the Python standard library, see requirements.txt.
 """
-__author__ = "Jonas Whittlestone"
 __maintainer__ = "SDU eScience Center"
 __email__ = "support@escience.sdu.dk"
 __status__ = "Development"
