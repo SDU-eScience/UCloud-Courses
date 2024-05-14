@@ -212,6 +212,8 @@ if __name__ == "__main__":
 
         course_root_dir = os.path.abspath(os.path.join(os.path.split(cwd)[0], 'Courses', args.name))
         course_release_dir = join_paths(course_root_dir, args.release)
+        course_logo_dir = join_paths(course_root_dir, 'logo')
+        course_test_dir = join_paths(course_root_dir, 'test')
 
         # Check if course name is available
         courses_list = list()
@@ -225,7 +227,7 @@ if __name__ == "__main__":
         except OSError as e:
             exit(str(e)) 
         
-        dir_list = [course_root_dir, course_release_dir]
+        dir_list = [course_root_dir, course_release_dir, course_logo_dir, course_test_dir]
 
         for dir in dir_list:
             create_dir(dir)
@@ -237,7 +239,7 @@ if __name__ == "__main__":
         template_dockerfile = join_paths(templates_dir, 'Dockerfile.%s_template'%(args.baseimage))
         template_appyml = join_paths(templates_dir, 'template-app.yml')
         template_toolyml = join_paths(templates_dir, 'template-tool.yml')
-        template_startapp = join_paths(templates_dir, 'start_app.template')
+        template_startcourse = join_paths(templates_dir, 'start_course.template')
 
         # Get name and tag for args.baseimage
         baseimage_name = get_baseimage_name(args.baseimage)
@@ -248,7 +250,7 @@ if __name__ == "__main__":
         open(template_dockerfile, 'r') as f2,
         open(template_appyml, 'r') as f3,
         open(template_toolyml, 'r') as f4,
-        open(template_startapp, 'r') as f5
+        open(template_startcourse, 'r') as f5
 
         ):
             readme = f1.read()
@@ -259,7 +261,7 @@ if __name__ == "__main__":
             f3.close()
             toolyml = f4.read()
             f4.close()
-            startapp = f5.read()
+            startcourse = f5.read()
             f5.close()
 
         # Edit the contents of the templates based on input from user
@@ -280,11 +282,11 @@ if __name__ == "__main__":
         
         # Write to edited contents from the tempate files to the course folder
         with (
-            open(join_paths(course_release_dir, 'README.md'), 'w') as f1,
+            open(join_paths(course_root_dir, 'README.md'), 'w') as f1,
             open(join_paths(course_release_dir, 'Dockerfile'), 'w') as f2,
             open(join_paths(course_release_dir, '%s-app.yml'%(args.name)), 'w') as f3,
             open(join_paths(course_release_dir, '%s-tool.yml'%(args.name)), 'w') as f4,
-            open(join_paths(course_release_dir, 'start_app.sh'), 'w') as f5
+            open(join_paths(course_release_dir, 'start_course.sh'), 'w') as f5
         ):
             f1.write(readme)
             f1.close()
@@ -294,7 +296,7 @@ if __name__ == "__main__":
             f3.close()
             f4.write(toolyml)
             f4.close()
-            f5.write(startapp)
+            f5.write(startcourse)
             f5.close()
     
     # Clean up in case of error after the creating of the course file tree. Prompt the user before cleanup.
