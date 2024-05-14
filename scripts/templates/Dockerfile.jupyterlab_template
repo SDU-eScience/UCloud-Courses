@@ -4,8 +4,6 @@ MAINTAINER ""
 
 LABEL course="" \
       author="" \
-      version="" \
-      license="" \
       description=""
 
 ENV REFRESHED_AT 2023-04-14
@@ -17,7 +15,7 @@ WORKDIR /home/$NB_USER
 USER $NB_UID
 
 ## Add entrypoint script
-COPY --chown="${NB_USER}":"${NB_GID}" start_app.sh /usr/bin/start_app
-RUN chmod 755 /usr/bin/start_app
+COPY --chown="${NB_USER}":"${NB_GID}" start_app.sh /usr/bin/start_course
+RUN chmod 755 /usr/bin/start_course
 
 WORKDIR /work

@@ -18,7 +18,7 @@ WORKDIR ${HOME}
 USER ${USERID}
 
 ## Add entrypoint script
-COPY --chown=$USER:$USER  start_app.sh /usr/bin/start_app
-RUN chmod 755 /usr/bin/start_app
+COPY --chown=$USER:$USER  start_app.sh /usr/bin/start_course
+RUN chmod 755 /usr/bin/start_course
 
 WORKDIR /work
