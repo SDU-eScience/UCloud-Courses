@@ -9,7 +9,6 @@ For module requirements outside the Python standard library, see requirements.tx
 """
 __maintainer__ = "SDU eScience Center"
 __email__ = "support@escience.sdu.dk"
-__status__ = "Development"
 
 import os # For portable handling of paths. Part of the standard library. 
 import argparse # For passing command line arguments. Part of the standard library. 
