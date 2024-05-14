@@ -170,7 +170,7 @@ if __name__ == "__main__":
     try:
         # Parse and clean the user input
         args = parse_arguments()
-        args.name = replace_whitespace(args.name)
+        args.name = replace_whitespace(args.name).lower()
 
         # Check that format and values for input for -r are valid
         try: 
