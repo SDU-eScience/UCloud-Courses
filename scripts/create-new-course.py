@@ -43,16 +43,6 @@ def create_dir(dir):
     """
     os.mkdir(dir)
 
-def copy_file(source, dest):
-    """
-    NB: Not used.
-    Used to populate the directories in the app's file tree with templates. 
-
-    @param: The absolute path of the source file to be copied.
-    @param: The absolute path to where the source file should be copied to. 
-    """
-    shutil.copyfile(source, dest)
-
 def parse_arguments():
     """
     Parses command line arguments for the script.
