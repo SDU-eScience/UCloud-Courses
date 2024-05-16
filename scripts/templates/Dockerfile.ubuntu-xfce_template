@@ -8,6 +8,8 @@ SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 USER 0
 
+WORKDIR /home/${USER}
+
 USER $USERID
 
 ## Add desktop configuration files for the applications installed - if necessary uncomment
@@ -25,7 +27,7 @@ COPY --chown=${USERID}:${GROUPID} UCloud_1.png ${HOME}/UCloud.png
 #COPY  --chown="${USERID}":"${GROUPID}" img ${HOME}/img/
 
 ## Add launch script
-COPY --chown="${USERID}":"${GROUPID}" start_app /usr/local/bin/start_course
+COPY --chown="${USERID}":"${GROUPID}" start_course.sh /usr/local/bin/start_course
 RUN chmod 755 /usr/local/bin/start_course
 
 WORKDIR /work

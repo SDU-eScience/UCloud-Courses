@@ -6,16 +6,15 @@ LABEL course="" \
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
+# change to root if necessary
 USER 0
 
-ENV HOME=/home/$USER
-
-WORKDIR ${HOME}
-
-## Add entrypoint script
-COPY --chown=$USER:$USER  start_app.sh /usr/bin/start_course
-RUN chmod 755 /usr/bin/start_course
+WORKDIR /home/$USER
 
 USER ${USERID}
+
+## Add entrypoint script
+COPY --chown=$USER:$USER  start_course.sh /usr/bin/start_course
+RUN chmod 755 /usr/bin/start_course
 
 WORKDIR /work
