@@ -19,7 +19,7 @@ import requests # Portable library for making HTTP requests. Part of the standar
 
 def join_paths(abspath_head, tail):
     """
-    Joins and creats absolute path /abspath_head/tail.
+    Joins and creates absolute path /abspath_head/tail.
 
     @param abspath_head: The absolute path include parent folder of tail.
     @param tail: The folder/file name to be appended to abspath_head.
@@ -78,12 +78,11 @@ def check_release_values(release_str):
     res.append(year >= 2024)
     res.append(month in range(1,13))
     res.append(day in range(1,32))
-    invalid = []
     return (all(res) is True, res)
 
 def get_invalid_release_values(res_list):
     """
-    Procudes a string showing which values of the provided course start date are invalid
+    Produces a string showing which values of the provided course start date are invalid
 
     @param res_list A boolean list of length 3. Intended to be the second element of the tuple returned from check_release_values()
     @return A string
