@@ -8,7 +8,7 @@ This README contains information about the following:
 - Outline of the financial model.
 - Teacher agreement.
 
-Below, the term *Course* refers to the university-approved course while *digital* (UCloud course) refers to the course deployment on UCloud.
+Below, the term *Course* refers to the university-approved course while *digital course* (UCloud) refers to the course deployment on UCloud.
 
 ## Requirements 
 
