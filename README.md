@@ -8,7 +8,7 @@ This README contains information about the following:
 - Outline of the financial model.
 - Teacher agreement.
 
-Below, the term *Course* refers to the university-approved course while *UCloud course* refers to the course deployment on UCloud.
+Below, the term *Course* refers to the university-approved course while *digital* (UCloud course) refers to the course deployment on UCloud.
 
 ## Requirements 
 
@@ -17,7 +17,7 @@ Before requesting a new UCloud course, the teacher should make sure that the fol
 1. The UCloud digital course is associated with an academic course, which is already existing or planned and approved to take place in the foreseeable future.  
 2. The digital course has been developed by using the *UCloud-Courses* GitHub repository scripts and templates.
 3. The course is for students enrolled at a Danish university.
-4. The teacher, responsible for the course development and maintainance, is employed at a post-PhD level (i.e., postdoc, assistant/associate/full professor).
+4. The teacher, responsible for the digital course development and maintainance, is employed at a post-PhD level (i.e., postdoc, assistant/associate/full professor).
 
 ## General Considerations
 
