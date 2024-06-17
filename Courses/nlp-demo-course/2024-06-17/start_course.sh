@@ -36,20 +36,19 @@ if [[ -f "$INITIALIZATION" ]]; then
 fi
 if [[ -f "$CLASS" ]]; then
     printf "\n======================\n"
-    printf "Running Initialization\n"
+    printf "Starting class module\n"
     printf "======================\n\n"
     case "$CLASS" in
-        "CLASS_1")
-            pip install --user -r "$CLASS" || exit_err "Failed to install packages from $CLASS"
+        "class_01")
+            echo "-----> Chosen module: Class 01"
+            # pip install --user -r "$CLASS" || exit_err "Failed to install packages from $CLASS"
+            cp /home/"${NB_USER}"/classes/class_01.md /work/class_01.md
+            cp /home/"${NB_USER}"/nbs/classroom_01.ipynb /work/classroom_01.ipynb
+            bash -c "jupyter lab --NotebookApp.token='' --log-level=50 --ip=0.0.0.0 --port ${PORT}"
             ;;
-        *.yml|*.yaml)
-            conda env update --file "$CLASS" || exit_err "Failed to update environment using $CLASS"
-            ;;
-        *.sh)
-            bash "$CLASS" || exit_err "Failed to execute script $CLASS"
+        "class_02")
             ;;
         *)
-            exit_err "File format not correct. Initialization must be specified in a *.txt, *.yml/yaml, or *.sh file."
-            ;;
+            echo "-----> Invalid module" ;;
     esac
 fi
