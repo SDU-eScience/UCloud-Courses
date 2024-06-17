@@ -41,7 +41,9 @@ invocation:
   - type: var
     vars: initialization
     prefixGlobal: '-s '
-
+  - type: var
+    vars: class
+    prefixGlobal: '-c '
 parameters:
   initialization:
     title: "Initialization"
@@ -49,6 +51,37 @@ parameters:
     description: >
       Run initialization of pip packages (*.txt), Conda packages (*.yml/yaml), or Bash script (*.sh)
     optional: true
-
+  class:
+    title: 'Select a course module'
+    type: enumeration
+    options:
+      -
+        name: "Class 1"
+        value: "class_01"
+      -
+        name: "Class 2"
+        value: "class_02"
+      -
+        name: "Class 3"
+        value: "class_03"
+      -
+        name: "Class 4"
+        value: "class_4"
+      -
+        name: "Class 5"
+        value: "class_05"
+      -
+        name: "Class 6"
+        value: "class_06"
+      -
+        name: "Class 7"
+        value: "class_07"
+      -
+        name: "Class 8"
+        value: "class_08"
+      -
+        name: "Class 9"
+        value: "class_09"
+    optional: false
 outputFileGlobs:
   - "*"

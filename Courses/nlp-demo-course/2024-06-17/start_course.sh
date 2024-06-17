@@ -7,6 +7,7 @@ function exit_err {
 
 while getopts ":s:" option; do
     case "$option" in
+        c) CLASS=${OPTARG};;
         s) INITIALIZATION="$OPTARG" ;;
         :) exit_err "Missing argument for -$OPTARG" ;;
         *) exit_err "Invalid option -$OPTARG" ;;
@@ -27,6 +28,25 @@ if [[ -f "$INITIALIZATION" ]]; then
             ;;
         *.sh)
             bash "$INITIALIZATION" || exit_err "Failed to execute script $INITIALIZATION"
+            ;;
+        *)
+            exit_err "File format not correct. Initialization must be specified in a *.txt, *.yml/yaml, or *.sh file."
+            ;;
+    esac
+fi
+if [[ -f "$CLASS" ]]; then
+    printf "\n======================\n"
+    printf "Running Initialization\n"
+    printf "======================\n\n"
+    case "$CLASS" in
+        "CLASS_1")
+            pip install --user -r "$CLASS" || exit_err "Failed to install packages from $CLASS"
+            ;;
+        *.yml|*.yaml)
+            conda env update --file "$CLASS" || exit_err "Failed to update environment using $CLASS"
+            ;;
+        *.sh)
+            bash "$CLASS" || exit_err "Failed to execute script $CLASS"
             ;;
         *)
             exit_err "File format not correct. Initialization must be specified in a *.txt, *.yml/yaml, or *.sh file."
