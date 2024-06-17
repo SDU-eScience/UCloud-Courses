@@ -1,4 +1,4 @@
-FROM dreg.cloud.sdu.dk/ucloud-apps/jupyter-base:4.2.2
+FROM dreg.cloud.sdu.dk/ucloud-apps/jupyter-base:4.2.1
 
 LABEL course="" \
       author="" \
