@@ -1,8 +1,9 @@
 .PHONY: build check run logs save tag
 
-REPO   		?= dreg.cloud.sdu.dk/ucloud-apps/
-APP_NAME   	?= genomics
-TAG    		?= 2023.03.01
+REPO   		?= dreg.cloud.sdu.dk/ucloud-course/
+APP_NAME   	?= nlp-demo-course
+TAG    		?= 2024.06.17
+CLASS       ?= ${OPTARG}
 COMMIT 		?= $(shell eval git log --pretty=format:'%h' -n 1)
 CONTAINER 	:= $(shell eval docker ps -a | awk '{ print $$NF }' | grep -w '$(APP_NAME)\-test')
 
@@ -15,7 +16,6 @@ build:
 		docker rm $(CONTAINER) -f; \
 	fi
 	@printf "\nBuild the image\n"
-	@bash update_refreshed_at
 	@docker build -t $(REPO)$(APP_NAME):$(TAG) .
 
 ## Check image vulnerabilities
@@ -32,9 +32,7 @@ run:
 		-v $(LOCAL_PKG_DIR)/../test:/tmp/test \
 		--name $(APP_NAME)-test \
 		$(REPO)$(APP_NAME):$(TAG) \
-		start-jupyter -c Intro_to_NGS
-#		start-jupyter -c IGV
-#		start-jupyter -c Intro_to_PopGen
+		start-course -c $(CLASS)
 
 logs:
 	@printf "\nShow container logs\n"
