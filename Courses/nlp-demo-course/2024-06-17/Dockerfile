@@ -1,0 +1,20 @@
+FROM dreg.cloud.sdu.dk/ucloud-apps/jupyter-base:4.2.2
+
+LABEL course="" \
+      author="" \
+      description=""
+
+ENV REFRESHED_AT 2023-04-14
+
+# change to root if necessary
+USER 0
+
+WORKDIR /home/$NB_USER
+
+USER $NB_UID
+
+## Add entrypoint script
+COPY --chown="${NB_USER}":"${NB_GID}" start_course.sh /usr/bin/start_course
+RUN chmod 755 /usr/bin/start_course
+
+WORKDIR /work
