@@ -27,10 +27,10 @@ COPY --chown="${NB_USER}":"${NB_GID}" scripts /work/scripts
 COPY --chown="${NB_USER}":"${NB_GID}" src /work/src
 COPY --chown="${NB_USER}":"${NB_GID}" syllabus /work/syllabus
 
-COPY --chown="${NB_USER}":"${NB_GID}" start_course.sh /usr/bin/start_course
+COPY --chown="${NB_USER}":"${NB_GID}" start_course.sh /usr/bin/start_course.sh
 
 EXPOSE 8080
 
-RUN chmod 755 /usr/bin/start_course
+RUN chmod 755 /usr/bin/start_course.sh
 
 WORKDIR /work

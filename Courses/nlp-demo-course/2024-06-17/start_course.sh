@@ -4,6 +4,7 @@ function exit_err {
     printf "%s\n" "$1" >&2
     exit 1
 }
+PORT=8888
 
 while getopts ":s:" option; do
     case "$option" in
@@ -47,6 +48,11 @@ if [[ -f "$CLASS" ]]; then
             bash -c "jupyter lab --NotebookApp.token='' --log-level=50 --ip=0.0.0.0 --port ${PORT}"
             ;;
         "class_02")
+            echo "-----> Chosen module: Class 02"
+            cp /home/"${NB_USER}"/classes/class_02.md /work/class_02.md
+            cp /home/"${NB_USER}"/nbs/classroom_02a.ipynb /work/classroom_02a.ipynb
+            cp /home/"${NB_USER}"/nbs/classroom_02b.ipynb /work/classroom_02b.ipynb
+            bash -c "jupyter lab --NotebookApp.token='' --log-level=50 --ip=0.0.0.0 --port ${PORT}"
             ;;
         *)
             echo "-----> Invalid module" ;;
