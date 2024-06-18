@@ -16,6 +16,8 @@ Usage: python3 build-docker-image.py -n <course name> -r <course start date>
 The script was build using the Python 3.10.14 interpreter and standard library. 
 For module requirements outside the Python standard library, see requirements.txt.
 """
+__maintainer__ = "SDU eScience Center"
+__email__ = "support@escience.sdu.dk"
 
 import os 
 import argparse 
