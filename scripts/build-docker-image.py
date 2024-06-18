@@ -4,6 +4,10 @@ Script for teachers to build the docker images.
 Before using the script, the teacher should create a course using 
 create-new-course.py, complete the Dockerfile and startingscript etc.
 
+The script requires that a Docker daemon is running. Otherwise it will
+exit with a error. The Docker daemon can be started e.g., by opening (and
+keeping open) Docker Desktop.  
+
 Once the image has been built, the teacher can interact with it
 using Docker Desktop. 
 
