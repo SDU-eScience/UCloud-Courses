@@ -29,9 +29,11 @@ def parse_arguments():
 
     @return: Parsed arguments.
     """
-    parser = argparse.ArgumentParser(description='Create a new course in UCloud.')
+    parser = argparse.ArgumentParser(description='Build course Docker image.')
     parser.add_argument('-n', '--name', type=str, help='Course name.', required=True)
+    parser.add_argument('-c', '--coursecode', type=str, help="Official course code (from university course description)", required=True)
     parser.add_argument('-r', '--release', type=str, help='Release.', required=True)
+    parser.add_argument('-u', '--university', type=str, help="University where the course will be taught", required=True, choices=['sdu', 'au', 'aau']) # Do we need to add more universities?
     return parser.parse_args()
 
 def join_paths(abspath_head, tail):
@@ -69,19 +71,23 @@ if __name__ == "__main__":
     
     # Check that file exists 
     dockerfile_path = join_paths(os.path.split(cwd)[0], 'Courses')
-    dockerfile_path = join_paths(dockerfile_path, args.name)
+    dockerfile_path = join_paths(dockerfile_path, args.university)
+    dockerfile_path = join_paths(dockerfile_path, '{}__{}'.format(args.name, args.coursecode))
     dockerfile_path = join_paths(dockerfile_path, args.release)
 
     # Check that Dockerfile exists 
     try:
-        if (not os.path.isfile(join_paths(dockerfile_path, 'Dockerfile'))):
-            raise OSError("ERROR ...\nThe file ({}) does not exist.".format(dockerfile_path))
+        if (os.path.isfile(join_paths(dockerfile_path, 'Dockerfile'))):
+            print("Dockerfile exists.".format(dockerfile_path))
+        else:
+            raise OSError("ERROR ...\nThe file ({}) does not exist. \nExiting.".format(dockerfile_path))
     except OSError as e: 
         exit(str(e))
 
     # Build the Docker image from the Dockerfile 
-    image_tag = 'dreg.cloud.sdu.dk/ucloud-courses/' + args.name + ':' + args.release # Or should it be dreg.cloud.sdu.dk/ucloud-apps/ instead?
+    image_tag = 'dreg.cloud.sdu.dk/ucloud-courses/{}-{}-{}:{}'.format(args.university, args.name, args.coursecode, args.release) # Or should it be dreg.cloud.sdu.dk/ucloud-apps/ instead?
     
     print("Starting build of {}.".format(join_paths(dockerfile_path, 'Dockerfile')))
+    print('BE PATIENT ... Building the image may take a while.')
     client.images.build(path = dockerfile_path, rm = True, tag = image_tag)
     print("Building complete. The image is called '{}' and available under 'Images' in Docker Desktop.".format(image_tag))
