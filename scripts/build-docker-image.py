@@ -11,7 +11,7 @@ keeping open) Docker Desktop.
 Once the image has been built, the teacher can interact with it
 using Docker Desktop. 
 
-Usage: python3 build-docker-image.py -n <course name> -r <course start date> 
+Usage: python3 build-docker-image.py -n <course name> -c <course code> -r <course start date> -u <university> 
 
 The script was build using the Python 3.10.14 interpreter and standard library. 
 For module requirements outside the Python standard library, see requirements.txt.
