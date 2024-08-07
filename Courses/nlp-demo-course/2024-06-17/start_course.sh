@@ -1,12 +1,10 @@
 #!/bin/bash
-printf "hello \n"
-#TODO: remove hardcoding
-# CLASS="class_01"
 function exit_err {
     printf "%s\n" "$1" >&2
     exit 1
 }
 PORT=8888
+EXTERNAL_REPO_URL="https://api.github.com/repos/jeselginAU/demo-NLP-Course-AU"
 
 while getopts "c:s:" option; do
     case "${option}" in
@@ -38,57 +36,35 @@ if [[ -f "${INITIALIZATION}" ]]; then
             ;;
     esac
 fi
-echo "PWD is ${PWD}"
 if [[ -n ${CLASS} ]]; then
     printf "\n======================\n"
     printf "Starting class module\n"
     printf "======================\n\n"
-    # wget https://github.com/jeselginAU/demo-NLP-Course-AU/tree/main/classes/class_01
-    # wget utr/exact/path/to/files/${CLASS}
 
     # Find urls for the individual files
-    wget "https://api.github.com/repos/jeselginAU/demo-NLP-Course-AU/contents/classes/${CLASS}"
-    mv "${CLASS}" "${CLASS}.json"
-    URLS=$(jq  -r '.[].download_url // empty' "${CLASS}.json" )
-    mkdir "${PWD}/${CLASS}" || exit_err "failed to create directory"
+    wget "${EXTERNAL_REPO_URL}/contents/classes/${CLASS}"
+    if [[ ! -f "${CLASS}" ]]; then
+        exit_err "Error: could not find course materials for course module \"${CLASS}\" in external repo \"${EXTERNAL_REPO_URL}\""
+    else
+        mv "${CLASS}" "${CLASS}.json"
+        URLS=$(jq  -r '.[].download_url // empty' "${CLASS}.json" )
+        mkdir "${PWD}/${CLASS}" || exit_err "failed to create directory"
 
-    # Download each file
-    for url in ${URLS}; do 
-        if [[ -z "${url}" ]]; then
-            echo "Error: Null or empty URL found."
-            exit 1
-        else
-            file_name=$(basename "${url}")
-            # mkdir "/work/${CLASS}"
-            # curl -L "${url}" -o "/work/${CLASS}/${file_name}"
-            # TODO: the above paths are what's suitable inside container 
-            curl -L "${url}" -o "${PWD}/${CLASS}/${file_name}"
-        fi
-    done
-    rm "${CLASS}.json"
-
+        # Download each file
+        for url in ${URLS}; do 
+            if [[ -z "${url}" ]]; then
+                exit_err "Error: Null or empty URL found."
+            else
+                file_name=$(basename "${url}")
+                # mkdir "/work/${CLASS}"
+                # curl -L "${url}" -o "/work/${CLASS}/${file_name}"
+                # TODO: the above paths are what's suitable inside container 
+                curl -L "${url}" -o "${PWD}/${CLASS}/${file_name}"
+            fi
+        done
+        rm "${CLASS}.json"
+    fi
 
 
     bash -c "jupyter lab --NotebookApp.token='' --log-level=50 --ip=0.0.0.0 --port ${PORT}"
-    
-    
-    # case "$CLASS" in
-    #     "class_01")
-    #         echo "-----> Chosen module: Class 01"
-    #         # pip install --user -r "$CLASS" || exit_err "Failed to install packages from $CLASS"
-    #         cp /home/"${NB_USER}"/classes/class_01.md /work/class_01.md #wget recursively
-    #         wget
-    #         bash -c "jupyter lab --NotebookApp.token='' --log-level=50 --ip=0.0.0.0 --port ${PORT}"
-    #         ;;
-    #     "class_02")
-    #         echo "-----> Chosen module: Class 02"
-    #         cp /home/"${NB_USER}"/classes/class_02.md /work/class_02.md
-    #         cp /home/"${NB_USER}"/nbs/classroom_02a.ipynb /work/classroom_02a.ipynb
-    #         cp /home/"${NB_USER}"/nbs/classroom_02b.ipynb /work/classroom_02b.ipynb
-    #         bash -c "jupyter lab --NotebookApp.token='' --log-level=50 --ip=0.0.0.0 --port ${PORT}"
-    #         ;;
-    #     *)
-    #         echo "-----> Invalid module" ;;
-    # esac
 fi
-printf "done \n"
