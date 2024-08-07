@@ -1,0 +1,15 @@
+datasets
+gensim
+matplotlib
+nbconvert
+nbformat
+numpy
+pandas
+petals
+scikit_learn
+seaborn
+seqeval
+spacy
+sympy
+torch
+transformers
