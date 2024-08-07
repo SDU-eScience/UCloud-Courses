@@ -15,7 +15,6 @@ while getopts "c:s:" option; do
     esac
 done
 
-printf "after getopts \n"
 # delete not necessary file format
 if [[ -f "${INITIALIZATION}" ]]; then
     printf "\n======================\n"
