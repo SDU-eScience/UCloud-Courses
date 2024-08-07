@@ -23,3 +23,4 @@ def batch(dataset: Iterable, batch_size: int) -> Iterable:
         if not chunk: # when the dataset is empty break the while loop
             break
         yield chunk
+        
