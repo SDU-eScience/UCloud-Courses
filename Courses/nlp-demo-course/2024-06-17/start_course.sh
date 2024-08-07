@@ -56,10 +56,8 @@ if [[ -n ${CLASS} ]]; then
                 exit_err "Error: Null or empty URL found."
             else
                 file_name=$(basename "${url}")
-                # mkdir "/work/${CLASS}"
-                # curl -L "${url}" -o "/work/${CLASS}/${file_name}"
-                # TODO: the above paths are what's suitable inside container 
-                curl -L "${url}" -o "${PWD}/${CLASS}/${file_name}"
+                mkdir "/work/${CLASS}"
+                curl -L "${url}" -o "/work/${CLASS}/${file_name}"
             fi
         done
         rm "${CLASS}.json"
