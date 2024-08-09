@@ -27,3 +27,7 @@ The `start_course.sh` script expects the course materials to be structured as di
 The course materials are all placed inside the top-level folder `classes`, separated into a folder for each class. 
 
 Whenever a user (/student) starts an instance of this course, all files in currently present in the folder corresponding to the selected class / course module is downloaded from the external repo and made available in the user's container. 
+
+## Initialization
+
+For information on how to use the *Initialization* parameter, please refer to the [Initialization - Bash script](../../hands-on/init-sh.md), [Initialization - Conda packages](../../hands-on/init-conda.md), and [Initialization - pip packages](../../hands-on/init-pip.md) section of the documentation.

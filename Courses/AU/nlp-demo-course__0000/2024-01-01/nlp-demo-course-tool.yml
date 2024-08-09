@@ -3,9 +3,9 @@ tool: v1
 
 title:
 name: nlp-demo-course
-version: 2024-06-17
+version: 2024-01-01
 
-container: dreg.cloud.sdu.dk/ucloud-apps/nlp-demo-course:2024-06-17
+container: dreg.cloud.sdu.dk/ucloud-apps/nlp-demo-course:2024-01-01
 
 authors:
 
