@@ -19,7 +19,7 @@ import requests # Portable library for making HTTP requests. Part of the standar
 
 def join_paths(abspath_head, tail):
     """
-    Joins and creats absolute path /abspath_head/tail.
+    Joins and creates absolute path /abspath_head/tail.
 
     @param abspath_head: The absolute path include parent folder of tail.
     @param tail: The folder/file name to be appended to abspath_head.
@@ -51,8 +51,10 @@ def parse_arguments():
     """
     parser = argparse.ArgumentParser(description="Create a new course in UCloud.")
     parser.add_argument('-n', '--name', type=str, help='Course name.', required=True)
+    parser.add_argument('-c', '--coursecode', type=str, help="Official course code (from university course description)", required=True)
     parser.add_argument('-r', '--release', type=str, help='Course start date (YYYY-MM-DD).', required=True) 
     parser.add_argument('-b', '--baseimage', type=str, help='Base image', required=True, choices=['almalinux', 'alpine', 'debian', 'ubuntu', 'conda', 'jupyterlab', 'rstudio', 'ubuntu-xfce', 'almalinux-xfce'])
+    parser.add_argument('-u', '--university', type=str, help="University where the course will be taught", required=True, choices=['sdu', 'au', 'aau']) # Do we need to add more universities?
     return parser.parse_args()
 
 def check_release_format(release_str):
@@ -78,12 +80,11 @@ def check_release_values(release_str):
     res.append(year >= 2024)
     res.append(month in range(1,13))
     res.append(day in range(1,32))
-    invalid = []
     return (all(res) is True, res)
 
 def get_invalid_release_values(res_list):
     """
-    Procudes a string showing which values of the provided course start date are invalid
+    Produces a string showing which values of the provided course start date are invalid
 
     @param res_list A boolean list of length 3. Intended to be the second element of the tuple returned from check_release_values()
     @return A string
@@ -191,28 +192,31 @@ if __name__ == "__main__":
 
         # Create the course file tree
         # UCloud-Courses/
-        #  |- Courses/
-        #    |- <course name>/
-        #      |- <course start date>/
-        #         |- Dockerfile 
-        #         |- README.md 
-        #         |- *.yml 
-        #         |- start_app.sh
+        #   |- Courses/
+        #       |- <University>/
+        #           |- <course name>/
+        #               |- <course start date>/
+        #               |- Dockerfile 
+        #               |- README.md 
+        #               |- *.yml 
+        #               |- start_app.sh
 
-        course_root_dir = os.path.abspath(os.path.join(os.path.split(cwd)[0], 'Courses', args.name))
+        course_name = "{}__{}".format(args.name, args.coursecode)
+        course_root_dir = os.path.abspath(os.path.join(os.path.split(cwd)[0], 'Courses', args.university.upper(), course_name))
         course_release_dir = join_paths(course_root_dir, args.release)
         course_logo_dir = join_paths(course_root_dir, 'logo')
         course_test_dir = join_paths(course_root_dir, 'test')
 
-        # Check if course name is available
+        # Check if course name is available.
+        # NB: Probably not relevant if course codes are unique
         courses_list = list()
         for root, dirs, files in os.walk(os.path.split(course_root_dir)[0]):
             for course in dirs:
                 courses_list.append(course)
 
         try: 
-            if args.name in courses_list:
-                raise OSError("Error ...\nA course with the the title '{}' already exists.".format(args.name))
+            if course_name in courses_list:
+                raise OSError("Error ...\nA course with the the title '{}' and course code '{}' already exists.".format(args.name, args.coursecode))
         except OSError as e:
             exit(str(e)) 
         
@@ -254,7 +258,6 @@ if __name__ == "__main__":
             f5.close()
 
         # Edit the contents of the templates based on input from user
-
         # Edit README
         readme = re.sub("COURSE_NAME", args.name, readme)
 
@@ -288,7 +291,6 @@ if __name__ == "__main__":
             f5.write(startcourse)
             f5.close()
     
-    # Clean up in case of error after the creating of the course file tree. Prompt the user before cleanup.
     except Exception as e:
         exit(str(e))
 
