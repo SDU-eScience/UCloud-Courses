@@ -2,8 +2,8 @@
 application: v1
 
 title:
-name: nlp-demo-course
-version: 2024-06-17
+name: nlp-demo-course__0000
+version: 2024-01-01
 
 website: # add link to documentation or software website
 
@@ -19,8 +19,8 @@ applicationType: # BATCH, WEB, VNC
 #   port: $PORT
 
 tool:
-  name: nlp-demo-course
-  version: 2024-06-17
+  name: nlp-demo-course__0000
+  version: 2024-01-01
 
 authors:
 
