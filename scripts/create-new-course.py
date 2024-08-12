@@ -50,11 +50,11 @@ def parse_arguments():
     @return: Parsed arguments.
     """
     parser = argparse.ArgumentParser(description="Create a new course in UCloud.")
-    parser.add_argument('-n', '--name', type=str, help='Course name.', required=True)
+    parser.add_argument('-n', '--name', type=str, help='Course name. Please keep the name short (max. 32 characters incl. spaces)', required=True)
     parser.add_argument('-c', '--coursecode', type=str, help="Official course code (from university course description)", required=True)
     parser.add_argument('-r', '--release', type=str, help='Course start date (YYYY-MM-DD).', required=True) 
     parser.add_argument('-b', '--baseimage', type=str, help='Base image', required=True, choices=['almalinux', 'alpine', 'debian', 'ubuntu', 'conda', 'jupyterlab', 'rstudio', 'ubuntu-xfce', 'almalinux-xfce'])
-    parser.add_argument('-u', '--university', type=str, help="University where the course will be taught", required=True, choices=['sdu', 'au', 'aau']) # Do we need to add more universities?
+    parser.add_argument('-u', '--university', type=str, help="University where the course will be taught", required=True, choices=['aau, au', 'cbs', 'dtu', 'itu', 'ku', 'ruc', 'sdu', 'other']) # Do we need to add more universities?
     return parser.parse_args()
 
 def check_release_format(release_str):
@@ -163,6 +163,13 @@ if __name__ == "__main__":
         args = parse_arguments()
         args.name = replace_whitespace(args.name).lower()
 
+        # Check length of course name 
+        try: 
+            if len(args.name) > 32:
+                raise ValueError("ERROR ...\nThe provided course name is too long. The limit is 32 characters including whitespaces.")
+        except ValueError as e:
+            exit(str(e))
+
         # Check that format and values for input for -r are valid
         try: 
             if not check_release_format(args.release):
@@ -189,12 +196,11 @@ if __name__ == "__main__":
         except OSError as e:
                 exit(str(e))
     
-
         # Create the course file tree
         # UCloud-Courses/
         #   |- Courses/
         #       |- <University>/
-        #           |- <course name>/
+        #           |- <course name>__<course code>/
         #               |- <course start date>/
         #               |- Dockerfile 
         #               |- README.md 
@@ -256,28 +262,31 @@ if __name__ == "__main__":
             f4.close()
             startcourse = f5.read()
             f5.close()
+        
+        course_full_name = "{}__{}".format(args.name, args.coursecode)
 
         # Edit the contents of the templates based on input from user
         # Edit README
-        readme = re.sub("COURSE_NAME", args.name, readme)
+        readme = re.sub("COURSE_NAME", course_full_name, readme)
 
         # Edit Dockerfile
         dockerfile = re.sub("TAG", baseimage_tag, dockerfile)
 
         # Edit template-app.yml
-        appyml = re.sub("COURSE_NAME", args.name, appyml)
+        appyml = re.sub("COURSE_NAME", course_full_name, appyml)
         appyml = re.sub("COURSE_TAG", args.release, appyml)
 
         # Edit template-tool.yml
-        toolyml = re.sub("COURSE_NAME", args.name, toolyml)
+        toolyml = re.sub("UNI", args.university, toolyml)
+        toolyml = re.sub("COURSE_NAME", course_full_name, toolyml)
         toolyml = re.sub("COURSE_TAG", args.release, toolyml)        
         
         # Write to edited contents from the tempate files to the course folder
         with (
             open(join_paths(course_root_dir, 'README.md'), 'w') as f1,
             open(join_paths(course_release_dir, 'Dockerfile'), 'w') as f2,
-            open(join_paths(course_release_dir, '%s-app.yml'%(args.name)), 'w') as f3,
-            open(join_paths(course_release_dir, '%s-tool.yml'%(args.name)), 'w') as f4,
+            open(join_paths(course_release_dir, '%s__%s-app.yml'%(args.name, args.coursecode)), 'w') as f3,
+            open(join_paths(course_release_dir, '%s__%s-tool.yml'%(args.name, args.coursecode)), 'w') as f4,
             open(join_paths(course_release_dir, 'start_course.sh'), 'w') as f5
         ):
             f1.write(readme)
