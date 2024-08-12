@@ -9,16 +9,16 @@ SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 USER 0
 
-USER ${NB_USER}
-
-WORKDIR /home/$NB_USER
+WORKDIR /home/${USERID}
 
 ## Add scripts and data
-COPY --chown="${NB_USER}":"${NB_GID}" renv /work/renv
-COPY --chown="${NB_USER}":"${NB_GID}" slides /work/slides
+COPY --chown=${USERID}:${GROUPID} renv /work/renv
+COPY --chown=${USERID}:${GROUPID} slides /work/slides
 
 ## Add entrypoint script
-COPY --chown=${NB_USER}:${NB_GID} start_course.sh /usr/bin/start_course
+COPY --chown=${USERID}:${GROUPID} start_course.sh /usr/bin/start_course
 RUN chmod 755 /usr/bin/start_course
+
+USER ${USERID}
 
 WORKDIR /work
