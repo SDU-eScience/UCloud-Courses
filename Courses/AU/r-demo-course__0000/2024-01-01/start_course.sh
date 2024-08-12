@@ -1,17 +1,18 @@
 #!/bin/bash
+
 function exit_err {
     printf "%s\n" "$1" >&2
     exit 1
 }
 PORT=8888
-EXTERNAL_REPO_URL="https://api.github.com/repos/jeselginAU/demo-NLP-Course-AU"
+EXTERNAL_REPO_URL="https://api.github.com/repos/jeselginAU/demo-r-studio-course"
 
 while getopts "c:s:" option; do
-    case "${option}" in
-        c) CLASS=${OPTARG} ;;
-        s) INITIALIZATION="${OPTARG}" ;;
-        :) exit_err "Missing argument for -${OPTARG}" ;;
-        *) exit_err "Invalid option -${OPTARG}" ;;
+    case "$option" in
+         c) CLASS=${OPTARG} ;;
+        s) INITIALIZATION="$OPTARG" ;;
+        :) exit_err "Missing argument for -$OPTARG" ;;
+        *) exit_err "Invalid option -$OPTARG" ;;
     esac
 done
 
@@ -62,7 +63,3 @@ if [[ -n ${CLASS} ]]; then
         done
         rm "${CLASS}.json"
     fi
-
-
-    bash -c "jupyter lab --NotebookApp.token='' --log-level=50 --ip=0.0.0.0 --port ${PORT}"
-fi

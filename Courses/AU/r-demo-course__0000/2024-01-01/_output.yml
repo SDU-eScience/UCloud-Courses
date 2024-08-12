@@ -1,0 +1,5 @@
+bookdown::bs4_book:
+  css: [css/introds.css, css/fontawesome/css/all.css]
+  theme:
+    primary: "#00539B"
+  repo: https://github.com/dukestatsci/introds

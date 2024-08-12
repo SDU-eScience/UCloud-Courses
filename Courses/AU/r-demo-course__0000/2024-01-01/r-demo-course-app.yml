@@ -1,0 +1,54 @@
+---
+application: v1
+
+title:
+name: r-demo-course
+version: 2024-01-01
+
+website: # add link to documentation or software website
+
+applicationType: # BATCH, WEB, VNC
+
+### VNC type
+# vnc:
+#   password: $PASSWORD
+#   port: $PORT
+
+### WEB type
+# web:
+#   port: $PORT
+
+tool:
+  name: r-demo-course
+  version: 2024-01-01
+
+authors:
+
+description: >
+
+fileExtensions:
+
+allowAdditionalMounts: $ADDITIONAL_MOUNTS
+allowPublicLink: $PUBLIC_LINK
+allowPublicIp: $PUBLIC_IP
+allowMultiNode: $MULTI_NODE
+
+container:
+  runAsRoot: $ROOT
+
+invocation:
+  - start_app
+  - type: var
+    vars: initialization
+    prefixGlobal: '-s '
+
+parameters:
+  initialization:
+    title: "Initialization"
+    type: input_file
+    description: >
+      Run initialization of pip packages (*.txt), Conda packages (*.yml/yaml), or Bash script (*.sh)
+    optional: true
+
+outputFileGlobs:
+  - "*"

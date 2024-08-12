@@ -1,0 +1,11 @@
+# Past semesters {#past-semesters .unnumbered}
+
+## Fall 2021
+
+-   [STA 198/GLHLTH 298 - Introduction to Global Health Data Science](https://sta198f2021.github.io/website/) by [Prof. Amy H. Herring](https://scholars.duke.edu/person/Amy.Herring)
+
+-   [STA 199 - Introduction to Data Science and Statistical Thinking - Section 1](https://sta199-f21-001.netlify.app/) by [Prof. Alexander Fisher]()
+
+-   STA 199 - Introduction to Data Science and Statistical Thinking - Section 2 by [Prof. Jacob Smith](https://scholars.duke.edu/person/jacob.f.smith)
+
+-   [STA 199 - Introduction to Data Science and Statistical Thinking - Section 3](https://sta199-fa21-003.netlify.app/) by [Prof. Maria Tackett](https://www.mariatackett.net/)
