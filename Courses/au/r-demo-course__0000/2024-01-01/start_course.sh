@@ -9,7 +9,7 @@ EXTERNAL_REPO_URL="https://api.github.com/repos/jeselginAU/demo-r-studio-course"
 
 while getopts "c:s:" option; do
     case "$option" in
-         c) CLASS=${OPTARG} ;;
+        c) CLASS=${OPTARG} ;;
         s) INITIALIZATION="$OPTARG" ;;
         :) exit_err "Missing argument for -$OPTARG" ;;
         *) exit_err "Invalid option -$OPTARG" ;;
@@ -61,5 +61,11 @@ if [[ -n ${CLASS} ]]; then
                 curl -L "${url}" -o "/work/${CLASS}/${file_name}"
             fi
         done
-        rm "${CLASS}.json"
+        rm "${CLASS}.json"  
     fi
+
+    printf "\n==================="
+    printf "\n== Start RStudio ==\n"
+    printf "===================\n\n"
+    sudo /init  
+fi
