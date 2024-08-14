@@ -7,6 +7,12 @@ function exit_err {
 PORT=8888
 EXTERNAL_REPO_URL="https://api.github.com/repos/jeselginAU/demo-r-studio-course"
 
+## Update permissions of /etc/ucloud and start SSH server
+if [ "$(ls -A /etc/ucloud/ssh 2> /dev/null)" ]; then
+    sudo chmod 555 /etc/ucloud
+    sudo /etc/init.d/ssh start
+fi
+
 while getopts "c:s:" option; do
     case "$option" in
         c) CLASS=${OPTARG} ;;
