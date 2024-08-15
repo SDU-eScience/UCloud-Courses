@@ -34,7 +34,7 @@ def parse_arguments():
     parser.add_argument('-n', '--name', type=str, help='Course name.', required=True)
     parser.add_argument('-c', '--coursecode', type=str, help="Official course code (from university course description)", required=True)
     parser.add_argument('-r', '--release', type=str, help='Release.', required=True)
-    parser.add_argument('-u', '--university', type=str, help="University where the course will be taught", required=True, choices=['aau, au', 'cbs', 'dtu', 'itu', 'ku', 'ruc', 'sdu', 'other']) 
+    parser.add_argument('-u', '--university', type=str, help="University where the course will be taught", required=True, choices=['aau', 'au', 'cbs', 'dtu', 'itu', 'ku', 'ruc', 'sdu', 'other']) 
     return parser.parse_args()
 
 def join_paths(abspath_head, tail):
