@@ -1,0 +1,78 @@
+---
+application: v1
+
+title: Social Data Science I
+name: social-data-science-i__sds1-e24
+version: 2024-09-01
+
+website: # add link to documentation or software website
+
+applicationType: WEB
+
+### VNC type
+# vnc:
+#   password: $PASSWORD
+#   port: $PORT
+
+### WEB type
+web:
+  port: 8888
+
+tool:
+  name: social-data-science-i__sds1-e24
+  version: 2024-09-01
+
+authors: 
+  - Rolf Lyneborg Lund
+
+description: >
+  The course introduces students to the fundamental principles and tools necessary for data science applications in social contexts.
+
+fileExtensions:
+  - ".ipynb"
+  - ".py"
+
+allowAdditionalMounts: true
+allowAdditionalPeers: true
+allowPublicLink: true
+## allowPublicIp: $PUBLIC_IP
+## allowMultiNode: $MULTI_NODE
+
+container:
+  runAsRoot: true
+
+invocation:
+  - start_course
+  - type: var
+    vars: initialization
+    prefixGlobal: '-s '
+  - type: var
+    vars: module
+    prefixGlobal: '-m '
+
+
+parameters:
+  initialization:
+    title: "Initialization"
+    type: input_file
+    description: >
+      Run initialization of pip packages (*.txt), Conda packages (*.yml/yaml), or Bash script (*.sh)
+    optional: true
+  module:
+    title: 'Select a course module'
+    type: enumeration
+    ## Should this be lecture based or topic based?
+    options:
+      -
+        name: "Python til Dataanalyse"
+        value: "python_basics_and_data_handling"
+      -
+        name: "Dataoprydning og -håndtering"
+        value: "data_cleaning_and_management"
+      -
+        name: "Datavisualisering"
+        value: "data_visualisation"
+    optional: false
+
+outputFileGlobs:
+  - "*"
