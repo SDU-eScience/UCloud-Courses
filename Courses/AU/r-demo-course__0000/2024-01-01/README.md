@@ -2,15 +2,15 @@
 
 This demo course serves as a demonstration of how one can structure a course with R Studio materials on UCloud. 
 
-The resources and software dependencies that needs to be shared across lectures / classes / sessions should be configured in this repo.
+The resources and software dependencies that needs to be shared across lectures / classes / sessions should be configured in this repository (repo).
 
 The course materials for each class/session are placed in an external repo: [demo-r-studio-course](https://github.com/jeselginAU/demo-r-studio-course). Placing the course materials in an external repo makes it easier to edit the materials between sessions without requiring approval from UCloud admins. 
-Changes to the UCloud Courses repo (this repo) reqires admin approval.  
+Changes to this repo (UCloud-Courses) requires admin approval.  
 
 This demo course is based on Duke University's Statistical Science Introductory Data Science courses: [DukeStatSci/introds](https://github.com/DukeStatSci/introds)
 
 ## Making changes to the course materials during the semester
-The `start_course.sh` script in this course will download class materials from an external GitHub repo that I manage myself: [demo-r-studio-course](https://github.com/jeselginAU/demo-r-studio-course). In this way, I can edit the course materials available to students without having to edit the UCloud-Courses repo, which would require review and approval from admins. 
+The `start_course.sh` script in this course will download class materials from an external GitHub repo that I manage myself: [demo-r-studio-course](https://github.com/jeselginAU/demo-r-studio-course).
 The `start_course.sh` script expects the course materials to be structured as displayed below
 
 ```
@@ -31,7 +31,27 @@ The `start_course.sh` script expects the course materials to be structured as di
 ```
 The course materials are all placed inside the top-level folder `classes`, separated into a folder for each class. 
 
-Whenever a user (/student) starts an instance of this course, all files in currently present in the folder corresponding to the selected class / course module is downloaded from the external repo and made available in the user's container. 
+Whenever a user (/student) starts an instance of this course, all files currently present in the folder, corresponding to the selected class / course module, is downloaded from the external repo and made available in the user's container. 
+
+## Creating courses
+
+To create a new course, utilize the python script *create-new-course.py* in the */scripts* folder. When inside the folder in command line, run `python create-new-course.py` to see the script's usage. 
+
+This course was created using:
+
+`python create-new-course.py -n r-demo-course -c 0000 -r 2024-01-01 -b rstudio -u au`
+
+Similarily, you can create the course folder that will include a *Dockerfile*, used for building the image used for running containers, a start_course.sh script for launching course applications and *.yml* files for configuring options for UCloud webpage interface.
+
+## Building docker image
+
+Building a docker image with the *Dockerfile* will enable containers to run along with all installed pre-requisits needed for the course. For example, this course includes */renv* and */slides* folders that are coppied and added to the container's */work* folder using *COPY* command in the *Dockerfile*.
+
+In terminal, navigate to */scripts* and run `python build-docker-image.py` to see the script's usage.
+
+The image was then built using the *build-docker-image.py* script:
+
+`python build-docker-image.py -n r-demo-course -c 0000 -r 2024-01-01 -u au`
 
 ## Initialization
 
