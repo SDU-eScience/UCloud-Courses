@@ -13,9 +13,10 @@ if [ "$(ls -A /etc/ucloud/ssh 2> /dev/null)" ]; then
     sudo /etc/init.d/ssh start
 fi
 
-while getopts "c:s:" option; do
+while getopts "c:a:s:" option; do
     case "$option" in
         c) CLASS=${OPTARG} ;;
+        a) FORCE_DOWNLOAD=${OPTARG} ;;
         s) INITIALIZATION="$OPTARG" ;;
         :) exit_err "Missing argument for -$OPTARG" ;;
         *) exit_err "Invalid option -$OPTARG" ;;
@@ -48,14 +49,16 @@ if [[ -n ${CLASS} ]]; then
     printf "Starting class module\n"
     printf "======================\n\n"
 
-    # Find urls for the individual files
+    # Find URLs for the individual files
     wget "${EXTERNAL_REPO_URL}/contents/classes/${CLASS}"
     if [[ ! -f "${CLASS}" ]]; then
         exit_err "Error: could not find course materials for course module \"${CLASS}\" in external repo \"${EXTERNAL_REPO_URL}\""
     else
         mv "${CLASS}" "${CLASS}.json"
         URLS=$(jq  -r '.[].download_url // empty' "${CLASS}.json" )
-        mkdir "${PWD}/${CLASS}" || exit_err "failed to create directory"
+
+        # Create the directory if it doesn't exist
+        mkdir -p "${PWD}/${CLASS}" || exit_err "Failed to create directory"
 
         # Download each file
         for url in ${URLS}; do 
@@ -63,8 +66,16 @@ if [[ -n ${CLASS} ]]; then
                 exit_err "Error: Null or empty URL found."
             else
                 file_name=$(basename "${url}")
-                mkdir "/work/${CLASS}"
-                curl -L "${url}" -o "/work/${CLASS}/${file_name}"
+                target_file="/work/${CLASS}/${file_name}"
+
+                # Download the file if it doesn't exist or if FORCE_DOWNLOAD is true
+                if [[ ! -f "${target_file}" || "${FORCE_DOWNLOAD}" = true ]]; then
+                    mkdir -p "/work/${CLASS}" || exit_err "Failed to create /work/${CLASS} directory"
+                    curl -L "${url}" -o "${target_file}"
+                    printf "Downloaded file ${target_file}"
+                else
+                    printf "File ${file_name} already exists. Skipping download.\n"
+                fi
             fi
         done
         rm "${CLASS}.json"  

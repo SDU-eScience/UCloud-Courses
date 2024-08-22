@@ -1,1 +1,2 @@
 python build-docker-image.py -n r-demo-course -c 0000 -r 2024-01-01 -u au
+docker run --rm -it -d --name rrr -p 8787:8787 a72fc651160e74af3418d71df00aff2424a5d283596643393bb8f32e4c978efc bash -c "sudo start_course -s req -c class_01"
