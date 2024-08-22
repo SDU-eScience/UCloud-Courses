@@ -72,6 +72,7 @@ if [[ -n ${CLASS} ]]; then
                 if [[ ! -f "${target_file}" || "${FORCE_DOWNLOAD}" = true ]]; then
                     mkdir -p "/work/${CLASS}" || exit_err "Failed to create /work/${CLASS} directory"
                     curl -L "${url}" -o "${target_file}"
+                    printf "Downloaded file ${target_file}"
                 else
                     printf "File ${file_name} already exists. Skipping download.\n"
                 fi
