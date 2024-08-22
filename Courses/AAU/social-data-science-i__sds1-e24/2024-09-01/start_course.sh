@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash   
 
 function exit_err {
     printf "%s\n" "$1" >&2
