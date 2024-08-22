@@ -35,9 +35,18 @@ Whenever a user (/student) starts an instance of this course, all files currentl
 
 ## Creating courses
 
-To create a new course, utilize the python script *create-new-course.py* in the */scripts* folder. When inside the folder in command line, run `python create-new-course.py` to see the script's usage. 
+To create a new course, utilize the python script `create-new-course.py` in the */scripts* folder. 
 
-This course was created using:
+The script requires the following arguments:
+* `-n`: The name of the course 
+* `-c`: Official course code (from university course description)
+* `-r`: The release date of the course, in the format YYYY-MM-DD
+* `-u`: The univerity the course is taught at. 
+    * The options are  `aau`,`au`,`cbs`,`dtu`,`itu`,`ku`,`ruc`,`sdu`, and `other`. 
+* `-b`: The base image that the course container is build upon. This controls the *FROM* statement in line 1 of the *Dockerfile*.
+    * The options are: `almalinux`, `alpine`, `debian`, `ubuntu`, `conda`, `jupyterlab`, `rstudio`, `ubuntu-xfce`, and `almalinux-xfce`.
+
+This file and folder structure for this course was created by navigating to the */scripts* folder and calling the script as below:
 
 `python create-new-course.py -n r-demo-course -c 0000 -r 2024-01-01 -b rstudio -u au`
 
@@ -45,13 +54,21 @@ Similarily, you can create the course folder that will include a *Dockerfile*, u
 
 ## Building docker image
 
-Building a docker image with the *Dockerfile* will enable containers to run along with all installed pre-requisits needed for the course. For example, this course includes */renv* and */slides* folders that are coppied and added to the container's */work* folder using *COPY* command in the *Dockerfile*.
+Building a docker image with the *Dockerfile* will enable containers to run with all installed prerequisites needed for the course. For example, this course includes */renv* and */slides* folders that are copied and added to the container's */work* folder using the *COPY* command in the *Dockerfile*.
 
-In terminal, navigate to */scripts* and run `python build-docker-image.py` to see the script's usage.
+In the */scripts* folder, a python script for building images (`build-docker-image.py`) is provided. The script requires that your python environment has the python docker package installed. This can be installed by running `pip install docker`. You will also need to have an installation of docker  When running the script, privide the following arguments:
 
-The image was then built using the *build-docker-image.py* script:
+* `-n`: The name of the course 
+* `-c`: Official course code (from university course description)
+* `-r`: The release date of the course, in the format YYYY-MM-DD
+* `-u`: The univerity the course is taught at. 
+    * The options are  `aau`,`au`,`cbs`,`dtu`,`itu`,`ku`,`ruc`,`sdu`, and `other`. 
+
+The image for this course was built using the *build-docker-image.py* script with these arguments:
 
 `python build-docker-image.py -n r-demo-course -c 0000 -r 2024-01-01 -u au`
+
+This to must be called inside the */scripts* folder.
 
 ## Initialization
 
