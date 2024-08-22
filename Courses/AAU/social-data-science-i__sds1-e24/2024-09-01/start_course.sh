@@ -11,7 +11,7 @@ EXTERNAL_REPO_URL="https://github.com/aau-claaudia/ucloud_teach_SDS1_temp"
 
 while getopts ":m:s:" option; do
     case "$option" in
-        m) MODULE=$(OPTARG);;
+        m) MODULE=${OPTARG};;
         s) INITIALIZATION="$OPTARG" ;;
         :) exit_err "Missing argument for -$OPTARG" ;;
         *) exit_err "Invalid option -$OPTARG" ;;
