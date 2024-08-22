@@ -50,7 +50,7 @@ This file and folder structure for this course was created by navigating to the 
 
 `python create-new-course.py -n r-demo-course -c 0000 -r 2024-01-01 -b rstudio -u au`
 
-Similarily, you can create the course folder that will include a *Dockerfile*, used for building the image used for running containers, a start_course.sh script for launching course applications and *.yml* files for configuring options for UCloud webpage interface.
+The script creates the course folder that includes a *Dockerfile*, used for building the image, required to run a container, a start_course.sh script for launching course applications and *.yml* files for configuring options for the UCloud webpage interface.
 
 ## Building docker image
 
@@ -69,6 +69,26 @@ The image for this course was built using the *build-docker-image.py* script wit
 `python build-docker-image.py -n r-demo-course -c 0000 -r 2024-01-01 -u au`
 
 This to must be called inside the */scripts* folder.
+
+## Test Docker image
+
+To run the container with the built image, in Docker Desktop copy the ID of the image, which is just below it's name, and use `docker run` command in the terminal with these flags:
+
+`--rm -it -d --name test_name <image_id> bash -c "sudo start_course -s req -c class_01"`
+
+Paste the ID of the image in place of <image_id>, select to install requirements with the **-s** flag, and the class id with the **-c** flag from the start_course.sh.
+
+Example commands used to test this demo can be found in /test/build_and_run
+
+## YML files
+
+Edit the course-name-app.yml file to include the options included in the start_course.sh to integrate them with the UCloud interface. 
+
+- Add the options under **invocation** and **start_course** including its *type* (var or flag), *variable name* and *prefix* (same as in start_course.sh).
+
+- Add parameters for the options under **parameters** including its *title* (seen on UCloud), *type* and *description*.
+
+*enumeration* type is used for selecting an option from a dropdown menu, *flag* - for selecting true of false, *input_file* - for initialization.
 
 ## Initialization
 
