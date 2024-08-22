@@ -57,5 +57,5 @@ if [[ -n ${MODULE} ]]; then
     # pull: course_information and ${MODLUE} subfolders and their contents
     git pull origin main
 
-    bash -c "jupyter lab --NotebookApp.token='' --log-level=50 --ip=0.0.0.0 --port ${PORT}"
+    bash -c "jupyter lab --NotebookApp.token='' --log-level=50 --ip=0.0.0.0 --port ${PORT} --notebook-dir='/work/Social_Data_Science_1'"
 fi
