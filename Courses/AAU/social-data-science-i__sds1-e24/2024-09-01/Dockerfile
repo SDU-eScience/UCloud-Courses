@@ -12,12 +12,11 @@ USER 0
 WORKDIR /home/$NB_USER
 
 ## Install required libraries
-RUN pip install --upgrade --no-cache-dir \
- && pip install --no-cache-dir \
-      matplotlib \
-      numpy \
-      pandas \
-      plotnine
+RUN pip install --no-cache-dir \
+      "matplotlib" \
+      "numpy" \
+      "pandas" \
+      "plotnine"
 
 ## Add entrypoint script
 COPY --chown="${NB_USER}":"${NB_GID}" start_course.sh /usr/bin/start_course
