@@ -41,15 +41,21 @@ fi
 
 if [[ -n ${MODULE} ]]; then
     printf "\n======================\n"
-    printf "Starting course module\n"
+    printf "Starting course module:\n"
     printf "======================\n\n"
 
-    # download and decompress general course information from external repo
-    git archive "--remote=${EXTERNAL_REPO_URL}" HEAD:Social_Data_Science_1/course_information | tar -xvf -
+    # sparse-checkout from external repo
+    git init
+    git remote add origin "${EXTERNAL_REPO_URL}"
+    git config core.sparseCheckout true
 
-    # download and decompress course module from external repo
-    git archive "--remote=${EXTERNAL_REPO_URL}" "HEAD:Social_Data_Science_1/course_information/${MODULE}" | tar -xvf -
+    # sparse-checkout: general course information
+    echo "Social_Data_Science_1/course_information/*" >> .git/info/sparse-checkout
+    # sparse-checkout: course module
+    echo "Social_Data_Science_1/${MODULE}/*" >> .git/info/sparse-checkout
 
+    # pull: course_information and ${MODLUE} subfolders and their contents
+    git pull origin main
 
     bash -c "jupyter lab --NotebookApp.token='' --log-level=50 --ip=0.0.0.0 --port ${PORT}"
 fi
