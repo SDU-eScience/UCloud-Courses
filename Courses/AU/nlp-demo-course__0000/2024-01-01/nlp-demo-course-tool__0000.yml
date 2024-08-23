@@ -5,7 +5,7 @@ title:
 name: nlp-demo-course__0000 
 version: 2024-01-01
 
-container: dreg.cloud.sdu.dk/ucloud-apps/nlp-demo-course:2024-01-01
+container: dreg.cloud.sdu.dk/ucloud-courses/nlp-demo-course__0000:2024-01-01
 
 authors:
 
@@ -19,6 +19,6 @@ defaultTimeAllocation:
 defaultNumberOfNodes: 1
 defaultTasksPerNode: 1
 
-license:
+license: MIT
 
 backend: DOCKER

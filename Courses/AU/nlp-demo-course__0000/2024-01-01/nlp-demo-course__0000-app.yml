@@ -1,32 +1,27 @@
 ---
 application: v1
 
-title:
+title: NLP Demo Course
 name: nlp-demo-course__0000
 version: 2024-01-01
 
-website: # add link to documentation or software website
+website: https://github.com/rbroc/NLP-AU-23
 
 applicationType: # BATCH, WEB, VNC
 
-### VNC type
-# vnc:
-#   password: $PASSWORD
-#   port: $PORT
-
 ### WEB type
-# web:
-#   port: $PORT
+web:
+  port: 8080
 
 tool:
   name: nlp-demo-course__0000
   version: 2024-01-01
 
-authors:
+authors: Jes Elgin Jensen, Rytis Mikutavicius & Roberta Rocca
 
 description: >
-
-fileExtensions:
+  Example UCloud course based on the 2023 course Natural Language Processing
+  taken as part of the MSc in Cognitive Science at Aarhus University.
 
 allowAdditionalMounts: $ADDITIONAL_MOUNTS
 allowPublicLink: $PUBLIC_LINK
@@ -44,6 +39,7 @@ invocation:
   - type: var
     vars: class
     prefixGlobal: '-c '
+
 parameters:
   initialization:
     title: "Initialization"
@@ -55,32 +51,23 @@ parameters:
     title: 'Select a course module'
     type: enumeration
     options:
-      -
-        name: "Class 1"
+      - name: "Class 1"
         value: "class_01"
-      -
-        name: "Class 2"
+      - name: "Class 2"
         value: "class_02"
-      -
-        name: "Class 3"
+      - name: "Class 3"
         value: "class_03"
-      -
-        name: "Class 4"
+      - name: "Class 4"
         value: "class_4"
-      -
-        name: "Class 5"
+      - name: "Class 5"
         value: "class_05"
-      -
-        name: "Class 6"
+      - name: "Class 6"
         value: "class_06"
-      -
-        name: "Class 7"
+      - name: "Class 7"
         value: "class_07"
-      -
-        name: "Class 8"
+      - name: "Class 8"
         value: "class_08"
-      -
-        name: "Class 9"
+      - name: "Class 9"
         value: "class_09"
     optional: false
 outputFileGlobs:
