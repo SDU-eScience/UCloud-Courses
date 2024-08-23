@@ -110,3 +110,20 @@ if __name__ == "__main__":
     print('BE PATIENT ... Building the image may take a while.')
     client.images.build(path = dockerfile_path, rm = True, tag = image_tag)
     print("Building complete. The image is called '{}' and available under 'Images' in Docker Desktop.".format(image_tag))
+
+    # Run the Docker container using the newly built image
+    container_name = "test-rstudio"
+    port_mapping = "8787:8787"
+    start_command = "sudo start_course -s req -c class_01"
+
+    print(f"Running the Docker container '{container_name}' from the image '{image_tag}'...")
+    container = client.containers.run(
+        image=image_tag,
+        name=container_name,
+        ports={"8787/tcp": 8787},
+        detach=True,
+        tty=True,
+        command=f"bash -c '{start_command}'"
+    )
+
+    print(f"Container '{container_name}' is running. You can access it via port 8787.")
