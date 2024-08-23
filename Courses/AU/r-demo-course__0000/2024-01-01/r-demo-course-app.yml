@@ -37,12 +37,46 @@ container:
   runAsRoot: $ROOT
 
 invocation:
-  - start_app
+  - start_course
+  - type: var
+    vars: class
+    prefixGlobal: '-c '
+  - type: flag
+    vars: force_download
+    prefixGlobal: '-a '
   - type: var
     vars: initialization
     prefixGlobal: '-s '
 
 parameters:
+  class:
+    title: "Class"
+    type: enumeration
+    defaultValue:
+      type: enumeration
+      value: "class_01"
+    options:
+      -
+        name: class 1
+        value: "class_01"
+      -
+        name: class 2
+        value: "class_02"
+      -
+        name: class 3
+        value: "class_03"
+      -
+        name: class 4
+        value: "class_04"
+    description: >
+      Select the class from the course GitHub repository.
+
+  force_download:
+    title: "Force Download"
+    type: flag
+    description: >
+      Select to download files or skip if they already exist.
+
   initialization:
     title: "Initialization"
     type: input_file
