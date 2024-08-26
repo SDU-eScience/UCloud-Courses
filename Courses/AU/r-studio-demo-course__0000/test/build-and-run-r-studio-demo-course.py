@@ -6,18 +6,22 @@ from pprint import pprint
 import inspect
 
 def build():
+    imageId = "dreg.cloud.sdu.dk/ucloud-courses/au-r-studio-demo-course__0000:2024-01-01"
+    client = docker.from_env()
+    client.images.remove(imageId)
     os.chdir("../../../../scripts")
     command = ["python3", "build_docker_image.py", "-n", "r-studio-demo-course", "-c", "0000", "-r", "2024-01-01", "-u", "au"]
     subprocess.run(command, capture_output=False, text=True)
-    client = docker.from_env()
-    images = client.images.list()
-    r_images = list(filter(lambda i: "r-studio-demo-course" in i.tag, images))
+    
+    client.containers.run(imageId)
+    # images = client.images.list()
+    # r_images = list(filter(lambda i: "r-studio-demo-course" in i.tag, images))
     # r_images = list(filter(lambda i: "r-studio-demo-course" in i.tag, images))
     # image = r_images
     # print({r_images.__dict__})
     # for i in images:
     #     pprint(inspect.getmembers(i))
-    pprint(inspect.getmembers(r_images))
+    # pprint(inspect.getmembers(r_images))
 
 if __name__ == "__main__":  # Run the Docker container using the newly built image
     build()
