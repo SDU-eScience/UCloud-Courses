@@ -7,7 +7,7 @@ version: 2024-01-01
 
 container: dreg.cloud.sdu.dk/ucloud-apps/r-demo-course:2024-01-01
 
-authors:
+authors: Jes Elgin Jensen, Rytis Mikutavicius, Mine Çetinkaya-Rundel
 
 description: >
 
@@ -19,6 +19,6 @@ defaultTimeAllocation:
 defaultNumberOfNodes: 1
 defaultTasksPerNode: 1
 
-license:
+license: CC BY-SA 4.0
 
 backend: DOCKER

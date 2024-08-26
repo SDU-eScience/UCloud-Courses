@@ -5,24 +5,18 @@ title:
 name: r-demo-course
 version: 2024-01-01
 
-website: # add link to documentation or software website
+website: https://github.com/jeselginAU/demo-r-studio-course 
 
-applicationType: # BATCH, WEB, VNC
+applicationType: WEB
 
-### VNC type
-# vnc:
-#   password: $PASSWORD
-#   port: $PORT
-
-### WEB type
-# web:
-#   port: $PORT
+web:
+  port: $PORT
 
 tool:
   name: r-demo-course
   version: 2024-01-01
 
-authors:
+authors: Jes Elgin Jensen, Rytis Mikutavicius, Mine Çetinkaya-Rundel
 
 description: >
 
@@ -75,7 +69,7 @@ parameters:
     title: "Force Download"
     type: flag
     description: >
-      Select to download files or skip if they already exist.
+      Select to download course module files or skip if they already exist.
 
   initialization:
     title: "Initialization"
