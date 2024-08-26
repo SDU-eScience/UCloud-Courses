@@ -49,6 +49,8 @@ When the request has been approved, the UCloud course in question will be schedu
 
 > It is never possible to remove materials from this GitHub repository. Thus, the removal of a UCloud course will *not* be followed by the removing of the corresponding material from the GitHub repository. 
 
+[TO BE ADDED SOMEWHERE: It is not possible to reserve machines for teaching.]
+
 ## Outline of Services Offered 
 
 The UCloud support teams will assist the teachers in the UCloud development course. This includes:
