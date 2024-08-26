@@ -2,7 +2,7 @@
 application: v1
 
 title:
-name: r-demo-course
+name: r-studio-demo-course
 version: 2024-01-01
 
 website: https://github.com/jeselginAU/demo-r-studio-course 
@@ -13,7 +13,7 @@ web:
   port: $PORT
 
 tool:
-  name: r-demo-course
+  name: r-studio-demo-course
   version: 2024-01-01
 
 authors: Jes Elgin Jensen, Rytis Mikutavicius, Mine Çetinkaya-Rundel

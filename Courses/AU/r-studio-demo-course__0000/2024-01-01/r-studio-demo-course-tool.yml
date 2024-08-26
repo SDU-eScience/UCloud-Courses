@@ -2,10 +2,10 @@
 tool: v1
 
 title:
-name: r-demo-course
+name: r-studio-demo-course
 version: 2024-01-01
 
-container: dreg.cloud.sdu.dk/ucloud-apps/r-demo-course:2024-01-01
+container: dreg.cloud.sdu.dk/ucloud-apps/r-studio-demo-course:2024-01-01
 
 authors: Jes Elgin Jensen, Rytis Mikutavicius, Mine Çetinkaya-Rundel
 

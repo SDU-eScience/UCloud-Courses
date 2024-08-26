@@ -48,7 +48,7 @@ The script requires the following arguments:
 
 This file and folder structure for this course was created by navigating to the */scripts* folder and calling the script as below:
 
-`python create-new-course.py -n r-demo-course -c 0000 -r 2024-01-01 -b rstudio -u au`
+`python create-new-course.py -n r-studio-demo-course -c 0000 -r 2024-01-01 -b rstudio -u au`
 
 The script creates the course folder that includes a *Dockerfile*, used for building the image, required to run a container, a start_course.sh script for launching course applications and *.yml* files for configuring options for the UCloud webpage interface.
 
@@ -66,7 +66,7 @@ In the */scripts* folder, a python script for building images (`build-docker-ima
 
 The image for this course was built using the *build-docker-image.py* script with these arguments:
 
-`python build-docker-image.py -n r-demo-course -c 0000 -r 2024-01-01 -u au`
+`python build-docker-image.py -n r-studio-demo-course -c 0000 -r 2024-01-01 -u au`
 
 This to must be called inside the */scripts* folder.
 

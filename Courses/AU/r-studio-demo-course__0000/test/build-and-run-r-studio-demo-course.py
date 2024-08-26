@@ -2,16 +2,22 @@ import sys
 import os
 import subprocess
 import docker
+from pprint import pprint
+import inspect
 
 def build():
     os.chdir("../../../../scripts")
-    command = ["python3", "build_docker_image.py", "-n", "r-demo-course", "-c", "0000", "-r", "2024-01-01", "-u", "au"]    # TODO: pass arguments 
+    command = ["python3", "build_docker_image.py", "-n", "r-studio-demo-course", "-c", "0000", "-r", "2024-01-01", "-u", "au"]
     subprocess.run(command, capture_output=False, text=True)
     client = docker.from_env()
     images = client.images.list()
-    r_images = [i for i in images if "r-demo-course" in i.tag]
+    r_images = list(filter(lambda i: "r-studio-demo-course" in i.tag, images))
+    # r_images = list(filter(lambda i: "r-studio-demo-course" in i.tag, images))
     # image = r_images
-    print({r_images})
+    # print({r_images.__dict__})
+    # for i in images:
+    #     pprint(inspect.getmembers(i))
+    pprint(inspect.getmembers(r_images))
 
 if __name__ == "__main__":  # Run the Docker container using the newly built image
     build()

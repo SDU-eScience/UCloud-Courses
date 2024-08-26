@@ -1,1 +1,0 @@
-python build-and-run-docker-image.py -n r-demo-course -c 0000 -r 2024-01-01 -u au
