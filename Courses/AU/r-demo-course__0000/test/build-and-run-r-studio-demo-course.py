@@ -17,7 +17,7 @@ if __name__ == "__main__":  # Run the Docker container using the newly built ima
     build()
     # container_name = "test-rstudio"
     # port_mapping = "8787:8787"
-    # start_command = "sudo start_course -s req -c clgaass_01"
+    # start_command = "sudo start_course -s req -c class_01"
 
     # print(f"Running the Docker container '{container_name}' from the image '{image_tag}'...")
     # container = client.containers.run(
@@ -31,6 +31,5 @@ if __name__ == "__main__":  # Run the Docker container using the newly built ima
 
     # print(f"Container '{container_name}' is running. You can access it via port 8787.")
     # run()
-
 
 
