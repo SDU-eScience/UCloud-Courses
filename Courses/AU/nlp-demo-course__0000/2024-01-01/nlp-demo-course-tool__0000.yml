@@ -7,9 +7,11 @@ version: 2024-01-01
 
 container: dreg.cloud.sdu.dk/ucloud-courses/au-nlp-demo-course__0000:2024-01-01
 
-authors:
+authors: Jes Elgin Jensen, Rytis Mikutavicius & Roberta Rocca
 
 description: >
+  Example UCloud course based on the 2023 course Natural Language Processing
+  taken as part of the MSc in Cognitive Science at Aarhus University.
 
 defaultTimeAllocation:
   hours: 1

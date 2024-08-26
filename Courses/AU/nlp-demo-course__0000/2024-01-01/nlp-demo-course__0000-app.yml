@@ -7,9 +7,8 @@ version: 2024-01-01
 
 website: https://github.com/rbroc/NLP-AU-23
 
-applicationType: # BATCH, WEB, VNC
+applicationType: WEB
 
-### WEB type
 web:
   port: 8080
 
