@@ -5,12 +5,13 @@ function exit_err {
 }
 PORT=8888
 EXTERNAL_REPO_URL="https://api.github.com/repos/jeselginAU/demo-NLP-Course-AU"
+REDOWNLOAD=false
 
-while getopts "c:a:s:" option; do
+while getopts "c:as:" option; do
     case "${option}" in
-        c) CLASS=${OPTARG};;
-        a) REDOWNLOAD=${OPTARG} ;;
-        s) INITIALIZATION="${OPTARG}" ;;
+        c) CLASS="${OPTARG}";;
+        a) REDOWNLOAD=true;;
+        s) INITIALIZATION="${OPTARG}";;
         :) exit_err "Missing argument for -${OPTARG}" ;;
         *) exit_err "Invalid option -${OPTARG}" ;;
     esac
@@ -36,20 +37,19 @@ if [[ -f "${INITIALIZATION}" ]]; then
             ;;
     esac
 fi
-
-if [[ [-n ${CLASS}] && [[! -d "/work/${CLASS}"  ] || "${REDOWNLOAD}" = true ] ]]; then
+PWD="/work"
+if [[ -n ${CLASS} && (! -d "/${PWD}/${CLASS}" || "${REDOWNLOAD}" = true ) ]]; then
     printf "\n======================\n"
     printf "Starting class module\n"
     printf "======================\n\n"
 
     # Find urls for the individual files
-    wget "${EXTERNAL_REPO_URL}/contents/classes/${CLASS}"
-    if [[ ! -f "${CLASS}" ]]; then
+    wget "${EXTERNAL_REPO_URL}/contents/classes/${CLASS}" -O "${CLASS}.json"
+    if [[ ! -f "${CLASS}.json" ]]; then
         exit_err "Error: could not find course materials for course module \"${CLASS}\" in external repo \"${EXTERNAL_REPO_URL}\""
     else
-        mv "${CLASS}" "${CLASS}.json"
         URLS=$(jq  -r '.[].download_url // empty' "${CLASS}.json" )
-        mkdir "${PWD}/${CLASS}" || exit_err "failed to create directory"
+        mkdir -p "${PWD}/${CLASS}" || exit_err "failed to create directory"
 
         # Download each file
         for url in ${URLS}; do 
@@ -57,13 +57,12 @@ if [[ [-n ${CLASS}] && [[! -d "/work/${CLASS}"  ] || "${REDOWNLOAD}" = true ] ]]
                 exit_err "Error: Null or empty URL found."
             else
                 file_name=$(basename "${url}")
-                mkdir "/work/${CLASS}"
-                curl -L "${url}" -o "/work/${CLASS}/${file_name}"
+                mkdir -p "${PWD}/${CLASS}"
+                curl -L "${url}" -o "${PWD}/${CLASS}/${file_name}"
             fi
         done
         rm "${CLASS}.json"
     fi
-
 
     bash -c "jupyter lab --NotebookApp.token='' --log-level=50 --ip=0.0.0.0 --port ${PORT}"
 fi
