@@ -2,44 +2,66 @@ import sys
 import os
 import subprocess
 import docker
-from pprint import pprint
-import inspect
 
 def build():
     imageId = "dreg.cloud.sdu.dk/ucloud-courses/au-r-studio-demo-course__0000:2024-01-01"
     client = docker.from_env()
     client.images.remove(imageId)
     os.chdir("../../../../scripts")
-    command = ["python3", "build_docker_image.py", "-n", "r-studio-demo-course", "-c", "0000", "-r", "2024-01-01", "-u", "au"]
+
+    # Define the command with the arguments
+    command = [
+        "python3", "build-docker-image.py",
+        "-n", "r-studio-demo-course", # Course name
+        "-c", "0000",                 # Course code
+        "-r", "2024-01-01",           # Course release
+        "-u", "au"                    # University
+    ]
+
+    # Execute the command to build the Docker image
     subprocess.run(command, capture_output=False, text=True)
+
+    # Return the command list for later use in the run function
+    return command
+
+def run(command):
+
+    # Define the Docker container's name and port mapping
+    CONTAINER_NAME = "test-rstudio"
+    PORT = "8787"
+    START_COMMAND = "sudo start_course -s req -c class_01"
+
+    # Initialize the Docker client to interact with Docker from Python
+    client = docker.from_env()
+
+    # Extract the arguments from the command list
+    args = dict(zip(command[2::2], command[3::2]))
     
-    client.containers.run(imageId)
-    # images = client.images.list()
-    # r_images = list(filter(lambda i: "r-studio-demo-course" in i.tag, images))
-    # r_images = list(filter(lambda i: "r-studio-demo-course" in i.tag, images))
-    # image = r_images
-    # print({r_images.__dict__})
-    # for i in images:
-    #     pprint(inspect.getmembers(i))
-    # pprint(inspect.getmembers(r_images))
+    # Construct the image tag using the extracted arguments
+    IMAGE_TAG = 'dreg.cloud.sdu.dk/ucloud-courses/{}-{}__{}:{}'.format(
+        args["-u"],
+        args["-n"].replace(" ", "-"),  # replace whitespace with dash
+        args["-c"],
+        args["-r"]
+    )
 
-if __name__ == "__main__":  # Run the Docker container using the newly built image
-    build()
-    # container_name = "test-rstudio"
-    # port_mapping = "8787:8787"
-    # start_command = "sudo start_course -s req -c class_01"
+    # Print the image tag and run the Docker container
+    print(f"Running the Docker container '{CONTAINER_NAME}' from the image '{IMAGE_TAG}'...")
+    container = client.containers.run(
+        image=IMAGE_TAG,
+        name=CONTAINER_NAME,
+        ports={"{}/tcp".format(PORT): PORT},
+        detach=True,                            # Run the container in detached mode.                  
+        tty=True,                               # Enable container terminal.
+        command=f"bash -c '{START_COMMAND}'"
+    )
 
-    # print(f"Running the Docker container '{container_name}' from the image '{image_tag}'...")
-    # container = client.containers.run(
-    #     image=image_tag,
-    #     name=container_name,
-    #     ports={"8787/tcp": 8787},
-    #     detach=True,
-    #     tty=True,
-    #     command=f"bash -c '{start_command}'"
-    # )
+    print(f"Container '{CONTAINER_NAME}' is running. You can access it via port 8787.")
 
-    # print(f"Container '{container_name}' is running. You can access it via port 8787.")
-    # run()
+if __name__ == "__main__":
+    
+    # Build image and retrieve the command list
+    command = build()
 
-
+    # Pass command list and start the container
+    run(command)

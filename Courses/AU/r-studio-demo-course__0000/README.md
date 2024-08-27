@@ -54,7 +54,7 @@ The script creates the course folder that includes a *Dockerfile*, used for buil
 
 ## Building docker image
 
-Building a docker image with the *Dockerfile* will enable containers to run with all installed prerequisites needed for the course. For example, this course includes */renv* and */slides* folders that are copied and added to the container's */work* folder using the *COPY* command in the *Dockerfile*.
+Building a docker image with the *Dockerfile* will enable containers to run with all installed prerequisites needed for the course. For example, this course includes */renv* and */slides* folders that are copied and added to the container's */work* folder using the *COPY* command in the *Dockerfile* which is always in the release date folder (here 2024-01-01).
 
 In the */scripts* folder, a python script for building images (`build-docker-image.py`) is provided. The script requires that your python environment has the python docker package installed. This can be installed by running `pip install docker`. You will also need to have an installation of docker  When running the script, privide the following arguments:
 
