@@ -69,5 +69,10 @@ parameters:
       - name: "Class 9"
         value: "class_09"
     optional: false
+  force_download:
+    title: "Force Download"
+    type: flag
+    description: >
+      Select to download course module files or skip if they already exist.
 outputFileGlobs:
   - "*"

@@ -6,9 +6,10 @@ function exit_err {
 PORT=8888
 EXTERNAL_REPO_URL="https://api.github.com/repos/jeselginAU/demo-NLP-Course-AU"
 
-while getopts "c:s:" option; do
+while getopts "c:a:s:" option; do
     case "${option}" in
         c) CLASS=${OPTARG};;
+        a) FORCE_DOWNLOAD=${OPTARG} ;;
         s) INITIALIZATION="${OPTARG}" ;;
         :) exit_err "Missing argument for -${OPTARG}" ;;
         *) exit_err "Invalid option -${OPTARG}" ;;
@@ -35,7 +36,7 @@ if [[ -f "${INITIALIZATION}" ]]; then
             ;;
     esac
 fi
-if [[ -n ${CLASS} ]]; then
+if [[ [-n ${CLASS}] && [[! -d "/work/${CLASS}" ] || "${FORCE_DOWNLOAD}" = true ] ]]; then
     printf "\n======================\n"
     printf "Starting class module\n"
     printf "======================\n\n"
