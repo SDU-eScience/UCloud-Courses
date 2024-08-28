@@ -28,13 +28,12 @@ description: >
 
 fileExtensions:
 
-allowAdditionalMounts: $ADDITIONAL_MOUNTS
-allowPublicLink: $PUBLIC_LINK
-allowPublicIp: $PUBLIC_IP
-allowMultiNode: $MULTI_NODE
+allowAdditionalMounts: true
+allowPublicLink: false
+allowPublicIp: false
 
 container:
-  runAsRoot: $ROOT
+  runAsRoot: false
 
 invocation:
   - start_app
