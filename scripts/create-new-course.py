@@ -239,6 +239,7 @@ if __name__ == "__main__":
         template_appyml = join_paths(templates_dir, 'template-app.yml')
         template_toolyml = join_paths(templates_dir, 'template-tool.yml')
         template_startcourse = join_paths(templates_dir, 'start_course.template')
+        template_runcontainer = join_paths(templates_dir, 'build-and-run-course_template.py')
 
         # Get name and tag for args.baseimage
         baseimage_name = get_baseimage_name(args.baseimage)
@@ -249,7 +250,8 @@ if __name__ == "__main__":
         open(template_dockerfile, 'r') as f2,
         open(template_appyml, 'r') as f3,
         open(template_toolyml, 'r') as f4,
-        open(template_startcourse, 'r') as f5
+        open(template_startcourse, 'r') as f5,
+        open(template_runcontainer, 'r') as f6
 
         ):
             readme = f1.read()
@@ -262,6 +264,8 @@ if __name__ == "__main__":
             f4.close()
             startcourse = f5.read()
             f5.close()
+            runcontainer = f6.read()
+            f6.close()
         
         course_full_name = "{}__{}".format(args.name, args.coursecode)
 
@@ -279,15 +283,22 @@ if __name__ == "__main__":
         # Edit template-tool.yml
         toolyml = re.sub("UNI", args.university, toolyml)
         toolyml = re.sub("COURSE_NAME", course_full_name, toolyml)
-        toolyml = re.sub("COURSE_TAG", args.release, toolyml)        
-        
+        toolyml = re.sub("COURSE_TAG", args.release, toolyml)
+
+        # Edit build-and-run-course.py
+        runcontainer = re.sub("COURSE_NAME", args.name, runcontainer)
+        runcontainer = re.sub("COURSE_CODE" ,args.coursecode, runcontainer) 
+        runcontainer = re.sub("COURSE_TAG", args.release, runcontainer)
+        runcontainer = re.sub("UNI", args.university, runcontainer)
+
         # Write to edited contents from the tempate files to the course folder
         with (
             open(join_paths(course_root_dir, 'README.md'), 'w') as f1,
             open(join_paths(course_release_dir, 'Dockerfile'), 'w') as f2,
             open(join_paths(course_release_dir, '%s__%s-app.yml'%(args.name, args.coursecode)), 'w') as f3,
             open(join_paths(course_release_dir, '%s__%s-tool.yml'%(args.name, args.coursecode)), 'w') as f4,
-            open(join_paths(course_release_dir, 'start_course.sh'), 'w') as f5
+            open(join_paths(course_release_dir, 'start_course.sh'), 'w') as f5,
+            open(join_paths(course_release_dir, 'build-and-run-course.py'), 'w') as f6
         ):
             f1.write(readme)
             f1.close()
@@ -299,6 +310,8 @@ if __name__ == "__main__":
             f4.close()
             f5.write(startcourse)
             f5.close()
+            f6.write(runcontainer)
+            f6.close()
     
     except Exception as e:
         exit(str(e))
