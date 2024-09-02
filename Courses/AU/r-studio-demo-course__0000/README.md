@@ -11,7 +11,7 @@ This demo course is based on Duke University's Statistical Science Introductory 
 
 ## Making changes to the course materials during the semester
 The `start_course.sh` script in this course will download class materials from an external GitHub repo that I manage myself: [demo-r-studio-course](https://github.com/jeselginAU/demo-r-studio-course).
-The `start_course.sh` script expects the course materials to be structured as displayed below
+The `start_course.sh` script expects the course materials to be structured as displayed below:
 
 ```
 └── 📁classes
@@ -41,20 +41,22 @@ The script requires the following arguments:
 * `-n`: The name of the course 
 * `-c`: Official course code (from university course description)
 * `-r`: The release date of the course, in the format YYYY-MM-DD
-* `-u`: The univerity the course is taught at. 
+* `-u`: The university the course is taught at. 
     * The options are  `aau`,`au`,`cbs`,`dtu`,`itu`,`ku`,`ruc`,`sdu`, and `other`. 
 * `-b`: The base image that the course container is build upon. This controls the *FROM* statement in line 1 of the *Dockerfile*.
     * The options are: `almalinux`, `alpine`, `debian`, `ubuntu`, `conda`, `jupyterlab`, `rstudio`, `ubuntu-xfce`, and `almalinux-xfce`.
 
-This file and folder structure for this course was created by navigating to the */scripts* folder and calling the script as below:
+This will create a folder with a name of the release date in the */Courses* directory under the specified university. It will include the *README.md*, *Dockerfile*, two *.yml* files and *start_course.sh*.
+
+The folder structure for this course was created by navigating to the */scripts* folder and calling the script as below:
 
 `python create-new-course.py -n r-studio-demo-course -c 0000 -r 2024-01-01 -b rstudio -u au`
 
-The script creates the course folder that includes a *Dockerfile*, used for building the image, required to run a container, a start_course.sh script for launching course applications and *.yml* files for configuring options for the UCloud webpage interface.
+The *Dockerfile* is used for building a docker image which required to run a container. The *start_course.sh* script is required for launching course applications and *.yml* files for are neccessary for configuring course options for the UCloud webpage interface.
 
 ## Building docker image
 
-Building a docker image with the *Dockerfile* will enable containers to run with all installed prerequisites needed for the course. For example, this course includes */renv* and */slides* folders that are copied and added to the container's */work* folder using the *COPY* command in the *Dockerfile* which is always in the release date folder (here 2024-01-01).
+Building a docker image with the *Dockerfile* will enable containers to run with all installed prerequisites needed for the course. For example, this course includes */renv* and */slides* folders that are copied and added to the container's */work* folder using the *COPY* command in the *Dockerfile*. 
 
 In the */scripts* folder, a python script for building images (`build-docker-image.py`) is provided. The script requires that your python environment has the python docker package installed. This can be installed by running `pip install docker`. You will also need to have an installation of docker  When running the script, privide the following arguments:
 
@@ -72,13 +74,12 @@ This to must be called inside the */scripts* folder.
 
 ## Test Docker image
 
-To run the container with the built image, in Docker Desktop copy the ID of the image, which is just below it's name, and use `docker run` command in the terminal with these flags:
+Alternatively, the docker image can be created and tested using the `build-and-run-course.py` script. It includes the **build** function, which calls the `build-docker-image.py` as a subprocess, and the **run** function where the container name and starting command is specified and port mapping is configured. 
 
-`--rm -it -d --name test_name <image_id> bash -c "sudo start_course -s req -c class_01"`
+Generally, before executing the script, set a name for the container, configure the port mapping (in some cases may not be neccessary) and edit the starting command to include a value for class selection option and an initialization file if required.
 
-Paste the ID of the image in place of <image_id>, select to install requirements with the **-s** flag, and the class id with the **-c** flag from the start_course.sh.
-
-Example commands used to test this demo can be found in /test/build_and_run
+In this example, the configuration is completed and the script can be simply executed by:
+`python build-and-run-course.py`
 
 ## YML files
 
@@ -89,6 +90,8 @@ Edit the course-name-app.yml file to include the options included in the start_c
 - Add parameters for the options under **parameters** including its *title* (seen on UCloud), *type* and *description*.
 
 *enumeration* type is used for selecting an option from a dropdown menu, *flag* - for selecting true of false, *input_file* - for initialization.
+
+In this example, the course options are initialized in the invocation section. The parameters for the course options are detailed below. In the parameters, the `class` option has the *enumeration* type which includes the *defaultValue* and *options* fields, that define the selection of the classes. The `force_download` option is of a *flag* type, meaning that the selection for it can be either true of false. `initialization` option is used for installing packages or executing a script based on the *input_file*. The *optional* field determines if the option can be ignored when launching a job.
 
 ## Initialization
 
