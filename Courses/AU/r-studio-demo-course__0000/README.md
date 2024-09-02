@@ -52,33 +52,47 @@ The folder structure for this course was created by navigating to the */scripts*
 
 `python create-new-course.py -n r-studio-demo-course -c 0000 -r 2024-01-01 -b rstudio -u au`
 
-The *Dockerfile* is used for building a docker image which required to run a container. The *start_course.sh* script is required for launching course applications and *.yml* files for are neccessary for configuring course options for the UCloud webpage interface.
+---
+###### **Note**: The *Dockerfile* is used for building a docker image which required to run a container. The *start_course.sh* script is required for launching course applications and *.yml* files for are neccessary for configuring course options for the UCloud webpage interface.
 
 ## Building docker image
 
-Building a docker image with the *Dockerfile* will enable containers to run with all installed prerequisites needed for the course. For example, this course includes */renv* and */slides* folders that are copied and added to the container's */work* folder using the *COPY* command in the *Dockerfile*. 
+Building a docker image with the *Dockerfile* will enable containers to run with all installed prerequisites needed for the course. 
 
-In the */scripts* folder, a python script for building images (`build-docker-image.py`) is provided. The script requires that your python environment has the python docker package installed. This can be installed by running `pip install docker`. You will also need to have an installation of docker  When running the script, privide the following arguments:
+For example, this course includes */renv* and */slides* folders that are copied and added to the container's */work* folder using the *COPY* command in the *Dockerfile*. 
+
+In the */scripts* folder, a python script for building images (`build-docker-image.py`) is provided. 
+
+The script requires that your python environment has the python docker package installed. This can be installed by running `pip install docker`. 
+
+You will also need to have an installation of Docker or Docker Desktop.
+
+When running the script, privide the following arguments:
 
 * `-n`: The name of the course 
 * `-c`: Official course code (from university course description)
 * `-r`: The release date of the course, in the format YYYY-MM-DD
 * `-u`: The univerity the course is taught at. 
     * The options are  `aau`,`au`,`cbs`,`dtu`,`itu`,`ku`,`ruc`,`sdu`, and `other`. 
-
+---
 The image for this course was built using the *build-docker-image.py* script with these arguments:
 
 `python build-docker-image.py -n r-studio-demo-course -c 0000 -r 2024-01-01 -u au`
 
-This to must be called inside the */scripts* folder.
+This script must be called inside the */scripts* folder.
 
 ## Test Docker image
 
-Alternatively, the docker image can be created and tested using the `build-and-run-course.py` script. It includes the **build** function, which calls the `build-docker-image.py` as a subprocess, and the **run** function where the container name and starting command is specified and port mapping is configured. 
+Alternatively, the Docker image can be created and tested using the `build-and-run-course.py` script. 
 
-Generally, before executing the script, set a name for the container, configure the port mapping (in some cases may not be neccessary) and edit the starting command to include a value for class selection option and an initialization file if required.
+It includes the **build** function, which calls the `build-docker-image.py` as a subprocess, and the **run** function where the **container name** and **starting command** is specified and **port mapping** is configured. 
 
-In this example, the configuration is completed and the script can be simply executed by:
+Generally, before executing the script:
+- set a name for the container
+- configure the port mapping (in some cases may not be neccessary)
+- edit the starting command to include a value for class selection option and an initialization file if required.
+
+In this example, this is completed and the script can be simply executed by:
 `python build-and-run-course.py`
 
 ## YML files
@@ -91,7 +105,7 @@ Edit the course-name-app.yml file to include the options included in the start_c
 
 *enumeration* type is used for selecting an option from a dropdown menu, *flag* - for selecting true of false, *input_file* - for initialization.
 
-In this example, the course options are initialized in the invocation section. The parameters for the course options are detailed below. In the parameters, the `class` option has the *enumeration* type which includes the *defaultValue* and *options* fields, that define the selection of the classes. The `force_download` option is of a *flag* type, meaning that the selection for it can be either true of false. `initialization` option is used for installing packages or executing a script based on the *input_file*. The *optional* field determines if the option can be ignored when launching a job.
+In this example, under the parameters, the `class` option has the *enumeration* type which includes the *defaultValue* and *options* fields, that define the selection of the classes. The `force_download` option is of a *flag* type, meaning that the selection for it can be either true of false. `initialization` option is used for installing packages or executing a script based on the *input_file*. The *optional* field determines if the option can be ignored when launching a job.
 
 ## Initialization
 
