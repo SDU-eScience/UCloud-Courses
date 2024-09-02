@@ -12,14 +12,14 @@ if [ "$(ls -A /etc/ucloud/ssh 2> /dev/null)" ]; then
     sudo chmod 555 /etc/ucloud
     sudo /etc/init.d/ssh start
 fi
-
-while getopts "c:a:s:" option; do
+REDOWNLOAD=false
+while getopts "c:as:" option; do
     case "$option" in
-        c) CLASS=${OPTARG} ;;
-        a) FORCE_DOWNLOAD=${OPTARG} ;;
-        s) INITIALIZATION="$OPTARG" ;;
-        :) exit_err "Missing argument for -$OPTARG" ;;
-        *) exit_err "Invalid option -$OPTARG" ;;
+        c) CLASS="${OPTARG}";;
+        a) REDOWNLOAD=true;;
+        s) INITIALIZATION="${OPTARG}";;
+        :) exit_err "Missing argument for -{$OPTARG}" ;;
+        *) exit_err "Invalid option -${OPTARG}" ;;
     esac
 done
 
@@ -43,8 +43,8 @@ if [[ -f "${INITIALIZATION}" ]]; then
             ;;
     esac
 fi
-
-if [[ -n ${CLASS} ]]; then
+PWD="/work"
+if [[ [-n ${CLASS}] && [[! -d "/${PWD}/${CLASS}"  ] || "${REDOWNLOAD}" = true ] ]]; then
     printf "\n======================\n"
     printf "Starting class module\n"
     printf "======================\n\n"
@@ -66,11 +66,11 @@ if [[ -n ${CLASS} ]]; then
                 exit_err "Error: Null or empty URL found."
             else
                 file_name=$(basename "${url}")
-                target_file="/work/${CLASS}/${file_name}"
+                target_file="/${PWD}/${CLASS}/${file_name}"
 
                 # Download the file if it doesn't exist or if FORCE_DOWNLOAD is true
-                if [[ ! -f "${target_file}" || "${FORCE_DOWNLOAD}" = true ]]; then
-                    mkdir -p "/work/${CLASS}" || exit_err "Failed to create /work/${CLASS} directory"
+                if [[ ! -f "${target_file}" ]]; then
+                    mkdir -p "/${PWD}/${CLASS}" || exit_err "Failed to create /${PWD}/${CLASS} directory"
                     curl -L "${url}" -o "${target_file}"
                     printf "Downloaded file ${target_file}"
                 else
