@@ -107,7 +107,7 @@ if __name__ == "__main__":
     except OSError as e:
         exit(str(e))
     
-    # Check that app.yml file exists 
+    # Extract the courses app.yml file path
     appyml_path = join_paths(os.path.split(cwd)[0], 'Courses')
     appyml_path = join_paths(appyml_path, university)
     appyml_path = join_paths(appyml_path, '{}__{}'.format(coursename, args.coursecode))
@@ -116,7 +116,7 @@ if __name__ == "__main__":
     course_appyml_name = "{}__{}-app.yml".format(args.name, args.coursecode)
     course_appyml_path = join_paths(appyml_path, course_appyml_name)
 
-    # Check that container-config.yml exists 
+    # Check that the courses app.yml file exists 
     try:
         if (os.path.isfile(join_paths(appyml_path, course_appyml_name))):
             print("{}/{} exists.".format(appyml_path, course_appyml_name))
@@ -125,28 +125,29 @@ if __name__ == "__main__":
     except OSError as e: 
         exit(str(e))
 
+    # Construct the Docker image tag using university, course name, course code, and release date.
     IMAGE_TAG = 'dreg.cloud.sdu.dk/ucloud-courses/{}-{}__{}:{}'.format(args.university, coursename, args.coursecode, args.release) 
 
     try:
         # Load the YAML configuration
-        config = load_yml(course_appyml_path)
+        appyml = load_yml(course_appyml_path)
     except Exception as e:
         print(f"Failed to load YAML configuration: {e}")
         exit(1)
 
     # Access the container name
-    CONTAINER_NAME = config.get("name")
+    CONTAINER_NAME = appyml.get("name")
     if not CONTAINER_NAME:
         raise ValueError("Container name is missing in the {} configuration.".format(course_appyml_name))
 
     # Access the 'port' under 'web'
-    web_key = config.get("web", {})
+    web_key = appyml.get("web", {})
     PORT = web_key.get("port")
     if not PORT:
         raise ValueError("Port is missing in the {} configuration.".format(course_appyml_name))
 
     # Access the start command
-    START_COMMAND = config.get("startCommand")
+    START_COMMAND = appyml.get("startCommand")
     if not START_COMMAND:
         raise ValueError("Start command is missing in the {} configuration.".format(course_appyml_name))
 
