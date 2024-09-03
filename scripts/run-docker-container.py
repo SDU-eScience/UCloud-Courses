@@ -2,13 +2,13 @@
 Script for teachers to run the docker containers.
 
 Before using the script, the teacher should ensure that the Docker image has been built
-using the build-docker-image.py script and that the configuration file is correctly set up.
+using the build-docker-image.py script and that the app.yml file is correctly set up.
 
 The script requires that a Docker daemon is running. Otherwise, it will
 exit with an error. The Docker daemon can be started e.g., by opening (and
 keeping open) Docker Desktop.
 
-Usage: python3 run-docker-container.py -c <config-file-path>
+Usage: python3 run-docker-container.py -n <course name> -c <course code> -r <course start date> -u <university> 
 
 The script was built using the Python 3.10.14 interpreter and standard library.
 For module requirements outside the Python standard library, see requirements.txt.
