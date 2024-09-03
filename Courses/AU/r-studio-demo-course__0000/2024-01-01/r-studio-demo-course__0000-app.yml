@@ -10,11 +10,13 @@ website: https://github.com/jeselginAU/demo-r-studio-course
 applicationType: WEB
 
 web:
-  port: $PORT
+  port: 8787
 
 tool:
   name: r-studio-demo-course
   version: 2024-01-01
+
+startCommand: start_course -s req -c class_01
 
 authors: Jes Elgin Jensen, Rytis Mikutavicius, Mine Çetinkaya-Rundel
 
@@ -32,6 +34,7 @@ container:
 
 invocation:
   - start_course
+  - -p $PORT
   - type: var
     vars: class
     prefixGlobal: '-c '
