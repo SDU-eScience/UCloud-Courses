@@ -38,14 +38,14 @@ To create a new course, use the `create-new-course.py` script located in the `/s
 
 The script requires the following arguments:
 * `-n`: The name of the course 
-* `-c`: The Official course code (from the university course description)
+* `-c`: The official course code (from the university's course description)
 * `-r`: The release date of the course, in the format YYYY-MM-DD
 * `-u`: The university the course is taught at. 
     * The options are  `aau`,`au`,`cbs`,`dtu`,`itu`,`ku`,`ruc`,`sdu`, and `other`. 
 * `-b`: The base image that the course container is build upon. This controls the *FROM* statement in line 1 of the *Dockerfile*.
     * The options are: `almalinux`, `alpine`, `debian`, `ubuntu`, `conda`, `jupyterlab`, `rstudio`, `ubuntu-xfce`, and `almalinux-xfce`.
 
-This script will create a folder named with the release date in the `/Courses` directory under the specified university. It will include a `README.md`, a `Dockerfile`, two `.yml` files, and a `start_course.sh` script.
+This script will create a folder in the `/Courses` directory under the specified university. It will include a `README.md`, a `Dockerfile`, two `.yml` files, and a `start_course.sh` script.
 
 For example, the folder structure for this course was created by navigating to the `/scripts` folder and running the following command:
 
@@ -54,7 +54,10 @@ python create-new-course.py -n nlp-studio-demo-course -c 0000 -r 2024-01-01 -b j
 ```
 
 ---
-###### **Note**: The `Dockerfile` is used for building a Docker image, which is necessary to run a container. The `start_course.sh` script is needed to launch course applications, and the `.yml` files include configuration settings for the UCloud web interface.
+### Files
+- The `Dockerfile` is used for building a Docker image, which is necessary to run a container. 
+- The `start_course.sh` script is run inside the container whenever a user launches the application on UCloud. In this demo course, it fetches course materials from the external repository and launches the JupyterLab server.
+- The `.yml` files include configuration settings for the UCloud web interface.
 
 ## Building the Docker Image
 
@@ -72,8 +75,8 @@ Ensure your Python environment has the `docker` package installed. You can insta
 pip install docker
 ```
 
-You will also need to have Docker or Docker Desktop installed on your machine.
 
+You will also need to have Docker or Docker Desktop installed on your machine. You can find the appropriate installation for your machine on [docker.com](https://www.docker.com/).
 ### Running the Script
 
 When running the script, provide the following arguments:
@@ -89,9 +92,11 @@ For example, the image for this course was built using the `build-docker-image.p
 ```bash
 python build-docker-image.py -n nlp-studio-demo-course -c 0000 -r 2024-01-01 -u au`
 ```
-##### **Note**: The scripts, including this one must be called inside the */scripts* folder.
+##### **Note**: The script must be called from inside the */scripts* folder.
 
 ## Testing the Docker Image
+
+<!-- # TODO: Update these build/run/test instructions after we have agreed on a structure of the build and run scripts -->
 
 Alternatively, you can create and test the Docker image using the `build-and-run-course.py` script.
 
