@@ -14,7 +14,7 @@ WORKDIR /home/$NB_USER
 # install required libraries
 COPY --chown="${NB_USER}":"${NB_GID}" requirements.txt .
 
-RUN pip install --upgrade pip==24.2 --no-cache-dir \
+RUN pip install --upgrade pip --no-cache-dir \
  && pip install -r requirements.txt --no-cache-dir
  
 ## Add scripts and data

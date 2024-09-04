@@ -22,13 +22,12 @@ description: >
   Example UCloud course based on the 2023 course Natural Language Processing
   taken as part of the MSc in Cognitive Science at Aarhus University.
 
-allowAdditionalMounts: $ADDITIONAL_MOUNTS
-allowPublicLink: $PUBLIC_LINK
-allowPublicIp: $PUBLIC_IP
-allowMultiNode: $MULTI_NODE
+allowAdditionalMounts: true
+allowPublicLink: false
+allowPublicIp: false
 
 container:
-  runAsRoot: $ROOT
+  runAsRoot: false
 
 invocation:
   - start_app
