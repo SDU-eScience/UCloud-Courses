@@ -239,7 +239,7 @@ if __name__ == "__main__":
         template_appyml = join_paths(templates_dir, 'template-app.yml')
         template_toolyml = join_paths(templates_dir, 'template-tool.yml')
         template_startcourse = join_paths(templates_dir, 'start_course.template')
-        template_runcontainer = join_paths(templates_dir, 'build-and-run-course_template.py')
+        #template_runcontainer = join_paths(templates_dir, 'build-and-run-course_template.py')
 
         # Get name and tag for args.baseimage
         baseimage_name = get_baseimage_name(args.baseimage)
@@ -251,7 +251,7 @@ if __name__ == "__main__":
         open(template_appyml, 'r') as f3,
         open(template_toolyml, 'r') as f4,
         open(template_startcourse, 'r') as f5,
-        open(template_runcontainer, 'r') as f6
+        #open(template_runcontainer, 'r') as f6
 
         ):
             readme = f1.read()
@@ -264,8 +264,8 @@ if __name__ == "__main__":
             f4.close()
             startcourse = f5.read()
             f5.close()
-            runcontainer = f6.read()
-            f6.close()
+            #runcontainer = f6.read()
+            #f6.close()
         
         course_full_name = "{}__{}".format(args.name, args.coursecode)
 
@@ -286,10 +286,10 @@ if __name__ == "__main__":
         toolyml = re.sub("COURSE_TAG", args.release, toolyml)
 
         # Edit build-and-run-course.py
-        runcontainer = re.sub("COURSE_NAME", args.name, runcontainer)
-        runcontainer = re.sub("COURSE_CODE" ,args.coursecode, runcontainer) 
-        runcontainer = re.sub("COURSE_TAG", args.release, runcontainer)
-        runcontainer = re.sub("UNI", args.university, runcontainer)
+        #runcontainer = re.sub("COURSE_NAME", args.name, runcontainer)
+        #runcontainer = re.sub("COURSE_CODE" ,args.coursecode, runcontainer) 
+        #runcontainer = re.sub("COURSE_TAG", args.release, runcontainer)
+        #runcontainer = re.sub("UNI", args.university, runcontainer)
 
         # Write to edited contents from the tempate files to the course folder
         with (
@@ -310,8 +310,8 @@ if __name__ == "__main__":
             f4.close()
             f5.write(startcourse)
             f5.close()
-            f6.write(runcontainer)
-            f6.close()
+            #f6.write(runcontainer)
+            #f6.close()
     
     except Exception as e:
         exit(str(e))
