@@ -1,7 +1,7 @@
 ---
 application: v1
 
-title:
+title: RStudio Demo Course
 name: r-studio-demo-course
 version: 2024-01-01
 
@@ -21,16 +21,14 @@ startCommand: start_course -s req -c class_01
 authors: Jes Elgin Jensen, Rytis Mikutavicius, Mine Çetinkaya-Rundel
 
 description: >
+  Example RStudio-centered UCloud course based on based on Duke University's Statistical Science Introductory Data Science courses.
 
-fileExtensions:
-
-allowAdditionalMounts: $ADDITIONAL_MOUNTS
-allowPublicLink: $PUBLIC_LINK
-allowPublicIp: $PUBLIC_IP
-allowMultiNode: $MULTI_NODE
+allowAdditionalMounts: true
+allowPublicLink: false
+allowPublicIp: false
 
 container:
-  runAsRoot: $ROOT
+  runAsRoot: false
 
 invocation:
   - start_course

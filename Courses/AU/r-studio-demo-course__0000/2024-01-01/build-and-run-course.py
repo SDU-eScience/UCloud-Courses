@@ -1,7 +1,8 @@
-import sys
 import os
 import subprocess
 import docker
+
+# TODO: Update according to the common script and template structure once we've agreed on a structure.
 
 def build():
     imageId = "dreg.cloud.sdu.dk/ucloud-courses/au-r-studio-demo-course__0000:2024-01-01"
@@ -56,7 +57,7 @@ def run(command):
         command=f"bash -c '{START_COMMAND}'"
     )
 
-    print(f"Container '{CONTAINER_NAME}' is running. You can access it via port 8787.")
+    print(f"Container '{CONTAINER_NAME}' is running. You can access it via port '{PORT}'.")
 
 if __name__ == "__main__":
     
