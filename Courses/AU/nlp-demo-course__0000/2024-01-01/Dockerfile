@@ -2,7 +2,7 @@ FROM dreg.cloud.sdu.dk/ucloud-apps/jupyter-base:4.2.4
 
 LABEL course="NLP Demo Course" \
       author="Jes Elgin Jensen, Rytis Mikutavicius & Roberta Rocca" \
-      description="Example UCloud course based on the 2023 course Natural Language Processing taken as part of the MSc in Cognitive Science at Aarhus University. "
+      description="Example JupyterLab-centered UCloud course based on the 2023 course Natural Language Processing taken as part of the MSc in Cognitive Science at Aarhus University."
 
 ENV REFRESHED_AT=2024-08-07
 
