@@ -1,6 +1,6 @@
 # NLP Demo Course
 
-This course serves as an example of how to structure a course on UCloud.
+This course serves as an example of how to structure a course using Jupyter notebooks on UCloud.
 
 It is based on the materials from the 2023 _Natural Language Processing_ course, part of the  [MSc in Cognitive Science](https://masters.au.dk/cognitivescience) at Aarhus University. 
 

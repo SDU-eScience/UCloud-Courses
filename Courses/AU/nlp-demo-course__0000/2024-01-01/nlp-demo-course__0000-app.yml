@@ -19,7 +19,7 @@ tool:
 authors: Jes Elgin Jensen, Rytis Mikutavicius & Roberta Rocca
 
 description: >
-  Example UCloud course based on the 2023 course Natural Language Processing
+  Example JupyterLab-centered UCloud course based on the 2023 course Natural Language Processing
   taken as part of the MSc in Cognitive Science at Aarhus University.
 
 allowAdditionalMounts: true
