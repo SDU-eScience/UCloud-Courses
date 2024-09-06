@@ -1,8 +1,8 @@
 #----CHANGE LINES BELOW IF NECESSARY-----
-CONTAINER_NAME = ""         # Leave blank for random name
-INTERACTIVE_MODE = False    # Set to true to run an interactive container 
-PORT = 8080                 
-VOLUMES = ""                # Absolute paths of folder that should be available in `/work` inside the container. Separate volumes with a space 
+CONTAINER_NAME = ""             # Leave blank for random name
+INTERACTIVE_MODE = "False"      # Set to true to run an interactive container 
+PORT = "8080"                 
+VOLUMES = ""                    # Absolute paths of folder that should be available in `/work` inside the container. Separate volumes with a space 
 #---------------------------------------
 
 #----DO NOT CHANGE LINES BELOW----------
