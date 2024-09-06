@@ -1,7 +1,9 @@
 #----CHANGE LINES BELOW IF NECESSARY-----
+
 INTERACTIVE_MODE = "False"      # Set to True to run an interactive container. 
 PORT = "8080"                   # Change if another port should be published. NB: Only one port can be published.
 VOLUMES = ""                    # Absolute path(s) of folder(s) that should be available in `/work` inside the container. Separate volumes with a single whitespace. 
+
 #---------------------------------------
 
 
