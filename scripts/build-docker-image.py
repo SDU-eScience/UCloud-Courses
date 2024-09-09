@@ -1,3 +1,6 @@
+__maintainer__ = "SDU eScience Center"
+__email__ = "support@escience.sdu.dk"
+
 import os 
 import argparse 
 import docker 
@@ -33,4 +36,4 @@ if __name__ == "__main__":
     print('[INFO] BE PATIENT ... Building the image may take a while.')
     client.images.build(path = os.path.dirname(args.dockerfile_path), rm = True, tag = args.image_name)
     print("[INFO] Building complete. The image '%s' and available under 'Images' in Docker Desktop."%(args.image_name))
-    print("[INFO] Use 'python3 run.py' to start a container.")
+    print("[INFO] Use 'python3 docker-run.py' to start a container.")

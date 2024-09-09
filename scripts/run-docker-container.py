@@ -1,3 +1,6 @@
+__maintainer__ = "SDU eScience Center"
+__email__ = "support@escience.sdu.dk"
+
 import os
 import argparse
 import re
