@@ -6,13 +6,9 @@ function exit_err {
 }
 PORT=8888
 EXTERNAL_REPO_URL="https://api.github.com/repos/jeselginAU/demo-r-studio-course"
-
-## Update permissions of /etc/ucloud and start SSH server
-if [ "$(ls -A /etc/ucloud/ssh 2> /dev/null)" ]; then
-    sudo chmod 555 /etc/ucloud
-    sudo /etc/init.d/ssh start
-fi
 REDOWNLOAD=false
+PWD="/work"
+
 while getopts "c:as:" option; do
     case "$option" in
         c) CLASS="${OPTARG}";;
@@ -43,18 +39,19 @@ if [[ -f "${INITIALIZATION}" ]]; then
             ;;
     esac
 fi
-PWD="/work"
+
+# If class is selected and class folder does not exist or REDOWNLOAD flag is true - download class files.
 if [[ [-n ${CLASS}] && [[! -d "/${PWD}/${CLASS}"  ] || "${REDOWNLOAD}" = true ] ]]; then
     printf "\n======================\n"
     printf "Starting class module\n"
     printf "======================\n\n"
 
     # Find URLs for the individual files
-    wget "${EXTERNAL_REPO_URL}/contents/classes/${CLASS}"
-    if [[ ! -f "${CLASS}" ]]; then
+    wget "${EXTERNAL_REPO_URL}/contents/classes/${CLASS}" -O "${CLASS}.json"
+    if [[ ! -f "${CLASS.json}" ]]; then
         exit_err "Error: could not find course materials for course module \"${CLASS}\" in external repo \"${EXTERNAL_REPO_URL}\""
     else
-        mv "${CLASS}" "${CLASS}.json"
+        # Query and filter for download URLs from class.json file.
         URLS=$(jq  -r '.[].download_url // empty' "${CLASS}.json" )
 
         # Create the directory if it doesn't exist
@@ -66,16 +63,9 @@ if [[ [-n ${CLASS}] && [[! -d "/${PWD}/${CLASS}"  ] || "${REDOWNLOAD}" = true ] 
                 exit_err "Error: Null or empty URL found."
             else
                 file_name=$(basename "${url}")
-                target_file="/${PWD}/${CLASS}/${file_name}"
-
-                # Download the file if it doesn't exist or if FORCE_DOWNLOAD is true
-                if [[ ! -f "${target_file}" ]]; then
-                    mkdir -p "/${PWD}/${CLASS}" || exit_err "Failed to create /${PWD}/${CLASS} directory"
-                    curl -L "${url}" -o "${target_file}"
-                    printf "Downloaded file ${target_file}"
-                else
-                    printf "File ${file_name} already exists. Skipping download.\n"
-                fi
+                mkdir -p "${PWD}/${CLASS}" || exit_err "Failed to create /${PWD}/${CLASS} directory"
+                curl -L "${url}" -o "${PWD}/${CLASS}/${file_name}"
+                printf "Downloaded file ${file_name}"
             fi
         done
         rm "${CLASS}.json"  
