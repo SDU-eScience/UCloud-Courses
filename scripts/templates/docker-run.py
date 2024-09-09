@@ -7,8 +7,6 @@ VOLUMES = ""                    # Absolute path(s) of folder(s) that should be a
 #---------------------------------------
 
 
-
-
 #----DO NOT CHANGE LINES BELOW----------
 import git
 import os 
