@@ -10,12 +10,12 @@ For module requirements outside the Python standard library, see requirements.tx
 __maintainer__ = "SDU eScience Center"
 __email__ = "support@escience.sdu.dk"
 
-import os # For portable handling of paths. Part of the standard library. 
-import argparse # For passing command line arguments. Part of the standard library. 
-import shutil # For a portable way of copying files  
-import re # For string manipulation. Part of the standard library. 
-import datetime as dt # For fetching the current month and year. Part of the standard library. 
-import requests # Portable library for making HTTP requests. Part of the standard library. 
+import os               # For portable handling of paths. Part of the standard library. 
+import argparse         # For passing command line arguments. Part of the standard library. 
+import shutil           # For a portable way of copying files  
+import re               # For string manipulation. Part of the standard library. 
+import datetime as dt   # For fetching the current month and year. Part of the standard library. 
+import requests         # Portable library for making HTTP requests. Part of the standard library. 
 
 def join_paths(abspath_head, tail):
     """
