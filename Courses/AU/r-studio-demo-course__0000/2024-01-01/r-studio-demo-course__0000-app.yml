@@ -37,7 +37,7 @@ invocation:
     vars: class
     prefixGlobal: '-c '
   - type: flag
-    vars: force_download
+    vars: redownload
     prefixGlobal: '-a '
   - type: var
     vars: initialization
