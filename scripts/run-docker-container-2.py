@@ -23,6 +23,7 @@ def parse_p(arg_p):
 
 def parse_v(arg_v):
     # Remove excess whitespace 
+    arg_v = arg_v.strip()
     arg_v = re.sub('\s+', ' ',arg_v)
     
     # Split string at whitespace
