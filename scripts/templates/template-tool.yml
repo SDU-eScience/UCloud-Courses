@@ -5,7 +5,7 @@ title:
 name: COURSE_NAME
 version: COURSE_TAG
 
-container: dreg.cloud.sdu.dk/ucloud-courses/UNI-COURSE_NAME:COURSE_TAG
+container: dreg.cloud.sdu.dk/ucloud-courses/UNI_COURSE_NAME:COURSE_TAG
 
 authors:
 

@@ -21,14 +21,12 @@ applicationType: # BATCH, WEB, VNC
 startCommand: start_course
 
 tool:
-  name: COURSE_NAME
+  name: UNI_COURSE_NAME
   version: COURSE_TAG
 
 authors:
 
 description: >
-
-fileExtensions:
 
 allowAdditionalMounts: true
 allowPublicLink: false
