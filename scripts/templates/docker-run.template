@@ -15,5 +15,5 @@ import subprocess
 IMAGE_NAME = "_IMAGE_NAME"
 
 os.chdir(os.path.join(git.Repo('.', search_parent_directories=True).working_tree_dir, 'scripts'))
-subprocess.call(['python3', 'run-docker-container-2.py', '-n', IMAGE_NAME, '-p', PORT, '-v', VOLUMES, '-i', INTERACTIVE_MODE],)
+subprocess.call(['python3', 'run-docker-container.py', '-n', IMAGE_NAME, '-p', PORT, '-v', VOLUMES, '-i', INTERACTIVE_MODE],)
 #---------------------------------------

@@ -2,7 +2,7 @@
 application: v1
 
 title:
-name: COURSE_NAME
+name: UNI_COURSE_NAME
 version: COURSE_TAG
 
 website: # add link to documentation or software website
