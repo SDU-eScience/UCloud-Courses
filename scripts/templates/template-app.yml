@@ -2,7 +2,7 @@
 application: v1
 
 title:
-name: COURSE_NAME
+name: UNI_COURSE_NAME
 version: COURSE_TAG
 
 website: # add link to documentation or software website
@@ -18,23 +18,22 @@ applicationType: # BATCH, WEB, VNC
 # web:
 #   port: $PORT
 
+startCommand: start_course
+
 tool:
-  name: COURSE_NAME
+  name: UNI_COURSE_NAME
   version: COURSE_TAG
 
 authors:
 
 description: >
 
-fileExtensions:
-
-allowAdditionalMounts: $ADDITIONAL_MOUNTS
-allowPublicLink: $PUBLIC_LINK
-allowPublicIp: $PUBLIC_IP
-allowMultiNode: $MULTI_NODE
+allowAdditionalMounts: true
+allowPublicLink: false
+allowPublicIp: false
 
 container:
-  runAsRoot: $ROOT
+  runAsRoot: false
 
 invocation:
   - start_app
