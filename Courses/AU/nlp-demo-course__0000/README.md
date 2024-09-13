@@ -50,22 +50,24 @@ This script will create a folder in the `/Courses` directory under the specified
 For example, the folder structure for this course was created by navigating to the `/scripts` folder and running the following command:
 
 ```bash
-python create-new-course.py -n nlp-studio-demo-course -c 0000 -r 2024-01-01 -b jupyterlab -u au
+python3 create-new-course.py -n nlp-studio-demo-course -c 0000 -r 2024-01-01 -b jupyterlab -u au
 ```
 
 ---
 ### Files
-- The `Dockerfile` is used for building a Docker image, which is necessary to run a container. 
+- The `Dockerfile` is used to build a Docker image, which contains the software, dependencies, and static data necessary for running a container. 
+```
+Note: Data included in the image at build time is immutable, meaning any changes made to files or configurations within the running container will not be saved permanently. To make permanent changes, you need to rebuild the Docker image with the updated data.
+```
 - The `start_course.sh` script is run inside the container whenever a user launches the application on UCloud. In this demo course, it fetches course materials from the external repository and launches the JupyterLab server.
 - The `.yml` files include configuration settings for the UCloud web interface.
+- The `docker-build.py` and `docker-run.py` scripts can be executed to build the Docker image with the `Dockerfile` and run the container for testing purposes.
 
 ## Building the Docker Image
 
 Building a Docker image with the `Dockerfile` allows containers to run with all the necessary prerequisites for the course.
 
 For example, this course includes `/data`, `/scripts`, `/src`, and `/syllabus` folders that are copied into the `/work` folder using the `COPY` command in the `Dockerfile`. These files will be available to users running the container, located in the `/work` folder.
-
-In the `/scripts` folder, a Python script (`build-docker-image.py`) is provided for building Docker images.
 
 ### Prerequisites
 
@@ -75,48 +77,39 @@ Ensure your Python environment has the `docker` package installed. You can insta
 pip install docker
 ```
 
-
 You will also need to have Docker or Docker Desktop installed on your machine. You can find the appropriate installation for your machine on [docker.com](https://www.docker.com/).
 ### Running the Script
 
-When running the script, provide the following arguments:
-
-* `-n`: The name of the course 
-* `-c`: The official course code (from university course description)
-* `-r`: The release date of the course, in the format YYYY-MM-DD
-* `-u`: The univerity the course is taught at. 
-    * The options are  `aau`,`au`,`cbs`,`dtu`,`itu`,`ku`,`ruc`,`sdu`, and `other`. 
----
-For example, the image for this course was built using the `build-docker-image.py` script with the following command:
+Ensure that you navigate to the course folder, which is named after the release date (e.g., 2024-01-01). Once inside this folder, you can build the Docker image by running:
 
 ```bash
-python build-docker-image.py -n nlp-studio-demo-course -c 0000 -r 2024-01-01 -u au`
+python3 docker-build.py
 ```
-##### **Note**: The script must be called from inside the */scripts* folder.
-
 ## Testing the Docker Image
 
-<!-- # TODO: Update these build/run/test instructions after we have agreed on a structure of the build and run scripts -->
-
-Alternatively, you can create and test the Docker image using the `build-and-run-course.py` script.
-
-This script contains two key functions:
-- **build**: Calls `build-docker-image.py` as a subprocess to create the Docker image.
-- **run**: Configures and runs the Docker container, specifying the container name, starting command, and port mapping.
-
-### Pre-Execution Setup
+The Docker container can be tested using the `docker-run.py` script, which simplifies running the container with the necessary options.
 
 Before executing the script, ensure the following configurations are set:
-- **Container Name**: Assign a name for the container.
-- **Port Mapping**: Configure the port mapping (note that this might not always be necessary).
-- **Starting Command**: Edit the command to include any required options, such as class selection and initialization files.
+- **Interactive mode**: Enables interaction with the container through a shell session (like *bash* or *sh*), allowing you to run commands as if you were inside the container’s terminal.
+
+- **Port**: Specifies which ports to map between the host and the container. This allows access to services running inside the container from the host machine. 
+
+```
+Note: The default host port is `8080`, but if another service or container is using that port, you must choose a different port to avoid conflicts.
+```
+
+- **Volumes**: Defines how to mount directories from the host system into the container, allowing shared access to files. This is useful for persisting data, sharing configurations, or accessing files dynamically.
+
+```
+Note: If using a Windows directory, paths must be referenced with `/mnt` and use forward slashes. For example, `C:\mydata` would be referenced as `/mnt/c/mydata`. Multiple directories can be mounted by separating paths with a space.
+```
 
 ### Running the Script
 
 Once the setup is complete, you can simply execute the script using:
 
 ```bash
-python build-and-run-course.py
+python3 docker-run.py
 ```
 
 ## Editing YML files
