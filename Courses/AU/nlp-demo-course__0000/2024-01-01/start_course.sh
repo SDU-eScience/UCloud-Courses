@@ -6,6 +6,7 @@ function exit_err {
 PORT=8888
 EXTERNAL_REPO_URL="https://api.github.com/repos/jeselginAU/demo-NLP-Course-AU"
 REDOWNLOAD=false
+PWD="/work"
 
 while getopts "c:as:" option; do
     case "${option}" in
@@ -37,7 +38,8 @@ if [[ -f "${INITIALIZATION}" ]]; then
             ;;
     esac
 fi
-PWD="/work"
+
+# If class option is set and the class folder does not exist or redownload flag is true then download all class files.
 if [[ -n ${CLASS} && (! -d "/${PWD}/${CLASS}" || "${REDOWNLOAD}" = true ) ]]; then
     printf "\n======================\n"
     printf "Starting class module\n"
