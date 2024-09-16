@@ -87,7 +87,7 @@ pip install docker
 
 You will also need to have Docker or Docker Desktop installed on your machine. You can find the appropriate installation for your machine on [docker.com](https://www.docker.com/).
 
-### Running the Script
+### Running docker-build.py
 
 Ensure that you navigate to the course folder, which is named after the release date (e.g., 2024-01-01). Once inside this folder, you can build the Docker image by running:
 
@@ -115,7 +115,7 @@ Note: The default host port is `8080`, but if another service or container is us
 Note: If using a Windows directory, paths must be referenced with `/mnt` and use forward slashes. For example, `C:\mydata` would be referenced as `/mnt/c/mydata`. Multiple directories can be mounted by separating paths with a space.
 ```
 
-### Running the Script
+### Running docker-run.py
 
 Once the setup is complete, you can simply execute the script using:
 
