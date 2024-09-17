@@ -39,19 +39,24 @@ if [[ -f "${INITIALIZATION}" ]]; then
     esac
 fi
 
-# If class option is set and the class folder does not exist or redownload flag is true then download all class files.
-if [[ -n ${CLASS} && (! -d "/${PWD}/${CLASS}" || "${REDOWNLOAD}" = true ) ]]; then
+# If class is selected and class folder does not exist or REDOWNLOAD flag is true - download class files.
+if [[ -n "${CLASS}" && ( ! -d "/${PWD}/${CLASS}" || "${REDOWNLOAD}" = true ) ]]; then
+
     printf "\n======================\n"
     printf "Starting class module\n"
     printf "======================\n\n"
 
-    # Find urls for the individual files
+    # Find URLs for the individual files
     wget "${EXTERNAL_REPO_URL}/contents/classes/${CLASS}" -O "${CLASS}.json"
+
     if [[ ! -f "${CLASS}.json" ]]; then
         exit_err "Error: could not find course materials for course module \"${CLASS}\" in external repo \"${EXTERNAL_REPO_URL}\""
     else
+        # Query and filter for download URLs from class.json file.
         URLS=$(jq  -r '.[].download_url // empty' "${CLASS}.json" )
-        mkdir -p "${PWD}/${CLASS}" || exit_err "failed to create directory"
+
+        # Create the directory if it doesn't exist
+        mkdir -p "${PWD}/${CLASS}" || exit_err "Failed to create directory"
 
         # Download each file
         for url in ${URLS}; do 
@@ -59,12 +64,12 @@ if [[ -n ${CLASS} && (! -d "/${PWD}/${CLASS}" || "${REDOWNLOAD}" = true ) ]]; th
                 exit_err "Error: Null or empty URL found."
             else
                 file_name=$(basename "${url}")
-                mkdir -p "${PWD}/${CLASS}"
+                mkdir -p "${PWD}/${CLASS}" || exit_err "Failed to create /${PWD}/${CLASS} directory"
                 curl -L "${url}" -o "${PWD}/${CLASS}/${file_name}"
+                printf "Downloaded file ${file_name}"
             fi
         done
         rm "${CLASS}.json"
     fi
-
     bash -c "jupyter lab --NotebookApp.token='' --log-level=50 --ip=0.0.0.0 --port ${PORT}"
 fi
