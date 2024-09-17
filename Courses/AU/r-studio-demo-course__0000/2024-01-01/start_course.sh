@@ -41,14 +41,16 @@ if [[ -f "${INITIALIZATION}" ]]; then
 fi
 
 # If class is selected and class folder does not exist or REDOWNLOAD flag is true - download class files.
-if [[ [-n ${CLASS}] && [[! -d "/${PWD}/${CLASS}"  ] || "${REDOWNLOAD}" = true ] ]]; then
+if [[ -n "${CLASS}" && ( ! -d "/${PWD}/${CLASS}" || "${REDOWNLOAD}" = true ) ]]; then
+
     printf "\n======================\n"
     printf "Starting class module\n"
     printf "======================\n\n"
 
     # Find URLs for the individual files
     wget "${EXTERNAL_REPO_URL}/contents/classes/${CLASS}" -O "${CLASS}.json"
-    if [[ ! -f "${CLASS.json}" ]]; then
+
+    if [[ ! -f "${CLASS}.json" ]]; then
         exit_err "Error: could not find course materials for course module \"${CLASS}\" in external repo \"${EXTERNAL_REPO_URL}\""
     else
         # Query and filter for download URLs from class.json file.
