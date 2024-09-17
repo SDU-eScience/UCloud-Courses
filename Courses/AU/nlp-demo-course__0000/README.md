@@ -115,6 +115,19 @@ Note: The default host port is `8080`, but if another service or container is us
 Note: If using a Windows directory, paths must be referenced with `/mnt` and use forward slashes. For example, `C:\mydata` would be referenced as `/mnt/c/mydata`. Multiple directories can be mounted by separating paths with a space.
 ```
 
+* **Start_Command**: This is the command that runs inside the Docker container when it starts. It is typically used to start services or execute scripts automatically upon launching the container.
+
+  For example, a start command like:
+
+  ```bash
+  start_course -c class_01 -a
+  ```
+
+   launches the course with specified options and scripts, where:
+
+  * `-c class_01`: Selects `class_01` course materials from the remote repository.
+  * `-a`: Enables the redownload flag to download all course materials again from the repository.
+
 ### Running docker-run.py
 
 Once the setup is complete, you can simply execute the script using:
