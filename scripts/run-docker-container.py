@@ -16,6 +16,7 @@ def parse_arguments():
     parser.add_argument('-p', '--port', type=int, help='Port number.', required=True)
     parser.add_argument('-v', '--volume_string', type=str, help="Volumes to be mounted to /work.", required=True)
     parser.add_argument('-i', '--interactive_mode', type=str, help="If True, run with -it flag.", required=True)
+    parser.add_argument('-s', '--start_command', type=str, help="Start command.", required=True)
     return parser.parse_args()
 
 def parse_n(arg_n):
@@ -57,11 +58,16 @@ def parse_i(arg_i):
         return(True, val)
     return(False, None)
 
+def parse_s(arg_s):
+    arg_s = arg_s.strip() 
+    return(len(arg_s) > 0)
+
 if __name__ == "__main__":
     # Parse the arguments 
     args = parse_arguments()
     i_isvalid, i_value = parse_i(args.interactive_mode)
     v_list_bool, v_list_parsed = parse_v(args.volume_string)
+    s_nonempy = parse_s(args.start_command)
 
     # Get results from parser functions
     res = {'image_name': parse_n(args.image_name), 'port': parse_p(args.port), 'volume_string': v_list_bool, 'interactive_mode': i_isvalid}
@@ -81,14 +87,20 @@ if __name__ == "__main__":
         # Create call string for `docker run` 
         call_string = "docker run --rm "
         call_string += "%s "%('-it' if i_value else '')
+        call_string += "--name course-test-container "
         call_string += "%s %s:%s "%('-p', args.port, args.port)
         
+        # Append volumes 
         for v in v_list_parsed:
             call_string += "%s %s:%s "%('-v', v, "/work/" + os.path.basename(v))
             print("[INFO] %s will be mounted to /work/%s."%(v, os.path.basename(v)))
         
+        # Append image name
         call_string += " %s"%(args.image_name)
         
+        # Append start command iff. i_value == False 
+        call_string += "%s"%(' ' + args.start_command if not i_value and s_nonempy else '')
+
         try:
             os.system(call_string)
         except Exception as e:
