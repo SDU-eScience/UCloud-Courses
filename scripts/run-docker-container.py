@@ -41,7 +41,6 @@ def parse_v(arg_v):
     for i in range(0,len(v_list)):
         if v_list[i][-1] == '/':
             v_list[i] = v_list[i][:-1]
-    print(v_list)        
     
     # Check that each dir in v_list exists 
     v_exists = [bool] * len(v_list)
