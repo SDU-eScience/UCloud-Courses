@@ -1,0 +1,34 @@
+FROM dreg.cloud.sdu.dk/ucloud-apps/ubuntu:TAG-xfce
+
+LABEL course="" \
+      author="" \
+      description=""
+
+SHELL ["/bin/bash", "-o", "pipefail", "-c"]
+
+USER 0
+
+WORKDIR /home/${USER}
+
+USER $USERID
+
+## Add desktop configuration files for the applications installed - if necessary uncomment
+COPY --chown=${USERID}:${GROUPID} desktop_files/* ${HOME}/Desktop/
+COPY --chown=${USERID}:${GROUPID} UCloud_1.png ${HOME}/UCloud.png
+
+# Fix desktop files permissions - uncomment if necessary
+# hadolint ignore=SC2086
+#RUN chmod 775 "${HOME}"/Desktop/*.desktop \
+# && for f in "${HOME}"/Desktop/*.desktop; do \
+#       dbus-launch gio set -t string "$f" metadata::xfce-exe-checksum "$(sha256sum $f | awk '{print $1}')"; \
+#    done
+
+# Add images folder - if necessary uncomment
+#COPY  --chown="${USERID}":"${GROUPID}" img ${HOME}/img/
+
+## Add launch script
+COPY --chown="${USERID}":"${GROUPID}" start_course.sh /usr/local/bin/start_course
+RUN chmod 755 /usr/local/bin/start_course
+
+WORKDIR /work
+
