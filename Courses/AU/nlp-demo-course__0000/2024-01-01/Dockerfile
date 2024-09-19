@@ -22,11 +22,11 @@ COPY --chown="${NB_USER}":"${NB_GID}" data /work/data
 COPY --chown="${NB_USER}":"${NB_GID}" scripts /work/scripts
 COPY --chown="${NB_USER}":"${NB_GID}" src /work/src
 COPY --chown="${NB_USER}":"${NB_GID}" syllabus /work/syllabus
-COPY --chown="${NB_USER}":"${NB_GID}" start_course.sh /usr/bin/start_course.sh
+COPY --chown="${NB_USER}":"${NB_GID}" start_course.sh /usr/bin/start_course
 
 EXPOSE 8888
 
-RUN chmod 755 /usr/bin/start_course.sh
+RUN chmod 755 /usr/bin/start_course
 
 USER $NB_UID
 
