@@ -7,8 +7,6 @@ LABEL course="RStudio Demo Course" \
 ## Use bash instead of sh
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
-USER 0
-
 WORKDIR /home/${USERID}
 
 ## Add scripts and data
