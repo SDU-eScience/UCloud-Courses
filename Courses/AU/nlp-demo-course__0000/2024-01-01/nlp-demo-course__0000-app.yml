@@ -10,7 +10,7 @@ website: https://github.com/rbroc/NLP-AU-23
 applicationType: WEB
 
 web:
-  port: 8080
+  port: 8888
 
 tool:
   name: nlp-demo-course__0000
@@ -30,14 +30,14 @@ container:
   runAsRoot: false
 
 invocation:
-  - start_app
+  - start_course
   - type: var
     vars: initialization
     prefixGlobal: '-s '
   - type: var
     vars: class
     prefixGlobal: '-c '
-  - type: flag
+  - type: var
     vars: redownload
     prefixGlobal: '-a '
 
@@ -73,9 +73,10 @@ parameters:
     optional: false
   redownload:
     title: "Re-download course files"
-    type: flag
+    type: boolean
     description: >
       Select to download course module files. If true, existing files in your class folder will be overwritten. 
       If false and there already exists a folder for the selected class, no new files from the external repo are downloaded. 
+    optional: true 
 outputFileGlobs:
   - "*"
