@@ -1,4 +1,4 @@
-#----DO NOT CHANGE LINES BELOW----------
+#---- DO NOT CHANGE LINES BELOW ----------
 import subprocess
 import os
 import git 
@@ -9,4 +9,4 @@ DOCKERFILE_DIR = "../Courses/AU/r-studio-demo-course__0000/2024-01-01/Dockerfile
 script_dir = os.path.join(git.Repo('.', search_parent_directories=True).working_tree_dir, 'scripts')
 os.chdir(script_dir)
 subprocess.call(['python3', 'build-docker-image.py', '-n', IMAGE_NAME, '-d', DOCKERFILE_DIR])
-#---------------------------------------
+#-----------------------------------------
