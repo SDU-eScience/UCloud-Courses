@@ -37,7 +37,7 @@ invocation:
   - type: var
     vars: class
     prefixGlobal: '-c '
-  - type: var
+  - type: flag
     vars: redownload
     prefixGlobal: '-a '
 
@@ -73,7 +73,7 @@ parameters:
     optional: false
   redownload:
     title: "Re-download course files"
-    type: flag
+    type: boolean
     var: redownload 
     flag: '-a'
     description: >
