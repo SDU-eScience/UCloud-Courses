@@ -8,7 +8,7 @@ EXTERNAL_REPO_URL="https://api.github.com/repos/jeselginAU/demo-NLP-Course-AU"
 REDOWNLOAD=false
 PWD="/work"
 
-while getopts "c:as:" option; do
+while getopts ":c:as:" option; do
     case "${option}" in
         c) CLASS="${OPTARG}";;
         a) REDOWNLOAD=true;;
