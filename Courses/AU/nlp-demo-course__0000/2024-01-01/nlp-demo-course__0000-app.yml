@@ -38,8 +38,8 @@ invocation:
     vars: class
     prefixGlobal: '-c '
   - type: flag
-    vars: redownload
-    prefixGlobal: '-a '
+    var: redownload
+    flag: '-a '
 
 parameters:
   initialization:
@@ -74,8 +74,6 @@ parameters:
   redownload:
     title: "Re-download course files"
     type: boolean
-    var: redownload 
-    flag: '-a'
     description: >
       Select to download course module files. If true, existing files in your class folder will be overwritten. 
       If false and there already exists a folder for the selected class, no new files from the external repo are downloaded. 
