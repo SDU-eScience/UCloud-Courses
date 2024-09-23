@@ -66,10 +66,11 @@ parameters:
 
   redownload:
     title: "Redownload course files"
-    type: flag
+    type: boolean
     description: >
       Select to download course module files. If true, existing files in your class folder will be overwritten. 
       If false and there already exists a folder for the selected class, no new files from the external repo are downloaded. 
+    optional: true
 
   initialization:
     title: "Initialization"
