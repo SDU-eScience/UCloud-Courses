@@ -89,7 +89,7 @@ You will also need to have Docker or Docker Desktop installed on your machine. Y
 
 ### Running docker-build.py
 
-Ensure that you navigate to the course folder, which is named after the release date (e.g., 2024-01-01). Once inside this folder, you can build the Docker image by running:
+Ensure that you navigate to the course folder, which is named after the release date (e.g., Courses/AU/r-studio-demo-course_0000/2024-01-01). Once inside this folder, you can build the Docker image by running:
 
 ```bash
 python3 docker-build.py
@@ -149,7 +149,7 @@ To integrate course options with the UCloud interface, you'll need to edit the `
 2. **Parameter Configuration**:
     * Under the **parameters** section, define the parameters for these options, including:
         * *title*: The name displayed in the UCloud interface.
-        * *type*: The data type (e.g., enumeration, flag, input\_file).
+        * *type*: The data type (e.g., enumeration, boolean, input\_file).
         * *description*: A brief description of the parameter.
 
 ### Example Configurations
@@ -157,7 +157,7 @@ To integrate course options with the UCloud interface, you'll need to edit the `
 * **Enumeration Type**: Used for selecting an option from a dropdown menu. For example, the `class` option, which allows users to select from a list of available classes, includes:
   * *defaultValue*: The default selected class.
   * *options*: The available choices.
-* **Flag Type**: Used for options that are either true or false. For example, the `redownload` option allows the user to decide whether to redownload all course materials from the remote repository.
+* **Boolean Type**: Used for options that are either true or false. For example, the `redownload` option allows the user to decide whether to redownload all course materials from the remote repository.
 
 * **Input File Type**: Used for specifying files required for initialization. The `initialization` option, for example, allows users to upload a script or package to be executed upon container startup.
 * **Optional Field**: Indicates whether an option can be skipped when launching a job.
