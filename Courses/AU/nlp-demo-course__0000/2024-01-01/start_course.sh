@@ -18,6 +18,12 @@ while getopts ":c:as:" option; do
     esac
 done
 
+# Copy course files from /tmp to /work
+cp -r /tmp/data /work/data
+cp -r /tmp/scripts /work/scripts
+cp -r /tmp/src /work/src
+cp -r /tmp/syllabus /work/syllabus
+
 # delete not necessary file format
 if [[ -f "${INITIALIZATION}" ]]; then
     printf "\n======================\n"

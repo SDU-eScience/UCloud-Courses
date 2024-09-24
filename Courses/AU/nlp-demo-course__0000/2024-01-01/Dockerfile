@@ -17,10 +17,10 @@ RUN pip install --upgrade pip --no-cache-dir \
  && pip install -r requirements.txt --no-cache-dir
  
 ## Add scripts and data
-COPY --chown="${NB_USER}":"${NB_GID}" data /work/data
-COPY --chown="${NB_USER}":"${NB_GID}" scripts /work/scripts
-COPY --chown="${NB_USER}":"${NB_GID}" src /work/src
-COPY --chown="${NB_USER}":"${NB_GID}" syllabus /work/syllabus
+COPY --chown="${NB_USER}":"${NB_GID}" data /tmp/data
+COPY --chown="${NB_USER}":"${NB_GID}" scripts /tmp/scripts
+COPY --chown="${NB_USER}":"${NB_GID}" src /tmp/src
+COPY --chown="${NB_USER}":"${NB_GID}" syllabus /tmp/syllabus
 COPY --chown="${NB_USER}":"${NB_GID}" start_course.sh /usr/bin/start_course
 
 EXPOSE 8888
