@@ -6,8 +6,7 @@ LABEL course="NLP Demo Course" \
 
 ENV REFRESHED_AT=2024-08-07
 
-# change to root if necessary
-USER 0
+USER $NB_UID
 
 WORKDIR /home/$NB_USER
 
@@ -27,7 +26,5 @@ COPY --chown="${NB_USER}":"${NB_GID}" start_course.sh /usr/bin/start_course
 EXPOSE 8888
 
 RUN chmod 755 /usr/bin/start_course
-
-USER $NB_UID
 
 WORKDIR /work
