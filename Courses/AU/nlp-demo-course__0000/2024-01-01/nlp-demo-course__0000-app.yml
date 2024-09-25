@@ -1,0 +1,82 @@
+---
+application: v1
+
+title: NLP Demo Course
+name: nlp-demo-course__0000
+version: 2024-01-01
+
+website: https://github.com/rbroc/NLP-AU-23
+
+applicationType: WEB
+
+web:
+  port: 8888
+
+tool:
+  name: nlp-demo-course__0000
+  version: 2024-01-01
+
+authors: Jes Elgin Jensen, Rytis Mikutavicius & Roberta Rocca
+
+description: >
+  Example JupyterLab-centered UCloud course based on the 2023 course Natural Language Processing
+  taken as part of the MSc in Cognitive Science at Aarhus University.
+
+allowAdditionalMounts: true
+allowPublicLink: false
+allowPublicIp: false
+
+container:
+  runAsRoot: false
+
+invocation:
+  - start_course
+  - type: var
+    vars: initialization
+    prefixGlobal: '-s '
+  - type: var
+    vars: class
+    prefixGlobal: '-c '
+  - type: flag
+    var: redownload
+    flag: '-a '
+
+parameters:
+  initialization:
+    title: "Initialization"
+    type: input_file
+    description: >
+      Run initialization of pip packages (*.txt), Conda packages (*.yml/yaml), or Bash script (*.sh)
+    optional: true
+  class:
+    title: 'Select a course module'
+    type: enumeration
+    options:
+      - name: "Class 1"
+        value: "class_01"
+      - name: "Class 2"
+        value: "class_02"
+      - name: "Class 3"
+        value: "class_03"
+      - name: "Class 4"
+        value: "class_4"
+      - name: "Class 5"
+        value: "class_05"
+      - name: "Class 6"
+        value: "class_06"
+      - name: "Class 7"
+        value: "class_07"
+      - name: "Class 8"
+        value: "class_08"
+      - name: "Class 9"
+        value: "class_09"
+    optional: false
+  redownload:
+    title: "Re-download course files"
+    type: boolean
+    description: >
+      Select to download course module files. If true, existing files in your class folder will be overwritten. 
+      If false and there already exists a folder for the selected class, no new files from the external repo are downloaded. 
+    optional: true 
+outputFileGlobs:
+  - "*"
