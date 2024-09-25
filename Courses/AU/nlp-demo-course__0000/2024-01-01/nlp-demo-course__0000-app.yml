@@ -52,23 +52,23 @@ parameters:
     title: 'Select a course module'
     type: enumeration
     options:
-      - name: "Class 1"
+      - name: "Class 1 - The work stack"
         value: "class_01"
-      - name: "Class 2"
+      - name: "Class 2 - SpaCy and document vectors"
         value: "class_02"
-      - name: "Class 3"
+      - name: "Class 3 - Exploring word embeddings with gensim"
         value: "class_03"
-      - name: "Class 4"
+      - name: "Class 4 - Implementing gradient descent and a feed-forward neural network"
         value: "class_4"
-      - name: "Class 5"
+      - name: "Class 5 - Implementing an LSTM"
         value: "class_05"
-      - name: "Class 6"
+      - name: "Class 6 - void"
         value: "class_06"
-      - name: "Class 7"
+      - name: "Class 7 - NER classification with BERT"
         value: "class_07"
-      - name: "Class 8"
+      - name: "Class 8 - Getting started with text generation"
         value: "class_08"
-      - name: "Class 9"
+      - name: "Class 9 - Text Generation with LLMs, in-context learning, and model fine-tuning"
         value: "class_09"
     optional: false
   redownload:
