@@ -1,0 +1,25 @@
+---
+tool: v1
+
+title: Natural Language Processing
+name: nlp-demo-course__147222U005
+version: 2024-09-01
+
+container: dreg.cloud.sdu.dk/ucloud-courses/au_nlp-demo-course__147222u005:2024-09-01
+
+authors: Jes Elgin Jensen, Rytis Mikutavicius & Roberta Rocca
+
+description: >
+  This UCloud course is connected with the course 'Natural Language Processing' which is a part of the MSc in Cognitive Science at Aarhus University.
+
+defaultTimeAllocation:
+  hours: 1
+  minutes: 0
+  seconds: 0
+
+defaultNumberOfNodes: 1
+defaultTasksPerNode: 1
+
+license: MIT
+
+backend: DOCKER

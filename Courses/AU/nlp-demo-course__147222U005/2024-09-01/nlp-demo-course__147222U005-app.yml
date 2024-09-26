@@ -1,9 +1,9 @@
 ---
 application: v1
 
-title: NLP Demo Course
-name: nlp-demo-course__0000
-version: 2024-01-01
+title: Natural Language Processing
+name: nlp-demo-course__147222U005
+version: 2024-09-01
 
 website: https://github.com/rbroc/NLP-AU-23
 
@@ -13,14 +13,13 @@ web:
   port: 8888
 
 tool:
-  name: nlp-demo-course__0000
-  version: 2024-01-01
+  name: nlp-demo-course__147222U005
+  version: 2024-09-01
 
 authors: Jes Elgin Jensen, Rytis Mikutavicius & Roberta Rocca
 
 description: >
-  Example JupyterLab-centered UCloud course based on the 2023 course Natural Language Processing
-  taken as part of the MSc in Cognitive Science at Aarhus University.
+  This UCloud course is connected with the course 'Natural Language Processing' which is a part of the MSc in Cognitive Science at Aarhus University.
 
 allowAdditionalMounts: true
 allowPublicLink: false
