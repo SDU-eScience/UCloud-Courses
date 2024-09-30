@@ -9,15 +9,19 @@ EXTERNAL_REPO_URL="https://api.github.com/repos/jeselginAU/demo-r-studio-course"
 REDOWNLOAD=false
 PWD="/work"
 
-while getopts "c:as:" option; do
+while getopts ":c:as:" option; do
     case "$option" in
         c) CLASS="${OPTARG}";;
         a) REDOWNLOAD=true;;
         s) INITIALIZATION="${OPTARG}";;
-        :) exit_err "Missing argument for -{$OPTARG}" ;;
+        :) exit_err "Missing argument for -${OPTARG}" ;;
         *) exit_err "Invalid option -${OPTARG}" ;;
     esac
 done
+
+# Copy course files from /tmp to /work
+cp -r /tmp/slides /work/slides
+cp -r /tmp/renv /work/renv
 
 # delete not necessary file format
 if [[ -f "${INITIALIZATION}" ]]; then

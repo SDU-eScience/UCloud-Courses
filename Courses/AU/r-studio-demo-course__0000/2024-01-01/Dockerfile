@@ -10,8 +10,8 @@ SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 WORKDIR /home/${USERID}
 
 ## Add scripts and data
-COPY --chown=${USERID}:${GROUPID} renv /work/renv
-COPY --chown=${USERID}:${GROUPID} slides /work/slides
+COPY --chown=${USERID}:${GROUPID} renv /tmp/renv
+COPY --chown=${USERID}:${GROUPID} slides /tmp/slides
 
 ## Add entrypoint script
 COPY --chown=${USERID}:${GROUPID} start_course.sh /usr/bin/start_course

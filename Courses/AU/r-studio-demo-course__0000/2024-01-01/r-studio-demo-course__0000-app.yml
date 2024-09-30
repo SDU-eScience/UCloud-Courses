@@ -63,9 +63,10 @@ parameters:
         value: "class_04"
     description: >
       Select the class from the course GitHub repository.
+    optional: false
 
   redownload:
-    title: "Redownload course files"
+    title: "Re-download course files"
     type: boolean
     description: >
       Select to download course module files. If true, existing files in your class folder will be overwritten. 
