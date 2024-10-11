@@ -52,7 +52,7 @@ This script will create a folder in the `/Courses` directory under the specified
 For example, the folder structure for this course was created by navigating to the `/scripts` folder and running the following command:
 
 ```bash
-python3 create-new-course.py -n nlp-studio-demo-course -c 0000 -r 2024-01-01 -b jupyterlab -u au
+python3 create-new-course.py -n nlp-studio-demo-course -c 147222U005 -r 2024-09-01 -b jupyterlab -u au
 ```
 
 ---
@@ -89,7 +89,7 @@ You will also need to have Docker or Docker Desktop installed on your machine. Y
 
 ### Running docker-build.py
 
-Ensure that you navigate to the course folder, which is named after the release date (e.g., 2024-01-01). Once inside this folder, you can build the Docker image by running:
+Ensure that you navigate to the course folder, which is named after the release date (e.g., 2024-09-01). Once inside this folder, you can build the Docker image by running:
 
 ```bash
 python3 docker-build.py
