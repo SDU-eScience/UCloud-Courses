@@ -79,10 +79,10 @@ For example, this course includes `/data`, `/scripts`, `/src`, and `/syllabus` f
 
 ### Prerequisites
 
-Ensure your Python environment has the `docker` package installed. You can install it by running:
+Ensure your Python environment has the required packages installed. You can install them by moving into the `/scripts` folder and running:
 
 ```bash
-pip install docker
+pip install -r requirements.txt
 ```
 
 You will also need to have Docker or Docker Desktop installed on your machine. You can find the appropriate installation for your machine on [docker.com](https://www.docker.com/).
@@ -137,9 +137,9 @@ Once the setup is complete, you can simply execute the script using:
 python3 docker-run.py
 ```
 
-## Editing YML files
+## Editing YML files (handled by UCloud admins in most cases)
 
-To integrate course options with the UCloud interface, you'll need to edit the `course-name-app.yml` file.
+To integrate course options with the UCloud interface, the `course-name-app.yml` file must be edited. UCloud admins will perform these modifications in most cases, so educators can ignore this section. 
 
 ### Steps to Edit the YML File
 
