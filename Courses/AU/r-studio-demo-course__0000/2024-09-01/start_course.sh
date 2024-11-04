@@ -4,7 +4,7 @@ function exit_err {
     printf "%s\n" "$1" >&2
     exit 1
 }
-PORT=8888
+
 EXTERNAL_REPO_URL="https://api.github.com/repos/jeselginAU/demo-r-studio-course"
 REDOWNLOAD=false
 PWD="/work"

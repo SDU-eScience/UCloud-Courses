@@ -3,7 +3,7 @@ application: v1
 
 title: RStudio Demo Course
 name: r-studio-demo-course
-version: 2024-01-01
+version: 2024-09-01
 
 website: https://github.com/jeselginAU/demo-r-studio-course 
 
@@ -14,7 +14,7 @@ web:
 
 tool:
   name: r-studio-demo-course
-  version: 2024-01-01
+  version: 2024-09-01
 
 authors: Jes Elgin Jensen, Rytis Mikutavicius, Mine Çetinkaya-Rundel
 
@@ -35,8 +35,8 @@ invocation:
     vars: class
     prefixGlobal: '-c '
   - type: flag
-    vars: redownload
-    prefixGlobal: '-a '
+    flag: '-a '
+    var: redownload
   - type: var
     vars: initialization
     prefixGlobal: '-s '
@@ -69,8 +69,8 @@ parameters:
     title: "Re-download course files"
     type: boolean
     description: >
-      Select to download course module files. If true, existing files in your class folder will be overwritten. 
-      If false and there already exists a folder for the selected class, no new files from the external repo are downloaded. 
+      Select to download course module files. By default, this option is set to false, meaning that if a folder for the selected class already exists, no new files from the external repo are downloaded. 
+      If set to true, any existing files in your class folder will be overwritten.
     optional: true
 
   initialization:

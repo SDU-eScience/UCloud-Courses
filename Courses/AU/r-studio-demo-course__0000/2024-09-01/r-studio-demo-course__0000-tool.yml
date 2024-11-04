@@ -3,9 +3,9 @@ tool: v1
 
 title: RStudio Demo Course
 name: r-studio-demo-course
-version: 2024-01-01
+version: 2024-09-01
 
-container: dreg.cloud.sdu.dk/ucloud-courses/au_r-studio-demo-course__0000:2024-01-01
+container: dreg.cloud.sdu.dk/ucloud-courses/au_r-studio-demo-course__0000:2024-09-01
 
 authors: Jes Elgin Jensen, Rytis Mikutavicius, Mine Çetinkaya-Rundel
 
