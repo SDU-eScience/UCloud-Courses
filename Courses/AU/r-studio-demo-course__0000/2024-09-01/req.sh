@@ -1,6 +1,6 @@
 #!/bin/bash
 
-sudo apt-get -o Acquire::AllowInsecureRepositories=true -o Acquire::AllowDowngradeToInsecureRepositories=true update && \
+sudo apt-get update && \
 sudo apt-get install -y libssl-dev liblzma-dev libbz2-dev libicu-dev && sudo apt-get clean
 
 
