@@ -30,7 +30,6 @@ container:
 
 invocation:
   - start_course
-  - -p $PORT
   - type: var
     vars: class
     prefixGlobal: '-c '
@@ -77,7 +76,7 @@ parameters:
     title: "Initialization"
     type: input_file
     description: >
-      Run initialization of pip packages (*.txt), Conda packages (*.yml/yaml), or Bash script (*.sh)
+      Run initialization of pip packages (*.txt) or Bash script (*.sh)
     optional: true
 
 outputFileGlobs:

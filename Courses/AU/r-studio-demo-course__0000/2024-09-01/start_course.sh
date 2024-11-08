@@ -32,14 +32,11 @@ if [[ -f "${INITIALIZATION}" ]]; then
         *.txt)
             pip install --user -r "${INITIALIZATION}" || exit_err "Failed to install packages from $INITIALIZATION"
             ;;
-        *.yml|*.yaml)
-            conda env update --file "${INITIALIZATION}" || exit_err "Failed to update environment using $INITIALIZATION"
-            ;;
         *.sh)
             bash "${INITIALIZATION}" || exit_err "Failed to execute script $INITIALIZATION"
             ;;
         *)
-            exit_err "File format not correct. Initialization must be specified in a *.txt, *.yml/yaml, or *.sh file."
+            exit_err "File format not correct. Initialization must be specified in a *.txt or *.sh file."
             ;;
     esac
 fi
