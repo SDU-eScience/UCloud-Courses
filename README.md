@@ -1,25 +1,42 @@
-# Requesting Courses in UCloud 
+# Courses on UCloud 
 
-This README contains information about the following:
+This repository contains all the necessary information about how to request, create, and develop a course on UCloud. 
 
-- Requirements when developing a UCloud course.
-- General considerations to keep in mind when requesting courses.
-- Outline of services offered.
-- Outline of the financial model.
-- Teacher agreement.
+Please read this document in full before [requesting](././README.md#how-to-request-a-ucloud-course) a UCloud course. 
 
-Below, the term *Course* refers to the university-approved course while *digital course* (UCloud) refers to the course deployment on UCloud.
+Below, the term *university course* refers to the university-approved course while *UCloud course* refers to the course deployment on UCloud.
 
-## Requirements 
+This document contains information about the following:
 
-Before requesting a new UCloud course, the teacher should make sure that the following requirements are met: 
+1. What are UCloud Courses?
+2. Requirements and General Considerations
+    1. Course- and teacher requirements
+    2. Course materials on GitHub are public
+    3. The teacher is the developer 
+    4. UCloud courses are updated bi-annually 
+    5. After a UCloud course is completed 
+3. Outline of Services Offered 
+    1. How to request a UCloud Course
+    2. The Financial Model
 
-1. The UCloud digital course is associated with an academic course, which is already existing or planned and approved to take place in the foreseeable future.  
-2. The digital course has been developed by using the *UCloud-Courses* GitHub repository scripts and templates.
-3. The course is for students enrolled at a Danish university.
-4. The teacher, responsible for the digital course development and maintainance, is employed at a post-PhD level (i.e., postdoc, assistant/associate/full professor).
 
-## General Considerations
+## What are UCloud Courses?
+
+The idea behind UCloud courses is to wrap all the relevant course material for a given university course (software packages, notebooks, scripts etc.) in a UCloud app. This allows for quick and seamless access to the material to the students. 
+
+UCloud courses are built a relevant, existing UCloud base images such as JupyterLab, RStudio, Conda, Ubuntu, Linux virtual desktops etc. 
+
+UCloud courses are deployed as stand-alone apps on UCloud under the *Courses* category card in the UCloud [app store](https://docs.cloud.sdu.dk/guide/browsing.html). Behind this card is one Course card per university. To select a course from, say, AU, a UCloud user clicks the AU Course card and selects the given course. 
+
+## Requirements and General Considerations
+
+Before [requesting](./README.md#how-to-request-a-ucloud-course) a new UCloud course there are some requirements that the course and teacher must meet. Furthermre, there are some general considerations that the teacher must be aware of. Both the requirements and general considerations are outlined below.
+
+### Course- and teacher requirements  
+
+1. The UCloud course is associated with a university course, which is already existing, or planned and approved to take place in the foreseeable future.  
+2. The course is for students enrolled at a Danish university.
+3. The teacher is employed at a post-PhD level (i.e., postdoc, assistant/associate/full professor).
 
 ### Course materials on GitHub are public
 
@@ -33,37 +50,53 @@ UCloud courses are developed in the present [public](https://docs.github.com/en/
 
 ### The teacher is the developer 
 
-UCloud course development should be done by the teacher using the pre-made scripts available in this repository. Once a UCloud course has been deployed, it will be avaible to all Danish universities. 
-The teacher is responsible also for providing a short guide on how-to-use the digital course (for students) and to the update of the digital course when necessary. 
+The development of UCloud courses should be done by the teacher using the pre-made scripts available in this repository. Once a UCloud course has been deployed, it will be avaible to all Danish universities. 
 
-### Course updates are conducted bi-annually 
+The teacher is responsible also for providing a short guide on how-to-use the UCloud course (for students) and to the update of the UCloud course when necessary. 
 
-As a general rule, UCloud courses are updated before the beginning of each spring- and fall semesters. Potential bugs are fixed continuously. 
+### UCloud courses are updated bi-annually 
 
-### After a course is completed 
+As a general rule, UCloud courses are only updated before the beginning of each spring- and fall semesters. Potential bugs are fixed continuously. 
 
-When the academic course is completed, the corresponding UCloud course will remain available on UCloud by default. This will allow the teacher to update and reuse the material in later semesters, and make it possible for other teachers to use the material as well. 
+### After a UCloud course is completed 
 
-The teacher which developed the course can request to have the digital course removed from UCloud.
-When the request has been approved, the UCloud course in question will be scheduled for removal and will be marked as such. The removal will only take place in the next [bi-annual update](ucloud-courses-requirements.md#course-updates-are-conducted-bi-annually) to ensure that any ongoing use of the UCloud course by others can be completed before the removal.
+When the university course is completed, the corresponding UCloud course will remain available on UCloud by default. This will allow the teacher to update and reuse the material in later semesters, and make it possible for other teachers to use the material as well. 
+
+The teacher who developed the course can request to have the digital course removed from UCloud. When the request for removal has been approved, the UCloud course in question will be scheduled for removal and will be marked as such. The removal will only take place in the next [bi-annual update](ucloud-courses-requirements.md#course-updates-are-conducted-bi-annually) to ensure that any ongoing use of the UCloud course by others can be completed before the removal.
 
 > It is never possible to remove materials from this GitHub repository. Thus, the removal of a UCloud course will *not* be followed by the removing of the corresponding material from the GitHub repository. 
 
-[TO BE ADDED SOMEWHERE: It is not possible to reserve machines for teaching.]
-
 ## Outline of Services Offered 
 
-The UCloud support teams will assist the teachers in the UCloud development course. This includes:
+The relevant UCloud support staff will assist the teachers in the development of the UCloud course. This support includes:
 
 - Support during development of the digital course
 - Review of the final material produced by teachers
-- Implementation on the platform 
+- Deploying the UCloud course on the UCloud platform 
 
-[TO BE COMPLETED]
+> When a teacher requests a UCloud course (see below), a meeting will be scheduled to discuss, among other things, the specific needs that the teacher has regarding support in the development process.  
 
-## The Financial Model
+### How to request a UCloud Course
 
-[TO BE INSERTED]
+A teacher can request a UCloud course by opening a ticket in the [SDU eScience Support Portal](https://support.escience.sdu.dk/) where they write that they are requesting a UCloud course. The ticket will then be forwarded to the teacher's university where is will be processed by relevant support staff. 
+
+When the request has been received, a meeting will be organized between the teacher and the support staff. The purpose of this meeting is to discuss the following:
+- The software requirements for the UCloud course 
+- The resource (compute/storage) requirements for the course and 
+- The support requirements of the teacher 
+- The estimated cost (see [below](./README.md#the-financial-model)).
+
+Other topics will be discussed as needed. 
+
+### The Financial Model
+
+The teacher's department (or similar) must pay for the work done by the support staff in supporting the teachers with the UCloud course development, maintenance, update etc. 
+
+Pricing examples will be added here later. 
+
+
+
+
 
 ## Teacher Agreement 
 
@@ -71,3 +104,5 @@ As a teacher and course responsible for [insert course title], I hereby declare 
 
 [TO BE CONTINUED ...]
 Repository for the development and collection of UCloud courses
+
+
