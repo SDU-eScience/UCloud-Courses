@@ -1,10 +1,10 @@
 # Courses on UCloud 
 
-This repository contains all the necessary information about how teachers at Danish universitites request, create, and develop a course to be deployed on UCloud. 
+This repository contains all the necessary information about how teachers at Danish universitites can request, create, and develop a course to be deployed on UCloud. 
 
-Please read this document in full before [requesting](././README.md#how-to-request-a-ucloud-course) a UCloud course. 
+Please read this document in full before requesting a UCloud course.
 
-Below, the term *university course* refers to the university-approved course while *UCloud course* refers to the course deployment on UCloud.
+Below, the term _university course_ refers to the university-approved course while _UCloud course_ refers to the course deployment on UCloud.
 
 **Table of contents**
 
