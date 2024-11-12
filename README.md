@@ -80,7 +80,7 @@ When a teacher requests a UCloud course (see below), a meeting will be scheduled
 
 ### How to request a UCloud Course
 
-A teacher can request a UCloud course by opening a ticket in the [SDU eScience Support Portal](https://support.escience.sdu.dk/) where they write that they are requesting a UCloud course. The ticket will be forwarded to the teacher's university where is will be processed by relevant support staff. 
+A teacher can request a UCloud course by sending an e-mail to [escience@sdu.dk](mailto:escience@sdu.dk) where they write that they are requesting a UCloud course. The e-mail will be forwarded to the teacher's university where is will be processed by relevant support staff. 
 
 When the request for a UCloud course has been received, a meeting will be organized between the teacher and the relevant support staff. The purpose of this meeting is to discuss the following:
 
