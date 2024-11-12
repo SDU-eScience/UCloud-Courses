@@ -87,7 +87,7 @@ When the request for a UCloud course has been received, a meeting will be organi
 - The software requirements for the UCloud course.
 - The resource (compute/storage) requirements for the course and how to get them. 
 - The support requirements of the teacher.
-- The estimated cost (see [below](./README.md#the-financial-model)).
+- The estimated cost (see [below](#the-financial-model)).
 
 Other topics will be discussed as needed. 
 
