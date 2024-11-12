@@ -4,7 +4,8 @@ This repository contains all the necessary information about how teachers at Dan
 
 Please read this document in full before requesting a UCloud course.
 
-Below, the term <ins>university course</ins> refers to the university-approved course while <ins>UCloud course</ins> refers to the course deployment on UCloud.
+> [!NOTE]
+> Below, the term <ins>university course</ins> refers to the university-approved course while <ins>UCloud course</ins> refers to the course deployment on UCloud.
 
 **Table of contents**
 
