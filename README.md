@@ -67,7 +67,7 @@ When the university course is completed, the corresponding UCloud course will re
 
 The teacher who developed the course can request to have the UCloud course removed from UCloud. When the request for removal has been approved, the UCloud course in question will be scheduled for removal and will be marked as such. The removal will only take place in the next [bi-annual update](./README.md#ucloud-courses-are-updated-bi-annually) to ensure that any ongoing use of the UCloud course by others can be completed before the removal.
 
->[!NOTE] 
+>[!IMPORTANT] 
 > It is never possible to remove materials from this GitHub repository. Thus, the removal of a UCloud course will *not* be followed by a removal of the corresponding material from the GitHub repository. 
 
 ## Outline of Services Offered 
