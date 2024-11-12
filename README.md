@@ -76,9 +76,7 @@ The relevant UCloud support staff will assist the teachers in the development of
 
 - Support during development of the UCloud course.
 - Review of the final material produced by teachers.
-- Deploying the UCloud course on the UCloud platform.
-
-When a teacher requests a UCloud course (see below), a meeting will be scheduled to discuss, among other things, the specific needs that the teacher has regarding support in the development process.  
+- Deployment of the UCloud course on the UCloud platform.
 
 ### How to request a UCloud Course
 
