@@ -6,18 +6,18 @@ Please read this document in full before [requesting](././README.md#how-to-reque
 
 Below, the term *university course* refers to the university-approved course while *UCloud course* refers to the course deployment on UCloud.
 
-This document contains information about the following:
+**Table of contents**
 
-1. What are UCloud Courses?
-2. Requirements and General Considerations
-    1. Course- and teacher requirements
-    2. Course materials on GitHub are public
-    3. The teacher is the developer 
-    4. UCloud courses are updated bi-annually 
-    5. After a UCloud course is completed 
-3. Outline of Services Offered 
-    1. How to request a UCloud Course
-    2. The Financial Model
+1. [What are UCloud Courses?](./README.md#what-are-ucloud-courses)
+2. [Requirements and General Considerations](./README.md#requirements-and-general-considerations)
+    1. [Course- and teacher requirements](./README.md#course--and-teacher-requirements)
+    2. [Course materials on GitHub are public](./README.md#course-materials-on-github-are-public)
+    3. [The teacher is the developer](./README.md#the-teacher-is-the-developer)
+    4. [UCloud courses are updated bi-annually](./README.md#ucloud-courses-are-updated-bi-annually)
+    5. [After a UCloud course is completed](./README.md#after-a-ucloud-course-is-completed) 
+3. [Outline of Services Offered](./README.md#outline-of-services-offered)
+    1. [How to request a UCloud Course](./README.md#how-to-request-a-ucloud-course)
+    2. [The Financial Model](./README.md#the-financial-model)
 
 
 ## What are UCloud Courses?
