@@ -91,21 +91,11 @@ When the request for a UCloud course has been received, a meeting will be organi
 
 Other topics will be discussed as needed. 
 
+> ![NOTE]
+> The teacher will need their head of section or -department to sign an a consent form about the terms outlined above.  
+
 ### The Financial Model
 
 The teacher's department (or similar) must pay for the work done by the support staff in supporting the teacher with the UCloud course development, maintenance, update etc. 
 
 Pricing examples will be added here later. 
-
-
-
-
-
-## Teacher Agreement 
-
-As a teacher and course responsible for [insert course title], I hereby declare that I have read, understood, and consent to the information (terms and conditions?) provided above. In particular, I am aware that that it is my responsibility to ensure that data is shared with students in compliance with the rules specified in [GDPR, internal guidelines etc.]. 
-
-[TO BE CONTINUED ...]
-Repository for the development and collection of UCloud courses
-
-
