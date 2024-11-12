@@ -91,7 +91,7 @@ When the request for a UCloud course has been received, a meeting will be organi
 
 Other topics will be discussed as needed. 
 
-> ![NOTE]
+> [!NOTE]
 > The teacher will need their head of section or -department to sign an a consent form about the terms outlined above.  
 
 ### The Financial Model
