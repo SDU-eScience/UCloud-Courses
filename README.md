@@ -1,6 +1,6 @@
 # Courses on UCloud 
 
-This repository contains all the necessary information about how to request, create, and develop a course on UCloud. 
+This repository contains all the necessary information about how teachers at Danish universitites request, create, and develop a course to be deployed on UCloud. 
 
 Please read this document in full before [requesting](././README.md#how-to-request-a-ucloud-course) a UCloud course. 
 
