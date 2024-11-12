@@ -44,7 +44,7 @@ The following requirements must be met:
 
 UCloud courses are developed in this GitHub repository which is [public](https://docs.github.com/en/repositories/creating-and-managing-repositories/about-repositories#about-repository-visibility). This entails that:
 
-1. The UCloud course will be public.
+1. All material in this repositiry will be publicly available forever.
 2. Teachers must consent to their material being, and remaining, publicly available in the repository.  
 3. Teachers should **never** include datasets and other potentially sensitive information in the GitHub repository. 
     - Datasets etc., must always be handled seperately, for example in a decicated [UCloud Project](https://docs.cloud.sdu.dk/guide/project-intro.html).
