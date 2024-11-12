@@ -22,9 +22,9 @@ Below, the term *university course* refers to the university-approved course whi
 
 ## What are UCloud Courses?
 
-The idea behind UCloud courses is to wrap all the relevant course material - software packages, notebooks, scripts etc. - for a given university course in a UCloud app. This allows for quick and seamless access to the material to the students. 
+The idea behind UCloud courses is to wrap all the relevant course material - software packages, notebooks, scripts etc. - for a given university course in a stand-alone UCloud app. This allows for quick and seamless access to the material to the students. 
 
-UCloud courses are built a relevant, existing UCloud base images such as JupyterLab, RStudio, Conda, Ubuntu, Linux virtual desktops etc. 
+UCloud courses are built as [Docker](https://www.docker.com/) images on top of a relevant, existing UCloud base image such as JupyterLab, RStudio, Conda, Ubuntu, Linux virtual desktops etc. 
 
 UCloud courses are deployed as stand-alone apps on UCloud under the *Courses* category card in the UCloud [app store](https://docs.cloud.sdu.dk/guide/browsing.html). Behind this card is one Course card per university. To select a course from, say, AU, a UCloud user clicks the AU Course card and selects the given course. 
 
