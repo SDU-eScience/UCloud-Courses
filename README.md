@@ -22,7 +22,7 @@ Below, the term <ins>university course</ins> refers to the university-approved c
 
 ## What are UCloud Courses?
 
-The idea behind UCloud courses is to wrap all the relevant course material - software packages, notebooks, scripts etc. - for a given university course in a stand-alone UCloud app. This allows for quick and seamless access to the material to the students. 
+The idea behind UCloud courses is to wrap all the relevant course material - software packages, notebooks, scripts etc. - for a given university course in a stand-alone UCloud app. This allows students to access the full material quickly and seamlessly without having to install any software themselves.
 
 UCloud courses are built as [Docker](https://www.docker.com/) images on top of a relevant, existing UCloud base image such as JupyterLab, RStudio, Conda, Ubuntu, Linux virtual desktops etc. 
 
