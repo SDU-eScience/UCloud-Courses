@@ -1,0 +1,81 @@
+---
+application: v1
+
+title: Natural Language Processing
+name: nlp-demo-course__147222U005
+version: 2024-09-01
+
+website: https://github.com/rbroc/NLP-AU-23
+
+applicationType: WEB
+
+web:
+  port: 8888
+
+tool:
+  name: nlp-demo-course__147222U005
+  version: 2024-09-01
+
+authors: Jes Elgin Jensen, Rytis Mikutavicius & Roberta Rocca
+
+description: >
+  This UCloud course is connected with the course 'Natural Language Processing' which is a part of the MSc in Cognitive Science at Aarhus University.
+
+allowAdditionalMounts: true
+allowPublicLink: false
+allowPublicIp: false
+
+container:
+  runAsRoot: false
+
+invocation:
+  - start_course
+  - type: var
+    vars: initialization
+    prefixGlobal: '-s '
+  - type: var
+    vars: class
+    prefixGlobal: '-c '
+  - type: flag
+    var: redownload
+    flag: '-a '
+
+parameters:
+  initialization:
+    title: "Initialization"
+    type: input_file
+    description: >
+      Run initialization of pip packages (*.txt), Conda packages (*.yml/yaml), or Bash script (*.sh)
+    optional: true
+  class:
+    title: 'Select a course module'
+    type: enumeration
+    options:
+      - name: "Class 1 - The work stack"
+        value: "class_01"
+      - name: "Class 2 - SpaCy and document vectors"
+        value: "class_02"
+      - name: "Class 3 - Exploring word embeddings with gensim"
+        value: "class_03"
+      - name: "Class 4 - Implementing gradient descent and a feed-forward neural network"
+        value: "class_4"
+      - name: "Class 5 - Implementing an LSTM"
+        value: "class_05"
+      - name: "Class 6 - void"
+        value: "class_06"
+      - name: "Class 7 - NER classification with BERT"
+        value: "class_07"
+      - name: "Class 8 - Getting started with text generation"
+        value: "class_08"
+      - name: "Class 9 - Text Generation with LLMs, in-context learning, and model fine-tuning"
+        value: "class_09"
+    optional: false
+  redownload:
+    title: "Re-download course files"
+    type: boolean
+    description: >
+      Select to download course module files. If true, existing files in your class folder will be overwritten. 
+      If false and there already exists a folder for the selected class, no new files from the external repo are downloaded. 
+    optional: true 
+outputFileGlobs:
+  - "*"

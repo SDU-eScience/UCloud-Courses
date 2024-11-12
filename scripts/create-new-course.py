@@ -253,7 +253,7 @@ if __name__ == "__main__":
         dockerfile_dir = os.path.relpath(os.path.join(course_release_dir, 'Dockerfile'), start = get_cwd())
 
         # Get name of course's Docker image
-        courseimage_name = "dreg.cloud.sdu.dk/ucloud-courses/%s_%s:%s"%(args.university, course_name, args.release)
+        courseimage_name = "dreg.cloud.sdu.dk/ucloud-courses/%s_%s:%s"%(args.university, course_name.lower(), args.release)
 
         with (
             open(template_readme, 'r') as f1,
