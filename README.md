@@ -26,13 +26,15 @@ The idea behind UCloud courses is to wrap all the relevant course material - sof
 
 UCloud courses are built as [Docker](https://www.docker.com/) images on top of a relevant, existing UCloud base image such as JupyterLab, RStudio, Conda, Ubuntu, Linux virtual desktops etc. 
 
-UCloud courses are deployed as stand-alone apps on UCloud under the *Courses* category card in the UCloud [app store](https://docs.cloud.sdu.dk/guide/browsing.html). Behind this card is one Course card per university. To select a course from, say, AU, a UCloud user clicks the AU Course card and selects the given course. 
+Once a UCloud course has been deployed it will be available under the *Courses* category card in the UCloud [app store](https://docs.cloud.sdu.dk/guide/browsing.html). Behind this card is one Course card per university. To select a course from, say, AU, a UCloud user clicks the AU Course card and selects the given course. 
 
 ## Requirements and General Considerations
 
-Before [requesting](./README.md#how-to-request-a-ucloud-course) a new UCloud course there are some requirements that the course and teacher must meet. Furthermre, there are some general considerations that the teacher must be aware of. Both the requirements and general considerations are outlined below.
+Before requesting  a new UCloud course there are some requirements that the course and teacher must meet and some general considerations to keep in mind.
 
 ### Course- and teacher requirements  
+
+The following requirements must be met: 
 
 1. The UCloud course is associated with a university course, which is already existing, or planned and approved to take place in the foreseeable future.  
 2. The course is for students enrolled at a Danish university.
