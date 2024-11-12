@@ -64,25 +64,25 @@ As a general rule, UCloud courses are only updated before the beginning of each 
 
 When the university course is completed, the corresponding UCloud course will remain available on UCloud by default. This will allow the teacher to update and reuse the material in later semesters, and make it possible for other teachers to use the material as well. 
 
-The teacher who developed the course can request to have the UCloud course removed from UCloud. When the request for removal has been approved, the UCloud course in question will be scheduled for removal and will be marked as such. The removal will only take place in the next [bi-annual update](ucloud-courses-requirements.md#course-updates-are-conducted-bi-annually) to ensure that any ongoing use of the UCloud course by others can be completed before the removal.
+The teacher who developed the course can request to have the UCloud course removed from UCloud. When the request for removal has been approved, the UCloud course in question will be scheduled for removal and will be marked as such. The removal will only take place in the next [bi-annual update](./README.md#ucloud-courses-are-updated-bi-annually) to ensure that any ongoing use of the UCloud course by others can be completed before the removal.
 
-> It is never possible to remove materials from this GitHub repository. Thus, the removal of a UCloud course will *not* be followed by the removing of the corresponding material from the GitHub repository. 
+> It is never possible to remove materials from this GitHub repository. Thus, the removal of a UCloud course will *not* be followed by a removal of the corresponding material from the GitHub repository. 
 
 ## Outline of Services Offered 
 
 The relevant UCloud support staff will assist the teachers in the development of the UCloud course. This support includes:
 
-- Support during development of the digital course
-- Review of the final material produced by teachers
-- Deploying the UCloud course on the UCloud platform 
+- Support during development of the UCloud course.
+- Review of the final material produced by teachers.
+- Deploying the UCloud course on the UCloud platform.
 
-> When a teacher requests a UCloud course (see below), a meeting will be scheduled to discuss, among other things, the specific needs that the teacher has regarding support in the development process.  
+When a teacher requests a UCloud course (see below), a meeting will be scheduled to discuss, among other things, the specific needs that the teacher has regarding support in the development process.  
 
 ### How to request a UCloud Course
 
-A teacher can request a UCloud course by opening a ticket in the [SDU eScience Support Portal](https://support.escience.sdu.dk/) where they write that they are requesting a UCloud course. The ticket will then be forwarded to the teacher's university where is will be processed by relevant support staff. 
+A teacher can request a UCloud course by opening a ticket in the [SDU eScience Support Portal](https://support.escience.sdu.dk/) where they write that they are requesting a UCloud course. The ticket will be forwarded to the teacher's university where is will be processed by relevant support staff. 
 
-When the request has been received, a meeting will be organized between the teacher and the support staff. The purpose of this meeting is to discuss the following:
+When the request for a UCloud course has been received, a meeting will be organized between the teacher and the support staff. The purpose of this meeting is to discuss the following:
 - The software requirements for the UCloud course 
 - The resource (compute/storage) requirements for the course and 
 - The support requirements of the teacher 
