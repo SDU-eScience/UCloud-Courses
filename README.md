@@ -44,7 +44,7 @@ The following requirements must be met:
 
 UCloud courses are developed in this GitHub repository which is [public](https://docs.github.com/en/repositories/creating-and-managing-repositories/about-repositories#about-repository-visibility). This entails that:
 
-1. All material in this repositiry will be publicly available forever.
+1. All material in this repositiry will be publicly available.
 2. Teachers must consent to their material being, and remaining, publicly available in the repository.  
 3. Teachers should **never** include datasets and other potentially sensitive information in the GitHub repository. 
     - Datasets etc., must always be handled seperately, for example in a decicated [UCloud Project](https://docs.cloud.sdu.dk/guide/project-intro.html).
@@ -54,7 +54,7 @@ UCloud courses are developed in this GitHub repository which is [public](https:/
 
 The development of UCloud courses should be done by the teacher using the pre-made scripts available in this repository. Once a UCloud course has been deployed, it will be avaible to all Danish universities. 
 
-The teacher is responsible also for providing a short guide on how-to-use the UCloud course (for students) and to the update of the UCloud course when necessary. 
+The teacher is furthermore responsible for providing a short guide on how to use the UCloud course (for students) and to update the UCloud course when necessary. 
 
 ### UCloud courses are updated bi-annually 
 
@@ -66,6 +66,7 @@ When the university course is completed, the corresponding UCloud course will re
 
 The teacher who developed the course can request to have the UCloud course removed from UCloud. When the request for removal has been approved, the UCloud course in question will be scheduled for removal and will be marked as such. The removal will only take place in the next [bi-annual update](./README.md#ucloud-courses-are-updated-bi-annually) to ensure that any ongoing use of the UCloud course by others can be completed before the removal.
 
+>[!NOTE] 
 > It is never possible to remove materials from this GitHub repository. Thus, the removal of a UCloud course will *not* be followed by a removal of the corresponding material from the GitHub repository. 
 
 ## Outline of Services Offered 
