@@ -14,7 +14,7 @@ Please read this document in full before requesting a UCloud course.
     - [Basic requirements](./README.md#basic-requirements)
     - [Course development requirements](./README.md#course-development-requirements)
     - [Course maintainance and update](./README.md#course-maintainance-and-update)
-    - [Removing a course from UCloud](./README.md#after-a-ucloud-course-is-completed) 
+    - [Removing a course from UCloud](./README.md#removing-a-course-from-UCloud) 
 - [Outline of Services Offered](./README.md#outline-of-services-offered)
     - [How to request a UCloud Course](./README.md#how-to-request-a-ucloud-course)
     - [The Financial Model](./README.md#the-financial-model)
@@ -42,7 +42,7 @@ The following requirements must be met:
 
 ### Course development requirements
 
-The development of UCloud courses should be done by the teacher using the pre-made scripts available in the [public](https://docs.github.com/en/repositories/creating-and-managing-repositories/about-repositories#about-repository-visibility).
+The development of UCloud courses should be done by the teacher using the pre-made scripts available in the [public repository](https://github.com/SDU-eScience/UCloud-Courses).
 
 This entails that:
 
@@ -63,22 +63,22 @@ When the university course is completed, the corresponding UCloud course will re
 
 ### Removing a course from UCloud
 
-The teacher who developed the course can request to have the UCloud course removed from UCloud. When the request for removal has been approved, the UCloud course in question will be scheduled for removal and will be marked as such. The removal will only take place in the next [bi-annual update](#ucloud-courses-are-updated-bi-annually) to ensure that any ongoing use of the UCloud course by others can be completed before the removal.
+The teacher who developed the course can request to have the UCloud course removed from UCloud. When the request for removal has been approved, the UCloud course in question will be scheduled for removal and will be marked as such. The removal will only take place in the next bi-annual update to ensure that any ongoing use of the UCloud course by others can be completed before the removal.
 
 >[!IMPORTANT] 
-> It is never possible to remove materials from this GitHub repository. Thus, the removal of a UCloud course from UCloud will *not* be followed by a removal of the corresponding material from this GitHub repository. 
+> It is never possible to remove materials from the GitHub repository. Thus, the removal of a UCloud course from UCloud will *not* be followed by a removal of the corresponding material from the GitHub repository. 
 
 ## Outline of Services Offered 
 
 The relevant UCloud support staff will assist the teachers in the development of the UCloud course. This support includes:
 
-- Support during development of the UCloud course (course design, docker container preparation).
+- Support during development of the UCloud course (course design, docker container preparation...).
 - Review of the final material produced by teachers (mandatory).
 - Deployment of the UCloud course on the UCloud platform (mandatory).
 
 ### How to request a UCloud Course
 
-A teacher can request a UCloud course by sending an e-mail to [escience@sdu.dk](mailto:escience@sdu.dk) where they write that they are requesting a UCloud course. The e-mail will be forwarded to the teacher's university where it will be processed by relevant support staff. 
+A teacher can request a UCloud course by sending an e-mail to [escience@sdu.dk](mailto:escience@sdu.dk). The e-mail will be forwarded to the teacher's university front-office where it will be processed by relevant support staff. 
 
 When the request for a UCloud course has been received, a meeting will be organized between the teacher and the relevant support staff. The purpose of this meeting is to discuss the following:
 
