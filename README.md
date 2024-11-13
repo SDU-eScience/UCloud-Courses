@@ -21,13 +21,13 @@ Please read this document in full before requesting a UCloud course.
     - [The Financial Model](./README.md#the-financial-model)
 
 
-## What are UCloud Courses?
+## What is a UCloud Course?
 
 The idea behind UCloud courses is to wrap all the relevant course material - software packages, notebooks, scripts etc. - for a given university course in a stand-alone UCloud app. This allows students to access the full material quickly and seamlessly without having to install any software themselves.
 
-UCloud courses are built as [Docker](https://www.docker.com/) images on top of a relevant, existing UCloud base image such as JupyterLab, RStudio, Conda, Ubuntu, Linux virtual desktops etc. 
+UCloud courses are built as [Docker](https://www.docker.com/) images, starting from pre-existing UCloud base images such as JupyterLab, RStudio, Conda, Ubuntu, Linux virtual desktops etc. 
 
-Once a UCloud course has been deployed it will be available under the *Courses* category card in the UCloud [app store](https://docs.cloud.sdu.dk/guide/browsing.html). Behind this card is one Course card per university. To select a course from, say, AU, a UCloud user clicks the AU Course card and selects the given course and version from the drow-down menus. 
+Once a UCloud course has been deployed it will be available under the *Courses* category card in the UCloud [app store](https://docs.cloud.sdu.dk/guide/browsing.html). The courses are then divided by university. To select a course which run e.g. in Aarhus (AU), a UCloud user needs to click the AU Course card and selects the given course and version from the drow-down menus. 
 
 ## Requirements and General Considerations
 
