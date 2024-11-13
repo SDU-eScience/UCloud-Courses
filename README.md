@@ -9,7 +9,7 @@ Please read this document in full before requesting a UCloud course.
 
 **Table of contents**
 
-- [What is UCloud Course?](./README.md#what-are-ucloud-courses)
+- [What is UCloud Course?](./README.md#what-is-a-ucloud-course)
 - [Requirements and General Considerations](./README.md#requirements-and-general-considerations)
     - [Basic requirements](./README.md#basic-requirements)
     - [Course development requirements](./README.md#course-development-requirements)
