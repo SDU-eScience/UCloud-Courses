@@ -9,15 +9,15 @@ Please read this document in full before requesting a UCloud course.
 
 **Table of contents**
 
-- [What is a UCloud Course?](./README.md#what-is-a-ucloud-course)
-- [Requirements and General Considerations](./README.md#requirements-and-general-considerations)
-    - [Basic requirements](./README.md#basic-requirements)
-    - [Course development requirements](./README.md#course-development-requirements)
-    - [Course maintainance and updates](./README.md#course-maintainance-and-update)
-    - [Removing a course from UCloud](./README.md#removing-a-course-from-UCloud) 
-- [Outline of Services Offered](./README.md#outline-of-services-offered)
-    - [How to request a UCloud Course](./README.md#how-to-request-a-ucloud-course)
-    - [The financial model](./README.md#the-financial-model)
+- [What is a UCloud Course?](#what-is-a-ucloud-course)
+- [Requirements and General Considerations](#requirements-and-general-considerations)
+    - [Basic requirements](#basic-requirements)
+    - [Course development requirements](#course-development-requirements)
+    - [Course maintainance and updates](#course-maintainance-and-update)
+    - [Removing a course from UCloud](#removing-a-course-from-UCloud) 
+- [Outline of Services Offered](#outline-of-services-offered)
+    - [How to request a UCloud Course](#how-to-request-a-ucloud-course)
+    - [The financial model](#the-financial-model)
 
 
 ## What is a UCloud Course?
