@@ -13,7 +13,7 @@ Please read this document in full before requesting a UCloud course.
 - [Requirements and General Considerations](#requirements-and-general-considerations)
     - [Basic requirements](#basic-requirements)
     - [Course development requirements](#course-development-requirements)
-    - [Course maintainance and updates](#course-maintainance-and-update)
+    - [Course maintainance and updates](#course-maintainance-and-updates)
     - [Removing a course from UCloud](#removing-a-course-from-UCloud) 
 - [Outline of Services Offered](#outline-of-services-offered)
     - [How to request a UCloud Course](#how-to-request-a-ucloud-course)
