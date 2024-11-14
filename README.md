@@ -46,7 +46,7 @@ The development of UCloud courses should be done by the teacher using the pre-ma
 
 This entails that:
 
-1. All material in this repositiry will be [publicly available](https://docs.github.com/en/repositories/creating-and-managing-repositories/about-repositories#about-repository-visibility).
+1. All material in this repository will be [publicly available](https://docs.github.com/en/repositories/creating-and-managing-repositories/about-repositories#about-repository-visibility).
 2. Teachers must consent to their material being, and remaining, publicly available in the repository.  
 3. Teachers should **never** include datasets and other potentially sensitive information in the repository. 
     - Datasets etc., must always be handled seperately, for example in a decicated [UCloud Project](https://docs.cloud.sdu.dk/guide/project-intro.html).
