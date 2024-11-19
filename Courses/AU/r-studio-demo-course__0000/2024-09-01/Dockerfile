@@ -17,7 +17,4 @@ COPY --chown=${USERID}:${GROUPID} slides /tmp/slides
 COPY --chown=${USERID}:${GROUPID} start_course.sh /usr/bin/start_course
 RUN chmod 755 /usr/bin/start_course
 
-COPY --chown=${USERID}:${GROUPID} req.sh /usr/bin/req
-RUN chmod 755 /usr/bin/req
-
 WORKDIR /work

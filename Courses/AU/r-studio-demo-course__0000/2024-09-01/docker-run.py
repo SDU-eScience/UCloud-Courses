@@ -3,7 +3,7 @@
 INTERACTIVE_MODE = "False"      # Set to True to run an interactive container. 
 PORT = "8787"                   # Change if another port should be published. NB: Only one port can be published.
 VOLUMES = ""                    # Absolute path(s) of folder(s) that should be available in `/work` inside the container. Separate volumes with a single whitespace. 
-START_COMMAND = "start_course -s req.sh -c class_01 -a"  # Start command for Docker container. Only relevant if INTERACTIVE_MODE = "False". To not use a start command, leave the string empty.
+START_COMMAND = "start_course -c class_01 -a"  # Start command for Docker container. Only relevant if INTERACTIVE_MODE = "False". To not use a start command, leave the string empty.
 
 #------------------------------------------
 
