@@ -75,7 +75,7 @@ Note: Data included in the image at build time is immutable, meaning any changes
 
 Building a Docker image with the `Dockerfile` allows containers to run with all the necessary prerequisites for the course.
 
-For example, this course includes `/data`, `/scripts`, `/src`, and `/syllabus` folders that are copied into the `/work` folder using the `COPY` command in the `Dockerfile`. These files will be available to users running the container, located in the `/work` folder.
+For example, this course includes `/renv` and `/slides` folders that are copied into the `/tmp` folder using the `COPY` command in the `Dockerfile`. These folders are then copied to the `/work` folder (which is the default folder inside the container) in `start_course.sh`.
 
 ### Prerequisites
 
