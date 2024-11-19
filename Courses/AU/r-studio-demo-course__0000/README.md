@@ -54,7 +54,7 @@ This script will create a folder in the `/Courses` directory under the specified
 For example, the folder structure for this course was created by navigating to the `/scripts` folder and running the following command:
 
 ```bash
-`python create-new-course.py -n r-studio-demo-course -c 0000 -r 2024-09-01 -b rstudio -u au`
+python create-new-course.py -n r-studio-demo-course -c 0000 -r 2024-09-01 -b rstudio -u au
 ```
 
 ### Files
@@ -84,8 +84,6 @@ Ensure your Python environment has the required packages installed. You can inst
 ```bash
 pip install -r requirements.txt
 ```
-
-You will also need to have Docker or Docker Desktop installed on your machine. You can find the appropriate installation for your machine on [docker.com](https://www.docker.com/).
 
 ### Running docker-build.py
 
@@ -120,12 +118,10 @@ Note: If using a Windows directory, paths must be referenced with `/mnt` and use
   For example, a start command like:
 
   ```bash
-  start_course -s req.sh -c class_01 -a
+  start_course -c class_01 -a
   ```
 
-   launches the course with specified options and scripts, where:
-
-  * `-s req.sh`: Initializes the `req.sh` script to install packages.
+  launches the course with specified options and scripts, where:
   * `-c class_01`: Selects `class_01` course materials from the remote repository.
   * `-a`: Enables the redownload flag to download all course materials again from the repository.
 
@@ -166,4 +162,4 @@ By configuring these settings, you can ensure that all necessary options are sea
 
 ## Initialization
 
-For information on how to use the *Initialization* parameter, please refer to the [Initialization - Bash script](https://docs.cloud.sdu.dk/hands-on/init-sh.html), [Initialization - Conda packages](https://docs.cloud.sdu.dk/hands-on/init-conda.html), and [Initialization - pip packages](https://docs.cloud.sdu.dk/hands-on/init-pip.html) section of the documentation.
+For information on how to use the *Initialization* parameter, please refer to the [Initialization - Bash script](https://docs.cloud.sdu.dk/hands-on/init-sh.html) and [Initialization - pip packages](https://docs.cloud.sdu.dk/hands-on/init-pip.html) section of the documentation.
