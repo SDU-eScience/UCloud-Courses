@@ -4,7 +4,7 @@ This course contains all of the code and data related to the module [Natural Lan
 
 This guide will help you use the UCloud system to access course materials.
 
-## Submitting a UCloud job
+## Submitting a UCloud Job
 
 Follow these instructions to set up and submit a UCloud job for the course.
 For more general instructions on how to submit a job, consult the [UCloud docs](https://docs.cloud.sdu.dk/guide/submitting.html).
@@ -12,26 +12,26 @@ For more general instructions on how to submit a job, consult the [UCloud docs](
 ### Select a machine type
 
 From the job submission page https://cloud.sdu.dk/app/jobs/create?app=nlp-demo-course__147222U005,
-choose a machine a machine type that meets the computational requirements for your class:
+choose a machine type that meets the computational requirements for your class:
 
 * Classes 1 to 5: Use machines with only vCPU resources, such as `u1-standard-4` and `uc1-gc1-4`.
 * Classes 7 to 9: Use machines with GPU resources for more computationally intensive tasks. Good choices here would be `uc1-l4-3`, `uc1-l40-1`, or `u3-gpu-1`.
 
 You can select the machine type from the dropdown menu when configuring your UCloud job.
-### Select folders to use
+### Select folders to use (optional)
 
-You can mount a folder/directory in your UCloud storage to the job by clicking 'Add folder' and selecting the folder you want to mount. 
-The selected folder will be available inside the running instance of the course on the path `/work/[name_of_selected_folder]`. Only changes inside `/work` will be persisted between runs. 
-Regardless of whether you mount a folder using this menu item, the contents of `/work` will be available in your UCloud drive inside the `Jobs` folder. The persisted data will be displayed once your job has terminated:
+You can mount a UCloud folder/directory to the job by clicking the blue button 'Add folder' and selecting the folder you want to mount. 
+The selected folder will be available inside the running instance of the course on the path `/work/[name_of_selected_folder]`. 
 
-!['Jobs' folder](assets/JobsFolder.png)
 
-If you want to work on (some) of these files in a later run, you can mount a folder containing those files to that run to.
+> [!NOTE]
+> Only changes inside `/work` will be persisted between runs. 
 
 ### Select course module
 
 Choose the relevant class (module) from the dropdown menu in the UCloud job configuration interface.
 The course materials (instructions and datasets) are hosted in a [GitHub](https://github.com/jeselginAU/demo-NLP-Course-AU) repository managed by the teacher. Once you start the course app, the course materials for the selected course module will be downloaded to the path `/work/class_[module#]`.
+When the job is completed, the class_[module#] folder will be available in your UCloud drive inside the Jobs folder (https://docs.cloud.sdu.dk/guide/monitoring.html#job-completed).
 ### Re-download course files
 
 By default, this parameter is set to `false` meaning the course materials are downloaded, except if a folder called `/work/class_[module#]` already exists.
