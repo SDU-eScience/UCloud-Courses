@@ -4,42 +4,44 @@ This course contains all of the code and data related to the module [Natural Lan
 
 This guide will help you use the UCloud system to access course materials.
 
-## Submitting a UCloud Job
+## Submitting a UCloud job
 
 Follow these instructions to set up and submit a UCloud job for the course.
+For more general instructions on how to submit a job, consult the [UCloud docs](https://docs.cloud.sdu.dk/guide/submitting.html).
 
-### Machine Type
+### Select a machine type
 
-Choose a machine type that meets the computational requirements for your class:
+From the job submission page https://cloud.sdu.dk/app/jobs/create?app=nlp-demo-course__147222U005,
+choose a machine a machine type that meets the computational requirements for your class:
 
-* Classes 1 to 5: Use machines with only vCPU resources, such as `u1-standard-h` and `uc1-gc1-h`. 2-4 cores should suffice.
-* Classes 7 to 9: Use machines with GPU resources for more computationally intensive tasks.
+* Classes 1 to 5: Use machines with only vCPU resources, such as `u1-standard-4` and `uc1-gc1-4`.
+* Classes 7 to 9: Use machines with GPU resources for more computationally intensive tasks. Good choices here would be `uc1-l4-3`, `uc1-l40-1`, or `u3-gpu-1`.
 
 You can select the machine type from the dropdown menu when configuring your UCloud job.
 ### Select folders to use
+
+You can mount a folder/directory in your UCloud storage to the job by clicking 'Add folder' and selecting the folder you want to mount. 
+The selected folder will be available inside the running instance of the course on the path `/work/[name_of_selected_folder]`. Only changes inside `/work` will be persisted between runs. 
+Regardless of whether you mount a folder using this menu item, the contents of `/work` will be available in your UCloud drive inside the `Jobs` folder. The persisted data will be displayed once your job has terminated:
+
+!['Jobs' folder](assets/JobsFolder.png)
+
+If you want to work on (some) of these files in a later run, you can mount a folder containing those files to that run to.
+
+### Select course module
+
+Choose the relevant class (module) from the dropdown menu in the UCloud job configuration interface.
 The course materials (instructions and datasets) are hosted in a [GitHub](https://github.com/jeselginAU/demo-NLP-Course-AU) repository managed by the teacher. Once you start the course app, the course materials for the selected course module will be downloaded to the path `/work/class_[module#]`.
+### Re-download course files
 
-To persist your changes between job runs, you need to mount a folder/directory in your UCloud storage to the job. 
-Click 'Add folder' and select the folder you want to mount. 
-The selected folder will be available inside the running instance of the course on the path `/work/[name_of_selected_folder]`.
-Only changes inside this folder will be persisted between runs. 
+By default, this parameter is set to `false` meaning the course materials are downloaded, except if a folder called `/work/class_[module#]` already exists.
+In other words, if you select class 1 and you mount a folder called `class_01` by using the parameter _Select folders to use_, 
 
-**Note that if you need to save changes to the course materials, you should copy/move the `class_[module#]` into your mounted folder.**
+![class1](assets/SelectClass.png)
 
-Mount the same folder in a later run to access your data.
+files from the teachers GitHub repos won't be re-downloaded. 
 
-### Select Course Module
-
-Choose the relevant class (module) from the dropdown menu in the UCloud job configuration interface. 
-
-Ensure you select the correct module to access the corresponding materials.
-
-### Re-download Course Files
-If you mount a folder to the job called `class_[module#]` with module# corresponding to the selected module (e.g., you select class 1 and you mount a folder called `class_01`), files from the teachers GitHub repos won't be downloaded unless you set this optional parameter to `true`.
-
-* Set this option to `true` **if updates have been made to the repository** and you need the latest materials. This will overwrite your files at `/work/class_[module#]` inside the job 
-
-* By default, this is set to `false`, meaning the course materials are downloaded only if no folder exists at `/work/class_[module#]`.
+You can overwrite the existing folder by setting the option _Re-download course files_  to `true`. This will overwrite `/work/class_[module#]` inside the job and the mounted UCloud storage.
 
 ### Initialization
 
