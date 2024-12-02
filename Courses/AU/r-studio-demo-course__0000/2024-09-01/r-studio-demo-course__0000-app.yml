@@ -1,0 +1,83 @@
+---
+application: v1
+
+title: RStudio Demo Course
+name: r-studio-demo-course
+version: 2024-09-01
+
+website: https://github.com/jeselginAU/demo-r-studio-course 
+
+applicationType: WEB
+
+web:
+  port: 8787
+
+tool:
+  name: r-studio-demo-course
+  version: 2024-09-01
+
+authors: Jes Elgin Jensen, Rytis Mikutavicius, Mine Çetinkaya-Rundel
+
+description: >
+  Example RStudio-centered UCloud course based on based on Duke University's Statistical Science Introductory Data Science courses.
+
+allowAdditionalMounts: true
+allowPublicLink: false
+allowPublicIp: false
+
+container:
+  runAsRoot: true
+
+invocation:
+  - start_course
+  - type: var
+    vars: class
+    prefixGlobal: '-c '
+  - type: flag
+    flag: '-a '
+    var: redownload
+  - type: var
+    vars: initialization
+    prefixGlobal: '-s '
+
+parameters:
+  class:
+    title: "Class"
+    type: enumeration
+    defaultValue:
+      type: enumeration
+      value: "class_01"
+    options:
+      -
+        name: class 1
+        value: "class_01"
+      -
+        name: class 2
+        value: "class_02"
+      -
+        name: class 3
+        value: "class_03"
+      -
+        name: class 4
+        value: "class_04"
+    description: >
+      Select the class from the course GitHub repository.
+    optional: false
+
+  redownload:
+    title: "Re-download course files"
+    type: boolean
+    description: >
+      Select to download course module files. By default, this option is set to false, meaning that if a folder for the selected class already exists, no new files from the external repo are downloaded. 
+      If set to true, any existing files in your class folder will be overwritten.
+    optional: true
+
+  initialization:
+    title: "Initialization"
+    type: input_file
+    description: >
+      Run initialization of pip packages (*.txt) or Bash script (*.sh)
+    optional: true
+
+outputFileGlobs:
+  - "*"
