@@ -9,9 +9,10 @@ SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 WORKDIR /home/${USERID}
 
-## Add scripts and data
-COPY --chown=${USERID}:${GROUPID} renv /tmp/renv
-COPY --chown=${USERID}:${GROUPID} slides /tmp/slides
+## Add environment files
+COPY --chown=${USERID}:${GROUPID} renv /Renvironment/renv
+COPY --chown=${USERID}:${GROUPID} .Rprofile /Renvironment/.Rprofile
+COPY --chown=${USERID}:${GROUPID} renv.lock /Renvironment/renv.lock
 
 ## Add entrypoint script
 COPY --chown=${USERID}:${GROUPID} start_course.sh /usr/bin/start_course

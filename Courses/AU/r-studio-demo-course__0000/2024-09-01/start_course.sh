@@ -5,7 +5,7 @@ function exit_err {
     exit 1
 }
 
-EXTERNAL_REPO_URL="https://api.github.com/repos/jeselginAU/demo-r-studio-course"
+EXTERNAL_REPO_URL="https://api.github.com/repos/Rymik19/rStudioDemoCourse"
 REDOWNLOAD=false
 PWD="/work"
 
@@ -20,8 +20,19 @@ while getopts ":c:as:" option; do
 done
 
 # Copy course files from /tmp to /work
-cp -r /tmp/slides /work/slides
-cp -r /tmp/renv /work/renv
+cp -r /Renvironment /work
+
+# Activate the renv environment
+echo "Activating renv environment..."
+Rscript /work/Renvironment/renv/activate.R
+
+# Verify the activation
+if [ $? -ne 0 ]; then
+  echo "Error: Failed to activate the renv environment."
+  exit 1
+fi
+
+echo "Environment successfully activated!"
 
 # delete not necessary file format
 if [[ -f "${INITIALIZATION}" ]]; then
