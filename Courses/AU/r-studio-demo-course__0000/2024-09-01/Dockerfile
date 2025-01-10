@@ -7,13 +7,6 @@ LABEL course="RStudio Demo Course" \
 ## Use bash instead of sh
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
-WORKDIR /home/${USERID}
-
-## Add environment files
-COPY --chown=${USERID}:${GROUPID} renv /Renvironment/renv
-COPY --chown=${USERID}:${GROUPID} .Rprofile /Renvironment/.Rprofile
-COPY --chown=${USERID}:${GROUPID} renv.lock /Renvironment/renv.lock
-
 ## Add entrypoint script
 COPY --chown=${USERID}:${GROUPID} start_course.sh /usr/bin/start_course
 RUN chmod 755 /usr/bin/start_course

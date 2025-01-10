@@ -19,22 +19,6 @@ while getopts ":c:as:" option; do
     esac
 done
 
-# Copy course files from /tmp to /work
-cp -r /Renvironment /work
-
-# Activate the renv environment
-echo "Activating renv environment..."
-Rscript /work/Renvironment/renv/activate.R
-
-# Verify the activation
-if [ $? -ne 0 ]; then
-  echo "Error: Failed to activate the renv environment."
-  exit 1
-fi
-
-echo "Environment successfully activated!"
-
-# delete not necessary file format
 if [[ -f "${INITIALIZATION}" ]]; then
     printf "\n======================\n"
     printf "Running Initialization\n"
@@ -68,18 +52,17 @@ if [[ -n "${CLASS}" && ( ! -d "/${PWD}/${CLASS}" || "${REDOWNLOAD}" = true ) ]];
         # Query and filter for download URLs from class.json file.
         URLS=$(jq  -r '.[].download_url // empty' "${CLASS}.json" )
 
-        # Create the directory if it doesn't exist
-        mkdir -p "${PWD}/${CLASS}" || exit_err "Failed to create directory"
-
         # Download each file
         for url in ${URLS}; do 
             if [[ -z "${url}" ]]; then
                 exit_err "Error: Null or empty URL found."
             else
-                file_name=$(basename "${url}")
+                # Create the directory if it doesn't exist
                 mkdir -p "${PWD}/${CLASS}" || exit_err "Failed to create /${PWD}/${CLASS} directory"
+                
+                file_name=$(basename "${url}")
                 curl -L "${url}" -o "${PWD}/${CLASS}/${file_name}"
-                printf "Downloaded file ${file_name}"
+                printf "Downloaded file ${file_name}\n"
             fi
         done
         rm "${CLASS}.json"  
