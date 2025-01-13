@@ -54,12 +54,6 @@ parameters:
       -
         name: class 2
         value: "class_02"
-      -
-        name: class 3
-        value: "class_03"
-      -
-        name: class 4
-        value: "class_04"
     description: >
       Select the class from the course GitHub repository.
     optional: false
