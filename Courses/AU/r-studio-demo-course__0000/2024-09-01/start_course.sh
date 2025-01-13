@@ -62,7 +62,7 @@ if [[ -n "${CLASS}" && ( ! -d "/${PWD}/${CLASS}" || "${REDOWNLOAD}" = true ) ]];
                 
                 file_name=$(basename "${url}")
                 curl -L "${url}" -o "${PWD}/${CLASS}/${file_name}"
-                printf "Downloaded file ${file_name}\n"
+                printf "Downloaded file at ${PWD}/${CLASS}/${file_name}\n"
             fi
         done
         rm "${CLASS}.json"  
