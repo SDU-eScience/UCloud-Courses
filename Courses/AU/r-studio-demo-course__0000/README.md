@@ -7,12 +7,6 @@ This course is a demonstration of how to set up a simple UCloud course with `RSt
 Follow these instructions to set up and submit a UCloud job for the course.
 For more general instructions on how to submit a job, consult the [UCloud docs](https://docs.cloud.sdu.dk/guide/submitting.html).
 
-### Select a Machine Type
-
-From the job submission [page](https://cloud.sdu.dk/app/jobs/create?app=nlp-demo-course__147222U005),
-choose machines with only vCPU resources, such as `u1-standard-4` and `uc1-gc1-4` as they provide the minimum required resources for the course materials.
-
-You can select the machine type from the dropdown menu when configuring your UCloud job.
 
 ### Select Course Module
 
