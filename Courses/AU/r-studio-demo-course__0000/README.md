@@ -17,7 +17,7 @@ The `analysis.R` script for `class_01` demonstrates data validation, group-wise 
 
 The `example_with_new_packages.R` script for `class_02` uses `janitor` for data cleaning and `plotly` for creating interactive visualizations. These packages need to be installed in the `Dockerfile` to ensure they are pre-configured and readily available in RStudio without requiring manual installation by the user.
 
-Once you start the course app, the course materials for the selected course module will be downloaded to the path `/work/class_[module#]`.
+Once you start the course app, the course materials for the selected course module will be downloaded to the path `/work/class_<module#>`.
 
 When the job is completed, the `class_<module#>` folder will be available in your UCloud drive inside the [Jobs](https://docs.cloud.sdu.dk/guide/monitoring.html#job-completed) folder.
 
