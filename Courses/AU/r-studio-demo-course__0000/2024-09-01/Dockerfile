@@ -7,13 +7,17 @@ LABEL course="RStudio Demo Course" \
 ## Use bash instead of sh
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
-RUN sudo apt-get update -qq \
+USER 0
+
+RUN apt-get update -qq \
  && install2.r --error --deps TRUE \
     janitor \
     plotly \
  && rm -rf /tmp/downloaded_packages/ /tmp/*.rds \
  && sudo apt-get clean \
  && sudo rm -rf /var/lib/apt/lists/*
+
+USER $USERID
 
 ## Add entrypoint script
 COPY --chown=${USERID}:${GROUPID} start_course.sh /usr/bin/start_course
