@@ -14,7 +14,7 @@ web:
 
 tool:
   name: r-studio-demo-course
-  version: 2024-09-01
+  version: 2024-09-01-dev8
 
 authors: Jes Elgin Jensen, Rytis Mikutavicius, Mine Çetinkaya-Rundel
 
@@ -44,9 +44,6 @@ parameters:
   class:
     title: "Class"
     type: enumeration
-    defaultValue:
-      type: enumeration
-      value: "class_01"
     options:
       -
         name: class 1
@@ -56,6 +53,7 @@ parameters:
         value: "class_02"
     description: >
       Select the class from the course GitHub repository.
+    defaultValue: class_01
     optional: false
 
   redownload:
