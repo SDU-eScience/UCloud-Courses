@@ -16,7 +16,7 @@ You can select the machine type from the dropdown menu when configuring your UCl
 
 ### Select Course Module
 
-Choose the relevant class (module) from the dropdown menu in the UCloud job configuration interface.
+Choose the relevant class (module) from the dropdown menu in the UCloud job submission page.
 The course materials (instructions and datasets) are hosted in a [GitHub](https://github.com/Rymik19/rStudioDemoCourse/tree/main/classes) repository.
 
 The `analysis.R` script for `class_01` demonstrates data validation, group-wise summarization, and visualization using `ggplot2` which is already included in the base `RStudio` image.
