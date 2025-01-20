@@ -19,7 +19,7 @@ You can select the machine type from the dropdown menu when configuring your UCl
 Choose the relevant class (module) from the dropdown menu in the UCloud job submission page.
 The course materials (instructions and datasets) are hosted in an external [GitHub](https://github.com/Rymik19/rStudioDemoCourse/tree/main/classes) repository.
 
-The `analysis.R` script for `class_01` demonstrates data validation, group-wise summarization, and visualization using `ggplot2` which is already included in the base `RStudio` image.
+The `analysis.R` script for `class_01` demonstrates data validation, group-wise summarization, and visualization using the `ggplot2` library.
 
 The `example_with_new_packages.R` script for `class_02` uses `janitor` for data cleaning and `plotly` for creating interactive visualizations. These packages need to be installed in the `Dockerfile` to ensure they are pre-configured and readily available in RStudio without requiring manual installation by the user.
 
