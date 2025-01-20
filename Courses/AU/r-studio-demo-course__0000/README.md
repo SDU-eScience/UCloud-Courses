@@ -25,7 +25,7 @@ The `example_with_new_packages.R` script for `class_02` uses `janitor` for data 
 
 Once you start the course app, the course materials for the selected course module will be downloaded to the path `/work/class_[module#]`.
 
-When the job is completed, the class_[module#] folder will be available in your UCloud drive inside the [Jobs](https://docs.cloud.sdu.dk/guide/monitoring.html#job-completed) folder.
+When the job is completed, the `class_<module#>` folder will be available in your UCloud drive inside the [Jobs](https://docs.cloud.sdu.dk/guide/monitoring.html#job-completed) folder.
 
 ### Re-download Course Files
 
