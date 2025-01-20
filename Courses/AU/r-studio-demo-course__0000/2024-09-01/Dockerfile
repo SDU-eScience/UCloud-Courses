@@ -14,8 +14,8 @@ RUN apt-get update -qq \
     janitor \
     plotly \
  && rm -rf /tmp/downloaded_packages/ /tmp/*.rds \
- && sudo apt-get clean \
- && sudo rm -rf /var/lib/apt/lists/*
+ && apt-get clean \
+ && rm -rf /var/lib/apt/lists/*
 
 USER $USERID
 
