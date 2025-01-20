@@ -1,6 +1,6 @@
 # RStudio Demo Course
 
-This course serves as an example of setting up a course with `RStudio`.
+This course is a demonstration of how to set up a simple UCloud course with `RStudio`.
 
 ## Submitting a UCloud Job
 
