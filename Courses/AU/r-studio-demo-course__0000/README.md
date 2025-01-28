@@ -30,7 +30,7 @@ In other words, if you select class 1 and you mount a folder called `class_01` b
 You can overwrite the existing folder by setting the option _Re-download course files_  to `true`. This will overwrite the course material files in `/work/class_<module#>` with their newest version from the external GitHub repository. 
 
 >[!NOTE] 
->If the mounted course folder containes other files than those being downloaded from the external GitHub repository, these will remain in the folder - even if _Re-download course files_ is set to `true`. 
+>If the mounted course folder contains other files than those being downloaded from the external GitHub repository, these will remain in the folder - even if _Re-download course files_ is set to `true`. 
 
 ### Select folders to use (optional)
 
