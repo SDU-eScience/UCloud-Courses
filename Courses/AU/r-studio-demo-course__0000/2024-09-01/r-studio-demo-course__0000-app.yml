@@ -60,8 +60,7 @@ parameters:
     title: "Re-download course files"
     type: boolean
     description: >
-      Select to download course module files. By default, this option is set to false, meaning that if a folder for the selected class already exists, no new files from the external repo are downloaded. 
-      If set to true, any existing files in your class folder will be overwritten.
+      Select to download course module files to mounted class folder (default: false). If true, any existing course module files in the mounted class folder will be overwritten.
     optional: true
 
   initialization:
