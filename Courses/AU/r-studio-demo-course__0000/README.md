@@ -32,8 +32,6 @@ You can overwrite the existing folder by setting the option _Re-download course 
 >[!NOTE] 
 >If the mounted course folder containes other files than those being downloaded from the external GitHub repository, these will remain in the folder - even if _Re-download course files_ is set to `true`. 
 
-::: 
-
 ### Select folders to use (optional)
 
 You can mount a UCloud folder to the job by clicking the 'Add folder' button and selecting the folder you want to mount. The mounted folder will be available in `/work`.
