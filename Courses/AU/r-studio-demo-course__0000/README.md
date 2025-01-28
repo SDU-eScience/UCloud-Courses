@@ -27,7 +27,12 @@ When the job is completed, the `class_<module#>` folder will be available in the
 By default, this parameter is set to `false` meaning the course materials are downloaded from the external GitHub repository, except if a folder called `/work/class_[module#]` already exists.
 In other words, if you select class 1 and you mount a folder called `class_01` by using the parameter _Select folders to use_, files from the external GitHub repository won't be re-downloaded.
 
-You can overwrite the existing folder by setting the option _Re-download course files_  to `true`. This will overwrite the course material files in `/work/class_<module#>` with their newest version from the external GitHub repository. If the mounted course folder containes other files than those being downloaded from the external GitHub repository, these will remain in the folder - even if _Re-download course files_ is set to `true`. 
+You can overwrite the existing folder by setting the option _Re-download course files_  to `true`. This will overwrite the course material files in `/work/class_<module#>` with their newest version from the external GitHub repository. 
+
+>[!NOTE] 
+>If the mounted course folder containes other files than those being downloaded from the external GitHub repository, these will remain in the folder - even if _Re-download course files_ is set to `true`. 
+
+::: 
 
 ### Select folders to use (optional)
 
