@@ -56,6 +56,7 @@ def parse_arguments():
     parser.add_argument('-r', '--release', type=str, help='Course start date (YYYY-MM-DD).', required=True) 
     parser.add_argument('-b', '--baseimage', type=str, help='Base image', required=True, choices=['almalinux', 'alpine', 'debian', 'ubuntu', 'conda', 'jupyterlab', 'rstudio', 'ubuntu-xfce', 'almalinux-xfce'])
     parser.add_argument('-u', '--university', type=str, help="University where the course will be taught", required=True, choices=['aau', 'au', 'cbs', 'dtu', 'itu', 'ku', 'ruc', 'sdu', 'other']) 
+    parser.add_argument('-t', '--teacher', type=str, help="Name of the course course responsible teacher", required=True)
     return parser.parse_args()
 
 def check_release_format(release_str):
@@ -244,6 +245,7 @@ if __name__ == "__main__":
         template_startcourse = join_paths(templates_dir, 'start_course.template')
         template_buildimage = join_paths(templates_dir, 'docker-build.template')
         template_runcontainer = join_paths(templates_dir, 'docker-run.template')
+        template_license = join_paths(templates_dir, 'LICENSE.md.template')
 
         # Get name and tag for args.baseimage
         baseimage_name = get_baseimage_name(args.baseimage)
@@ -262,7 +264,8 @@ if __name__ == "__main__":
             open(template_toolyml, 'r') as f4,
             open(template_startcourse, 'r') as f5,
             open(template_buildimage, 'r') as f6,
-            open(template_runcontainer, 'r') as f7
+            open(template_runcontainer, 'r') as f7,
+            open(template_license, 'r') as f8
         ):
             readme = f1.read()
             f1.close()
@@ -278,6 +281,8 @@ if __name__ == "__main__":
             f6.close()
             runcontainer = f7.read()
             f7.close()
+            licensefile = f8.read()
+            f8.close()
         
         course_full_name = "{}__{}".format(args.name, args.coursecode)
 
@@ -305,6 +310,11 @@ if __name__ == "__main__":
         # Edit docker-run.template (f7)
         runcontainer = re.sub("_IMAGE_NAME", courseimage_name, runcontainer)
 
+        # Edit license file (f8)
+        licensefile = re.sub("_YEAR", str(dt.datetime.now().year), licensefile)
+        licensefile = re.sub("_UNI", args.university.upper(), licensefile)
+        licensefile = re.sub("_TEACHER", args.teacher, licensefile)
+
         # Write to edited contents from the tempate files to the course folder
         with (
             open(join_paths(course_root_dir, 'README.md'), 'w') as f1,
@@ -313,7 +323,8 @@ if __name__ == "__main__":
             open(join_paths(course_release_dir, '%s__%s-tool.yml'%(args.name, args.coursecode)), 'w') as f4,
             open(join_paths(course_release_dir, 'start_course.sh'), 'w') as f5,
             open(join_paths(course_release_dir, 'docker-build.py'), 'w') as f6,
-            open(join_paths(course_release_dir, 'docker-run.py'), 'w') as f7
+            open(join_paths(course_release_dir, 'docker-run.py'), 'w') as f7,
+            open(join_paths(course_root_dir, 'LICENSE.md'), 'w') as f8
         ):
             f1.write(readme)
             f1.close()
@@ -329,6 +340,8 @@ if __name__ == "__main__":
             f6.close()
             f7.write(runcontainer)
             f7.close()
+            f8.write(licensefile)
+            f8.close()
     
     except Exception as e:
         exit(str(e))
