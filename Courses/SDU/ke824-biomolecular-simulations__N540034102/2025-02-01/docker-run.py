@@ -1,6 +1,6 @@
 #---- CHANGE LINES BELOW IF NECESSARY -----
 
-INTERACTIVE_MODE = "False"      # Set to True to run an interactive container. 
+INTERACTIVE_MODE = "True"       # Set to True to run an interactive container. 
 PORT = "7681"                   # Change if another port should be published. NB: Only one port can be published.
 VOLUMES = ""                    # Absolute path(s) of folder(s) that should be available in `/work` inside the container. Separate volumes with a single whitespace. 
 START_COMMAND = "start_course"  # Start command for Docker container. Only relevant if INTERACTIVE_MODE = "False". To not use a start command, leave the string empty.
