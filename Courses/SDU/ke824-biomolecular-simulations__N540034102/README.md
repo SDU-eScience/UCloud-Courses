@@ -1,4 +1,4 @@
-# ke824-biomolecular-simulations__N540034102
+# KE824: Biomolecular Simulations (N540034102)
 
 Description of how to use the course (for students)
 
