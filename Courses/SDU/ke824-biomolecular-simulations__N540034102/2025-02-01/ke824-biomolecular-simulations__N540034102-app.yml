@@ -7,16 +7,11 @@ version: 2025-02-01
 
 website: # add link to documentation or software website
 
-applicationType: # BATCH, WEB, VNC
-
-### VNC type
-# vnc:
-#   password: $PASSWORD
-#   port: $PORT
+applicationType: WEB
 
 ### WEB type
-# web:
-#   port: $PORT
+web:
+  port: 7681
 
 startCommand: start_course
 
@@ -25,28 +20,85 @@ tool:
   version: 2025-02-01
 
 authors:
+  - University of Groningen
+  - Royal Institute of Technology
+  - Upsala University
+  - Himanshu Khandelia 
 
 description: >
+  UCloud course app for 'KE824: Biomolecular Simulations' built on top of GROMACS.
 
 allowAdditionalMounts: true
 allowPublicLink: false
 allowPublicIp: false
 
 container:
-  runAsRoot: false
+  runAsRoot: true
 
 invocation:
-  - start_app
-  - type: var
-    vars: initialization
-    prefixGlobal: '-s '
+    - /sbin/tini
+    - --
+    - start-course
+    - -p
+    - 7681
+    - type: var
+      vars: sim_var
+      prefixGlobal: '-i '
+    - type: flag
+      flag: '-r '
+      var: redownload_flag
+    - type: var
+      vars: d_var
+      prefixGlobal: '-d '
+    - type: var
+      vars: s_var
+      prefixGlobal: '-s '
+    - type: flag
+      flag: '-t '
+      var: t_flag
 
 parameters:
-  initialization:
-    title: "Initialization"
+  sim_var: 
+    title: Simulation
+    type: enumeration
+    options:
+      - name: "Coarse grained lipid"
+        value: "Coarse-Grained-Lipid"
+      [ADD THE REST]
+    optional: false 
+  redownload_flag:
+    title: "Re-download simulation files"
+    type: boolean
+    description: >
+      If set to true, existing files in a mounted folder for the chosen simulation will be overwritten with a fresh download of that file (default: false). 
+    optional: true 
+  d_var:
+    title: 'Batch mode'
     type: input_file
     description: >
-      Run initialization of pip packages (*.txt), Conda packages (*.yml/yaml), or Bash script (*.sh)
+      Execute a script in batch mode; the file format is Bash (.sh)
+    optional: true
+  s_var:
+    title: 'Shell'
+    type: enumeration
+    options:
+      -
+        name: Bash
+        value: "0"
+      -
+        name: Zsh
+        value: "1"
+      -
+        name: Fish
+        value: "2"
+    description: >
+      Select shell type (default is Bash).
+    optional: true
+  t_flag:
+    title: 'Enable tmux'
+    type: boolean
+    description: >
+      Start a tmux session with the selected shell.
     optional: true
 
 outputFileGlobs:
