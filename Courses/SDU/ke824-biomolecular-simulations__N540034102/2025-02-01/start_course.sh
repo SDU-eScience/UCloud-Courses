@@ -41,6 +41,8 @@ while getopts :s:ri:d:p:s:t option; do
     esac
 done
 
+SIMULATION_STRIP="${SIMULATION// /-}"
+
 ulimit -Sn 15000
 
 if [[ -f "$INITIALIZATION" ]]; then
@@ -145,19 +147,17 @@ else
 fi
 
 ## Fetch course materials and start class module 
-if [[  ! -d "/work/${SIMLUATION}" || "${REDOWNLOAD}" = true ]]; then
+if [[  ! -d "/work/${SIMULATION_STRIP}" || "${REDOWNLOAD}" = true ]]; then
 # Simulation folder for the chosen simulation does not exist in /work OR re-downlaod flag is true -> (re-)download the simluation files.
 
     printf "\n=======================\n"
     printf "Fetching course materials\n"
     printf "=======================\n\n"
 
-    SIMULATION_STRIP="${SIMULATION// /-}"
-
     # Find URLs for the individual files
-    wget "${EXTERNAL_REPO_URL}/contents/${SIMLUATION}" -O "${SIMULATION_STRIP}.json"
+    wget "${EXTERNAL_REPO_URL}/contents/${SIMULATION_STRIP}" -O "${SIMULATION_STRIP}.json"
 
-    if [[ ! -f "${CLASS}.json" ]]; then
+    if [[ ! -f "${SIMULATION_STRIP}.json" ]]; then
         
         exit_err "[ERROR] Could not find materials for the simulation \"${SIMULATION}\" in external repo \"${EXTERNAL_REPO_URL}\""
 
@@ -167,7 +167,7 @@ if [[  ! -d "/work/${SIMLUATION}" || "${REDOWNLOAD}" = true ]]; then
         URLS=$(jq  -r '.[].download_url // empty' "${SIMULATION_STRIP}.json" )
 
         # Create the directory if it doesn't exist
-        mkdir -p /work/"${SIMLUATION}" || exit_err "[ERROR] Failed to create directory"
+        mkdir -p /work/"${SIMULATION_STRIP}" || exit_err "[ERROR] Failed to create directory"
 
         # Download each file
         for url in ${URLS}; do 
@@ -179,7 +179,7 @@ if [[  ! -d "/work/${SIMLUATION}" || "${REDOWNLOAD}" = true ]]; then
             else
                 
                 file_name=$(basename "${url}")
-                curl -L "${url}" -o "/work/${SIMLUATION}/${file_name}"
+                curl -L "${url}" -o "/work/${SIMULATION_STRIP}/${file_name}"
                 printf "[INFO] Downloaded file: ${file_name}"
             
             fi
