@@ -1,0 +1,7 @@
+# ke824-biomolecular-simulations__N540034102
+
+Description of how to use the course (for students)
+
+## Initialization
+
+For information on how to use the *Initialization* parameter, please refer to the [Initialization - Bash script](https://docs.cloud.sdu.dk/hands-on/init-sh.html), [Initialization - Conda packages](https://docs.cloud.sdu.dk/hands-on/init-conda.html), and [Initialization - pip packages](https://docs.cloud.sdu.dk/hands-on/init-pip.html) section of the documentation.
