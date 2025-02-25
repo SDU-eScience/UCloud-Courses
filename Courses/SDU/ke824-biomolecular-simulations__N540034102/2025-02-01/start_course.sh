@@ -27,13 +27,12 @@ function exit_err {
     exit 1
 }
 
-while getopts :s:ri:d:p:s:t option; do
+while getopts :p:i:rd:s:t option; do
     case "${option}" in
-        s) SIMULATION=${OPTARG};; 
-        r) REDOWNLOAD=true;;
-        i) INITIALIZATION=${OPTARG};;
-        d) BATCH=${OPTARG};;
         p) PORT=${OPTARG};;
+        i) SIMULATION=${OPTARG};; 
+        r) REDOWNLOAD=true;;
+        d) BATCH=${OPTARG};;
         s) SHELL_TYPE=${OPTARG};;
         t) ENABLE_TMUX=true;;
         :) exit_err "Missing argument for -${OPTARG}" ;;
@@ -41,26 +40,7 @@ while getopts :s:ri:d:p:s:t option; do
     esac
 done
 
-SIMULATION_STRIP="${SIMULATION// /-}"
-
 ulimit -Sn 15000
-
-if [[ -f "$INITIALIZATION" ]]; then
-    printf "\n======================\n"
-    printf "Running Initialization\n"
-    printf "======================\n\n"
-    case "$INITIALIZATION" in
-        *.txt)
-            pip install --user -r "$INITIALIZATION" || exit_err "Failed to install packages from $INITIALIZATION"
-            ;;
-        *.sh)
-            bash "$INITIALIZATION" || exit_err "Failed to execute script $INITIALIZATION"
-            ;;
-        *)
-            exit_err "File format not correct. Initialization must be specified in a *.txt, *.yml/yaml, or *.sh file."
-            ;;
-    esac
-fi
 
 if [ -n "$BATCH" ]
 then
@@ -147,7 +127,7 @@ else
 fi
 
 ## Fetch course materials and start class module 
-if [[  ! -d "/work/${SIMULATION_STRIP}" || "${REDOWNLOAD}" = true ]]; then
+if [[  ! -d "/work/${SIMULATION}" || "${REDOWNLOAD}" = true ]]; then
 # Simulation folder for the chosen simulation does not exist in /work OR re-downlaod flag is true -> (re-)download the simluation files.
 
     printf "\n=======================\n"
@@ -155,19 +135,19 @@ if [[  ! -d "/work/${SIMULATION_STRIP}" || "${REDOWNLOAD}" = true ]]; then
     printf "=======================\n\n"
 
     # Find URLs for the individual files
-    wget "${EXTERNAL_REPO_URL}/contents/${SIMULATION_STRIP}" -O "${SIMULATION_STRIP}.json"
+    wget "${EXTERNAL_REPO_URL}/contents/${SIMULATION}" -O "${SIMULATION}.json"
 
-    if [[ ! -f "${SIMULATION_STRIP}.json" ]]; then
+    if [[ ! -f "${SIMULATION}.json" ]]; then
         
         exit_err "[ERROR] Could not find materials for the simulation \"${SIMULATION}\" in external repo \"${EXTERNAL_REPO_URL}\""
 
     else
 
         # Query and filter for download URLs from .json file.
-        URLS=$(jq  -r '.[].download_url // empty' "${SIMULATION_STRIP}.json" )
+        URLS=$(jq  -r '.[].download_url // empty' "${SIMULATION}.json" )
 
         # Create the directory if it doesn't exist
-        mkdir -p /work/"${SIMULATION_STRIP}" || exit_err "[ERROR] Failed to create directory"
+        mkdir -p /work/"${SIMULATION}" || exit_err "[ERROR] Failed to create directory"
 
         # Download each file
         for url in ${URLS}; do 
@@ -179,7 +159,7 @@ if [[  ! -d "/work/${SIMULATION_STRIP}" || "${REDOWNLOAD}" = true ]]; then
             else
                 
                 file_name=$(basename "${url}")
-                curl -L "${url}" -o "/work/${SIMULATION_STRIP}/${file_name}"
+                curl -L "${url}" -o "/work/${SIMULATION}/${file_name}"
                 printf "[INFO] Downloaded file: ${file_name}"
             
             fi
