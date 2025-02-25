@@ -76,9 +76,7 @@ then
 
     else
 
-        echo "File format not correct."
-        printf "\n\n"
-        exit 1
+        exit_err "[ERROR] File format not correct."
 
     fi
 fi
@@ -89,8 +87,7 @@ fi
 if [ -z ${SHELL_TYPE+x} ]
 then
 
-    printf "\nSelect a shell type: 0-bash, 1-zsh, 2-fish.\n"
-    exit 1
+    exit_err "[ERROR] Select a shell type: 0-bash, 1-zsh, 2-fish."
 
 else
 
@@ -141,53 +138,55 @@ else
 
     else
 
-        printf "\nIncorrect shell type: 0-bash, 1-zsh, 2-fish.\n"
-        exit 1
+        exit_err "[ERROR] Incorrect shell type: 0-bash, 1-zsh, 2-fish."
+
     fi
 
 fi
 
 ## Fetch course materials and start class module 
-
-# Simulation folder for the chosen simulation does not exist in /work OR re-downlaod flag is true -> (re-)download the simluation files.
 if [[  ! -d "/work/${SIMLUATION}" || "${REDOWNLOAD}" = true ]]; then
+# Simulation folder for the chosen simulation does not exist in /work OR re-downlaod flag is true -> (re-)download the simluation files.
 
     printf "\n=======================\n"
     printf "Fetching course materials\n"
     printf "=======================\n\n"
 
+    SIMULATION_STRIP="${SIMULATION// /-}"
+
     # Find URLs for the individual files
-    wget "${EXTERNAL_REPO_URL}/contents/${SIMLUATION}" -O "${SIMULATION}.json"
+    wget "${EXTERNAL_REPO_URL}/contents/${SIMLUATION}" -O "${SIMULATION_STRIP}.json"
 
     if [[ ! -f "${CLASS}.json" ]]; then
         
-        exit_err "Error: could not find materials for the simulation \"${SIMULATION}\" in external repo \"${EXTERNAL_REPO_URL}\""
+        exit_err "[ERROR] Could not find materials for the simulation \"${SIMULATION}\" in external repo \"${EXTERNAL_REPO_URL}\""
 
     else
 
         # Query and filter for download URLs from .json file.
-        URLS=$(jq  -r '.[].download_url // empty' "${SIMULATION}.json" )
+        URLS=$(jq  -r '.[].download_url // empty' "${SIMULATION_STRIP}.json" )
 
         # Create the directory if it doesn't exist
-        mkdir -p "${PWD}/${SIMLUATION}" || exit_err "Failed to create directory"
+        mkdir -p /work/"${SIMLUATION}" || exit_err "[ERROR] Failed to create directory"
 
         # Download each file
         for url in ${URLS}; do 
 
             if [[ -z "${url}" ]]; then
 
-                exit_err "Error: Null or empty URL found."
+                exit_err "[ERROR] Null or empty URL found."
 
             else
                 
                 file_name=$(basename "${url}")
-                #mkdir -p "${PWD}/${CLASS}" || exit_err "Failed to create /${PWD}/${CLASS} directory"
-                curl -L "${url}" -o "/${SIMLUATION}/${file_name}"
-                printf "Downloaded file: ${file_name}"
+                curl -L "${url}" -o "/work/${SIMLUATION}/${file_name}"
+                printf "[INFO] Downloaded file: ${file_name}"
             
             fi
         
         done
+
         rm "${CLASS}.json"
+    
     fi
 fi
