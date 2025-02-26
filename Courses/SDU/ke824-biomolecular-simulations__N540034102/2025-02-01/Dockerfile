@@ -7,11 +7,14 @@ LABEL course="KE824: Biomolecular Simulations" \
 ## Use bash instead of sh
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
-WORKDIR /tmp
-
 USER ${USERID}
 
-RUN pip install --no-cache-dir matplotlib pandas
+WORKDIR /tmp 
+
+ENV PATH=$HOME/.local/bin:$PATH
+
+RUN pip install --no-cache-dir matplotlib pandas 
+
 
 ## Add entrypoint script
 COPY --chown=$USER:$USER  start_course.sh /usr/bin/start_course
