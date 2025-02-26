@@ -27,6 +27,28 @@ function exit_err {
     exit 1
 }
 
+function download_files {
+    parent_absdir="$1"
+    url_list="$2"
+    mkdir -p "$parent_absdir"
+
+    for url in ${url_list}; do 
+
+        if [[ -z "${url}" ]]; then
+
+            exit_err "[ERROR] Null or empty URL found."
+
+        else
+            
+            file_name=$(basename "${url}")
+            printf "\n[INFO] Downloading file '${file_name}' ..."
+            curl -L "${url}" -o "$parent_absdir/${file_name}"
+            printf "[INFO] Download complete.\n"
+        
+        fi
+    done
+}
+
 while getopts :p:i:rd:s:t option; do
     case "${option}" in
         p) PORT=${OPTARG};;
@@ -42,15 +64,13 @@ done
 
 ulimit -Sn 15000
 
-if [ -n "$BATCH" ]
-then
+if [ -n "$BATCH" ]; then
 
     printf  "\n==================================  "
     printf  "\n== Execute script in batch mode ==  \n"
     printf  "=================================== \n\n"
 
-    if [[ "$BATCH" == *.sh ]]
-    then
+    if [[ "$BATCH" == *.sh ]]; then
 
         bash "$BATCH"
         printf "\n\n"
@@ -61,13 +81,75 @@ then
         exit_err "[ERROR] File format not correct."
 
     fi
+
+fi
+
+## Fetch course materials from the external GitHub repository 
+if [[  ! -d "/work/${SIMULATION}" || "${REDOWNLOAD}" = true ]]; then
+# Condition: Simulation folder for the chosen simulation does not exist in /work OR re-downlaod flag is true -> (re-)download the simluation files.
+
+    printf "\n=======================\n"
+    printf "Fetching course materials\n"
+    printf "=======================\n\n"
+
+    EXTERNAL_REPO_CONTENTS="${EXTERNAL_REPO_URL}/contents"
+
+    # Find URLs for the individual files
+    wget -q "$EXTERNAL_REPO_CONTENTS/${SIMULATION}" -O "${SIMULATION}.json"
+
+    URLS=$(jq  -r '.[].download_url // empty' ${SIMULATION}.json) 
+
+    if [[ ! -f "${SIMULATION}.json" ]]; then
+            
+        exit_err "[ERROR] Could not find materials for the simulation \"${SIMULATION}\"."
+
+    else
+        
+        ## Download files in simulation's top-level folder 
+        printf "\n[INFO] Downloading files in $SIMULATION ...\n"
+        download_files "/work/$SIMULATION" "$URLS"
+
+        ## Download files in simulation folders sub-directories, if any 
+        SUBDIRS=$(jq '.[] | select(.type=="dir").path' ${SIMULATION}.json)
+
+        if [[ -n $SUBDIRS ]]; then
+
+            for dir in ${SUBDIRS}; do 
+
+                dir=$(echo "$dir" | tr -d '"')
+        
+                wget -q "$EXTERNAL_REPO_CONTENTS/$dir" -O tmp.json
+
+                URLS=$(jq  -r '.[].download_url // empty' tmp.json)
+
+                # Download files in subdirectory 
+                printf "\n[INFO] Downloading files in $dir ...\n"
+                download_files "/work/$dir" "$URLS"
+
+                # Dynamically append to loop-variable to get full file tree 
+                if [[ -n $(jq '.[] | select(.type=="dir").path' tmp.json) ]]; then 
+                    
+                    SUBDIRS+=$(jq '.[] | select(.type=="dir").path' tmp.json) 
+                
+                fi 
+
+                rm -f tmp.json                
+            
+            done
+        fi
+
+        printf "\n[INFO] Download of simulation material complete.\n"
+
+        rm -f ${SIMULATION}.json
+
+    fi
+
 fi
 
 ############################
 ## Start the web terminal ##
 ############################
-if [ -z ${SHELL_TYPE+x} ]
-then
+if [ -z ${SHELL_TYPE+x} ]; then
 
     exit_err "[ERROR] Select a shell type: 0-bash, 1-zsh, 2-fish."
 
@@ -76,11 +158,9 @@ else
     ## check neofetch options here:
     ## https://www.cyberciti.biz/howto/neofetch-awesome-system-info-bash-script-for-linux-unix-macos/
 
-    if [[ "$SHELL_TYPE" == 0 ]]
-    then
+    if [[ "$SHELL_TYPE" == 0 ]]; then
 
-        if [ "$ENABLE_TMUX" = true ]
-        then
+        if [ "$ENABLE_TMUX" = true ]; then
 
             ttyd "${ttyd_options[@]}" bash -c "SHELL=/bin/bash tmux"
 
@@ -90,11 +170,9 @@ else
 
         fi
 
-    elif [[ "$SHELL_TYPE" == 1 ]]
-    then
+    elif [[ "$SHELL_TYPE" == 1 ]]; then
 
-        if [ "$ENABLE_TMUX" = true ]
-        then
+        if [ "$ENABLE_TMUX" = true ]; then
 
             ttyd "${ttyd_options[@]}" bash -c "SHELL=/bin/zsh tmux"
 
@@ -104,11 +182,9 @@ else
 
         fi
 
-    elif [[ "$SHELL_TYPE" == 2 ]]
-    then
+    elif [[ "$SHELL_TYPE" == 2 ]]; then
 
-        if [ "$ENABLE_TMUX" = true ]
-        then
+        if [ "$ENABLE_TMUX" = true ]; then
 
             ttyd "${ttyd_options[@]}" bash -c "SHELL=/usr/bin/fish tmux"
 
@@ -124,49 +200,4 @@ else
 
     fi
 
-fi
-
-## Fetch course materials and start class module 
-if [[  ! -d "/work/${SIMULATION}" || "${REDOWNLOAD}" = true ]]; then
-# Simulation folder for the chosen simulation does not exist in /work OR re-downlaod flag is true -> (re-)download the simluation files.
-
-    printf "\n=======================\n"
-    printf "Fetching course materials\n"
-    printf "=======================\n\n"
-
-    # Find URLs for the individual files
-    wget "${EXTERNAL_REPO_URL}/contents/${SIMULATION}" -O "${SIMULATION}.json"
-
-    if [[ ! -f "${SIMULATION}.json" ]]; then
-        
-        exit_err "[ERROR] Could not find materials for the simulation \"${SIMULATION}\" in external repo \"${EXTERNAL_REPO_URL}\""
-
-    else
-
-        # Query and filter for download URLs from .json file.
-        URLS=$(jq  -r '.[].download_url // empty' "${SIMULATION}.json" )
-
-        # Create the directory if it doesn't exist
-        mkdir -p /work/"${SIMULATION}" || exit_err "[ERROR] Failed to create directory"
-
-        # Download each file
-        for url in ${URLS}; do 
-
-            if [[ -z "${url}" ]]; then
-
-                exit_err "[ERROR] Null or empty URL found."
-
-            else
-                
-                file_name=$(basename "${url}")
-                curl -L "${url}" -o "/work/${SIMULATION}/${file_name}"
-                printf "[INFO] Downloaded file: ${file_name}"
-            
-            fi
-        
-        done
-
-        rm "${CLASS}.json"
-    
-    fi
 fi

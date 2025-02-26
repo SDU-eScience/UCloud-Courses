@@ -7,16 +7,6 @@ LABEL course="KE824: Biomolecular Simulations" \
 ## Use bash instead of sh
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
-USER 0
-
-WORKDIR /home/$USER
-
-RUN apt-get update \
- && apt-get install --no-install-recommends -y \
-      git-lfs \
- && apt-get clean \
- && rm -rf /var/lib/apt/lists/* 
-
 USER ${USERID}
 
 RUN pip install --no-cache-dir matplotlib pandas
