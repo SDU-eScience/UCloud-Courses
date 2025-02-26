@@ -64,7 +64,16 @@ parameters:
     options:
       - name: "Coarse grained lipid"
         value: "Coarse-Grained-Lipid"
-      [ADD THE REST]
+      - name: "Lipid Bilayer Simulation"
+        value: Lipid-Bilayer-Simulation
+      - name: "Protein Free Energy Landscape from a Toy Protein Model"
+        value: Protein-Free-Energy-Landscape-from-a-Toy-Protein-Model
+      - name: "Simulation of Ethanol"
+        value: Simulation-of-Ethanol
+      - name: "Simulation of a Protein in Water"  
+        value: Simulation-of-a-Protein-in-Water
+      - name: "Simulation of a Protein in Water Setup with CHARMM GUI"
+        value: Simulation-of-a-Protein-in-Water-Setup-with-CHARMM-GUI
     optional: false 
   redownload_flag:
     title: "Re-download simulation files"
