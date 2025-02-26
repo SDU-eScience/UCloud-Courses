@@ -88,9 +88,9 @@ fi
 if [[  ! -d "/work/${SIMULATION}" || "${REDOWNLOAD}" = true ]]; then
 # Condition: Simulation folder for the chosen simulation does not exist in /work OR re-downlaod flag is true -> (re-)download the simluation files.
 
-    printf "\n=======================\n"
+    printf "\n=========================\n"
     printf "Fetching course materials\n"
-    printf "=======================\n\n"
+    printf "=========================\n\n"
 
     EXTERNAL_REPO_CONTENTS="${EXTERNAL_REPO_URL}/contents"
 
@@ -138,7 +138,7 @@ if [[  ! -d "/work/${SIMULATION}" || "${REDOWNLOAD}" = true ]]; then
             done
         fi
 
-        printf "\n[INFO] Download of simulation material complete.\n"
+        printf "\n[INFO] Download of simulation material complete.\n\n"
 
         rm -f ${SIMULATION}.json
 
