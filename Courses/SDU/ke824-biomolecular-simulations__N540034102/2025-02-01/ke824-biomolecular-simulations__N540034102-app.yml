@@ -12,7 +12,7 @@ applicationType: WEB
 web:
   port: 7681
 
-startCommand: start_course
+#startCommand: start_course
 
 tool:
   name: sdu_ke824-biomolecular-simulations__N540034102
@@ -35,9 +35,7 @@ container:
   runAsRoot: true
 
 invocation:
-    - /sbin/tini
-    - --
-    - start-course
+    - start_course
     - -p
     - 7681
     - type: var

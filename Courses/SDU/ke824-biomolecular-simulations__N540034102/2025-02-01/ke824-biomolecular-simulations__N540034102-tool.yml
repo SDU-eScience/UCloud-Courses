@@ -1,15 +1,20 @@
 ---
 tool: v1
 
-title:
+title: KE824 Biomolecular Simulations
 name: sdu_ke824-biomolecular-simulations__N540034102
 version: 2025-02-01
 
 container: dreg.cloud.sdu.dk/ucloud-courses/sdu_ke824-biomolecular-simulations__n540034102:2025-02-01
 
 authors:
+  - University of Groningen
+  - Royal Institute of Technology
+  - Upsala University
+  - Himanshu Khandelia 
 
 description: >
+  UCloud course app for 'KE824: Biomolecular Simulations' built on top of GROMACS.
 
 defaultTimeAllocation:
   hours: 1
@@ -19,6 +24,6 @@ defaultTimeAllocation:
 defaultNumberOfNodes: 1
 defaultTasksPerNode: 1
 
-license:
+license: MIT
 
 backend: DOCKER
