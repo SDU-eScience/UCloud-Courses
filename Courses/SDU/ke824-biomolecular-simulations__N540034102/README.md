@@ -17,4 +17,4 @@ In addition to the usual GROMACS parameters (`Batch mode`, `Shell`, and `Enable 
 - `Re-download simulation files` (optional): It is possible to mount a folder (created in a previous job) containing the simulation files for the chosen simulation. In this case, the simulation files are not fetched from the external GitHub repository per default. This can be changed by setting `Re-download simulation files` to `true` in which case a fresh version of the simulation files are fetched and written to the mounted folder. 
 
 > [!NOTE]
-> Using `Re-download simulation files` when a folder is mounted will overwrite the simulation files in the mounted folder. Files added by the user (i.e., files that are not present in the external GitHub repository) are not affected by the `Re-download simulation files`.
+> Using `Re-download simulation files` when a folder is mounted will irrecoverably overwrite the simulation files in the mounted folder. Files added by the user (i.e., files that are not present in the external GitHub repository) are not affected by the `Re-download simulation files`.
