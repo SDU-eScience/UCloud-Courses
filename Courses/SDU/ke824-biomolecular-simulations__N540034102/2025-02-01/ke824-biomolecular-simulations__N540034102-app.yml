@@ -1,7 +1,7 @@
 ---
 application: v1
 
-title:
+title: KE824 Biomolecular Simulations
 name: sdu_ke824-biomolecular-simulations__N540034102
 version: 2025-02-01
 
@@ -9,7 +9,6 @@ website: # add link to documentation or software website
 
 applicationType: WEB
 
-### WEB type
 web:
   port: 7681
 
@@ -91,14 +90,11 @@ parameters:
     title: 'Shell'
     type: enumeration
     options:
-      -
-        name: Bash
+      - name: Bash
         value: "0"
-      -
-        name: Zsh
+      - name: Zsh
         value: "1"
-      -
-        name: Fish
+      - name: Fish
         value: "2"
     description: >
       Select shell type (default is Bash).
