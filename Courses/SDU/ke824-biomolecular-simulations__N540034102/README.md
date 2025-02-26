@@ -16,6 +16,5 @@ In addition to the usual GROMACS parameters (`Batch mode`, `Shell`, and `Enable 
 - `Simulation` (mandatory): Select the desired simulation from the drop-down menu. When the job starts, the relevant course materials will be fetched from [this](https://github.com/HimanshuKhandelia/KE824-Biomolecular-simulations) external GitHub repository and saved in `/work/<simulation-name>`.
 - `Re-download simulation files` (optional): It is possible to mount a folder (created in a previous job) containing the simulation files for the chosen simulation. In this case, the simulation files are not fetched from the external GitHub repository per default. This can be changed by setting `Re-download simulation files` to `true` in which case a fresh version of the simulation files are fetched and written to the mounted folder. 
 
-```{note}
-Using `Re-download simulation files` when a folder is mounted will overwrite the simulation files in the mounted folder. Files added by the user (i.e., files that are not present in the external GitHub repository) are not affected by the `Re-download simulation files`.
-```
+> [!NOTE]
+> Using `Re-download simulation files` when a folder is mounted will overwrite the simulation files in the mounted folder. Files added by the user (i.e., files that are not present in the external GitHub repository) are not affected by the `Re-download simulation files`.
