@@ -1,10 +1,12 @@
-# KE824: Biomolecular Simulations (N540034102)
+# KE824: Biomolecular Simulations
 
-[General intro to the course on UCloud].
+This is the UCloud course app associated with the SDU course 'KE824: Biomolecular Simulations' ((N540034102)) taught by Himanshu Khandelia. 
+
+This guides contains details about how to start the app on UCloud. The app is build on GROACS v2024.4. See the [UCloud documentation](https://docs.cloud.sdu.dk/Apps/gromacs.html) for general guidance on how to use GROMACS. 
 
 ## Start a job 
 
-[How to select the app].
+This app can be found in the UCloud app store by going to *Browse by category* > *Courses* > *SDU Courses*. 
 
 [How to mount an existing simulations folder]. 
 
