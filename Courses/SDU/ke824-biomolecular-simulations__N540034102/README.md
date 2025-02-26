@@ -13,7 +13,7 @@ The course app is started like any other UCloud app so users should specify job 
 Like with other apps, folders from one's UCloud drives can be mounted using the *Add folder* button. Mounted folders will be available in `/work`. 
 
 In addition to the usual GROMACS parameters (`Batch mode`, `Shell`, and `Enable tmux`), the app has the following two parameters: 
-- `Simulation` (mandatory): Select the desired simulation from the drop-down menu. When the job starts, the relevant course materials will be fetched from [this](https://github.com/HimanshuKhandelia/KE824-Biomolecular-simulations) external GitHub repository and saved in `/work/<simulation-name>`.
+- `Simulation` (mandatory): Select the desired simulation from the drop-down menu. When the job starts, the relevant course materials will be fetched from [this](https://github.com/HimanshuKhandelia/KE824-Biomolecular-simulations) external GitHub repository and saved inside the folder `/work/<simulation-name>`.
 - `Re-download simulation files` (optional): It is possible to mount a folder (created in a previous job) containing the simulation files for the chosen simulation. In this case, the simulation files are not fetched from the external GitHub repository per default. This can be changed by setting `Re-download simulation files` to `true` in which case a fresh version of the simulation files are fetched and written to the mounted folder. 
 
 > [!NOTE]
