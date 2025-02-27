@@ -41,7 +41,7 @@ function download_files {
         else
             
             file_name=$(basename "${url}")
-            printf "\n[INFO] Downloading file '${file_name}' ..."
+            printf "\n[INFO] Downloading file '%s' ..." "${file_name}"
             curl -L "${url}" -o "$parent_absdir/${file_name}"
             printf "[INFO] Download complete.\n"
         
@@ -97,7 +97,7 @@ if [[  ! -d "/work/${SIMULATION}" || "${REDOWNLOAD}" = true ]]; then
     # Find URLs for the individual files
     wget -q "$EXTERNAL_REPO_CONTENTS/${SIMULATION}" -O "${SIMULATION}.json"
 
-    URLS=$(jq  -r '.[].download_url // empty' ${SIMULATION}.json) 
+    URLS=$(jq  -r '.[].download_url // empty' "${SIMULATION}".json) 
 
     if [[ ! -f "${SIMULATION}.json" ]]; then
             
@@ -106,11 +106,11 @@ if [[  ! -d "/work/${SIMULATION}" || "${REDOWNLOAD}" = true ]]; then
     else
         
         ## Download files in simulation's top-level folder 
-        printf "\n[INFO] Downloading files in $SIMULATION ...\n"
+        printf "\n[INFO] Downloading files in %s ...\n" "$SIMULATION"
         download_files "/work/$SIMULATION" "$URLS"
 
         ## Download files in simulation folders sub-directories, if any 
-        SUBDIRS=$(jq '.[] | select(.type=="dir").path' ${SIMULATION}.json)
+        SUBDIRS=$(jq '.[] | select(.type=="dir").path' "${SIMULATION}".json)
 
         if [[ -n $SUBDIRS ]]; then
 
@@ -123,7 +123,7 @@ if [[  ! -d "/work/${SIMULATION}" || "${REDOWNLOAD}" = true ]]; then
                 URLS=$(jq  -r '.[].download_url // empty' tmp.json)
 
                 # Download files in subdirectory 
-                printf "\n[INFO] Downloading files in $dir ...\n"
+                printf "\n[INFO] Downloading files in %s ...\n" "$dir"
                 download_files "/work/$dir" "$URLS"
 
                 # Dynamically append to loop-variable to get full file tree 
@@ -140,7 +140,7 @@ if [[  ! -d "/work/${SIMULATION}" || "${REDOWNLOAD}" = true ]]; then
 
         printf "\n[INFO] Download of simulation material complete.\n\n"
 
-        rm -f ${SIMULATION}.json
+        rm -f "${SIMULATION}".json
 
     fi
 
