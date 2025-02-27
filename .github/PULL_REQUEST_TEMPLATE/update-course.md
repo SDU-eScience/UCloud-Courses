@@ -1,4 +1,3 @@
-# Add New Course: 
 # Update Existing Course: 
 
 Please check all the boxes below before requesting code review.
