@@ -1,20 +1,16 @@
----
-name: New Course
-about: Template for creating a new course pull request
-title: 'Add new course:'
-assignees: ''
+# Add New Course: 
 
----
+**Please insert the course information (name, university, and course responsible teacher below) and delete this line.**
 
-**Course Information**
+Course name: 
 
-- Course name: 
-- University: 
-- Course responsible teacher: 
+University:
 
-**Checklist**
+Course responsible teacher:
+
+## Checklist
 
 Please check all the boxes below before requesting code review.
 
 - [ ] I have read and understood the licensing terms specified in the `LICENSE.md` file in my course's folder  
-- [ ] I have read and understood the information provided in the repository [`README.md`](https://github.com/SDU-eScience/UCloud-Courses/blob/main/README.md)    
+- [ ] I have read and understood the information provided in the repository [`README.md`](https://github.com/SDU-eScience/UCloud-Courses/blob/main/README.md)

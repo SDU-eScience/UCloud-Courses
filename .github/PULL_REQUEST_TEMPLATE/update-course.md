@@ -1,18 +1,14 @@
----
-name: Update Course
-about: Template for creating a course update pull request
-title: 'Update existing course:'
-assignees: ''
+# Update Existing Course: 
 
----
+**Please insert the course information (name, university, and course responsible teacher below) and delete this line.**
 
-**Course Information**
+Course name: 
 
-- Course name: 
-- University: 
-- Course responsible teacher: 
+University:
 
-**Checklist**
+Course responsible teacher:
+
+## Checklist
 
 Please check all the boxes below before requesting code review.
 
