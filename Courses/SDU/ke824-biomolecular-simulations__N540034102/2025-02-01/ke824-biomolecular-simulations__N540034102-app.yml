@@ -59,7 +59,7 @@ parameters:
     title: Simulation
     type: enumeration
     options:
-      - name: "Coarse grained lipid"
+      - name: "Coarse Grained Lipid"
         value: "Coarse-Grained-Lipid"
       - name: "Lipid Bilayer Simulation"
         value: Lipid-Bilayer-Simulation
