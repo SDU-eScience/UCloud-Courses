@@ -1,6 +1,6 @@
 # Add New UCloud Course 
 
-Please insert the course information (name, university, and course responsible teacher below) and delete this line.
+**Please insert the course information (name, university, and course responsible teacher below) and then delete this line.**
 
 Course name: 
 
