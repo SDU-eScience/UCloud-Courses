@@ -1,14 +1,18 @@
-# Add New UCloud Course 
+---
+name: New Course
+about: Template for creating a new course pull request
+title: 'Add new course:'
+assignees: ''
 
-**Please insert the course information below and then delete this line.**
+---
 
-Course name: 
+**Course Information**
 
-University:
+- Course name: 
+- University: 
+- Course responsible teacher: 
 
-Course responsible teacher:
-
-## Checklist
+**Checklist**
 
 Please check all the boxes below before requesting code review.
 
