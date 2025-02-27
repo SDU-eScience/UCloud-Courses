@@ -1,15 +1,5 @@
 # Add New Course: 
 
-**Please insert the course information (name, university, and course responsible teacher below) and delete this line.**
-
-Course name: 
-
-University:
-
-Course responsible teacher:
-
-## Checklist
-
 Please check all the boxes below before requesting code review.
 
 - [ ] I have read and understood the licensing terms specified in the `LICENSE.md` file in my course's folder  
