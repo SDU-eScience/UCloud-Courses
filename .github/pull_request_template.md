@@ -1,12 +1,16 @@
 # Add New UCloud Course 
 
-_Course name:_ 
+Please insert the course information (name, university, and course responsible teacher below) and delete this line.
 
-_University:_ 
+Course name: 
 
-_Course responsible teacher:_ 
+University:
+
+Course responsible teacher:
 
 ## Checklist
 
-- [ ] I have read and understood the licensing terms specified in the `LICENSE.md` file in my course's folder  
+Please check all the boxes below before requesting code review.
 
+- [ ] I have read and understood the licensing terms specified in the `LICENSE.md` file in my course's folder  
+- [ ] I have read and understood the information provided in the repository [`README.md`](https://github.com/SDU-eScience/UCloud-Courses/blob/main/README.md)    
