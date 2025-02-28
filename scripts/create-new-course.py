@@ -300,6 +300,7 @@ if __name__ == "__main__":
 
         # Edit template-tool.yml (f4)
         toolyml = re.sub("UNI", args.university, toolyml)
+        toolyml = re.sub("IMAGE_NAME", courseimage_name, toolyml)
         toolyml = re.sub("COURSE_NAME", course_full_name, toolyml)
         toolyml = re.sub("COURSE_TAG", args.release, toolyml)
 
