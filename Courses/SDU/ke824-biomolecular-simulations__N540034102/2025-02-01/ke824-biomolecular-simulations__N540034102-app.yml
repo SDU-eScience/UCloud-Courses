@@ -59,6 +59,8 @@ parameters:
     title: Simulation
     type: enumeration
     options:
+      - name: "Introduction to Linux on UCloud"
+        value: TEST
       - name: "Coarse Grained Lipid"
         value: "Coarse-Grained-Lipid"
       - name: "Lipid Bilayer Simulation"
