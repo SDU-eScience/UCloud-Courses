@@ -1,0 +1,110 @@
+---
+application: v1
+
+title: KE824 Biomolecular Simulations
+name: sdu_ke824-biomolecular-simulations__N540034102
+version: 2025-02-01
+
+website: https://github.com/SDU-eScience/UCloud-Courses/tree/main/Courses/SDU/ke824-biomolecular-simulations__N540034102
+
+applicationType: WEB
+
+web:
+  port: 7681
+
+#startCommand: start_course
+
+tool:
+  name: sdu_ke824-biomolecular-simulations__N540034102
+  version: 2025-02-01
+
+authors:
+  - University of Groningen
+  - Royal Institute of Technology
+  - Upsala University
+  - Himanshu Khandelia 
+
+description: >
+  UCloud course app for 'KE824: Biomolecular Simulations' built on top of GROMACS.
+
+allowAdditionalMounts: true
+allowPublicLink: false
+allowPublicIp: false
+
+container:
+  runAsRoot: true
+
+invocation:
+    - start_course
+    - -p
+    - 7681
+    - type: var
+      vars: sim_var
+      prefixGlobal: '-i '
+    - type: flag
+      flag: '-r '
+      var: redownload_flag
+    - type: var
+      vars: d_var
+      prefixGlobal: '-d '
+    - type: var
+      vars: s_var
+      prefixGlobal: '-s '
+    - type: flag
+      flag: '-t '
+      var: t_flag
+
+parameters:
+  sim_var: 
+    title: Simulation
+    type: enumeration
+    options:
+      - name: "Introduction to Linux on UCloud"
+        value: TEST
+      - name: "Coarse Grained Lipid"
+        value: "Coarse-Grained-Lipid"
+      - name: "Lipid Bilayer Simulation"
+        value: Lipid-Bilayer-Simulation
+      - name: "Protein Free Energy Landscape from a Toy Protein Model"
+        value: Protein-Free-Energy-Landscape-from-a-Toy-Protein-Model
+      - name: "Simulation of Ethanol"
+        value: Simulation-of-Ethanol
+      - name: "Simulation of a Protein in Water"  
+        value: Simulation-of-a-Protein-in-Water
+      - name: "Simulation of a Protein in Water Setup with CHARMM GUI"
+        value: Simulation-of-a-Protein-in-Water-Setup-with-CHARMM-GUI
+    optional: false 
+  redownload_flag:
+    title: "Re-download simulation files"
+    type: boolean
+    description: >
+      If set to true, existing files in a mounted folder for the chosen simulation will be overwritten with a fresh download of that file (default: false). 
+    optional: true 
+  d_var:
+    title: 'Batch mode'
+    type: input_file
+    description: >
+      Execute a script in batch mode; the file format is Bash (.sh)
+    optional: true
+  s_var:
+    title: 'Shell'
+    type: enumeration
+    options:
+      - name: Bash
+        value: "0"
+      - name: Zsh
+        value: "1"
+      - name: Fish
+        value: "2"
+    description: >
+      Select shell type (default is Bash).
+    optional: true
+  t_flag:
+    title: 'Enable tmux'
+    type: boolean
+    description: >
+      Start a tmux session with the selected shell.
+    optional: true
+
+outputFileGlobs:
+  - "*"
