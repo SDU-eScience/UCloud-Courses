@@ -306,7 +306,7 @@ if __name__ == "__main__":
 
         # Edit docker-build.py (f6)
         buildimage = re.sub("_IMAGE_NAME", courseimage_name, buildimage)
-        buildimage = re.sub("_DOCKERFILE_DIR", repr(dockerfile_dir), repr(buildimage))
+        buildimage = re.sub("_DOCKERFILE_DIR", repr(dockerfile_dir), buildimage)
 
         # Edit docker-run.template (f7)
         runcontainer = re.sub("_IMAGE_NAME", courseimage_name, runcontainer)
