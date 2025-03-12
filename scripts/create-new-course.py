@@ -66,7 +66,7 @@ def check_release_format(release_str):
     @param release_str A string
     @return: True if release_str has the format dddd-dd-dd. False otherwise.
     """
-    return(re.fullmatch("^\d{4}(-)\d{2}(-)\d{2}$", release_str) is not None)
+    return(re.fullmatch(r"^\d{4}(-)\d{2}(-)\d{2}$", release_str) is not None)
 
 def check_release_values(release_str):
     """
@@ -138,7 +138,7 @@ def get_baseimage_newest_tag(baseimage):
         return(ret)
     if(baseimage == "rstudio"):
         ret = requests.get("https://svn.r-project.org/R/tags/").text
-        sion_list = re.findall("R[-]\d+[-]\d+[-]\d+", ret)
+        sion_list = re.findall(r"R[-]\d+[-]\d+[-]\d+", ret)
         sion_list = [re.sub("R-", "", e) for e in sion_list] 
         sion_list = [re.sub("-", ".", e) for e in sion_list]
         return(max(sion_list)) 
@@ -306,7 +306,7 @@ if __name__ == "__main__":
 
         # Edit docker-build.py (f6)
         buildimage = re.sub("_IMAGE_NAME", courseimage_name, buildimage)
-        buildimage = re.sub("_DOCKERFILE_DIR", dockerfile_dir, buildimage)
+        buildimage = re.sub("_DOCKERFILE_DIR", repr(dockerfile_dir), repr(buildimage))
 
         # Edit docker-run.template (f7)
         runcontainer = re.sub("_IMAGE_NAME", courseimage_name, runcontainer)
