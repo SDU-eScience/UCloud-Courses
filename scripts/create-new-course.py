@@ -300,12 +300,13 @@ if __name__ == "__main__":
 
         # Edit template-tool.yml (f4)
         toolyml = re.sub("UNI", args.university, toolyml)
+        toolyml = re.sub("IMAGE_NAME", courseimage_name, toolyml)
         toolyml = re.sub("COURSE_NAME", course_full_name, toolyml)
         toolyml = re.sub("COURSE_TAG", args.release, toolyml)
 
         # Edit docker-build.py (f6)
         buildimage = re.sub("_IMAGE_NAME", courseimage_name, buildimage)
-        buildimage = re.sub("_DOCKERFILE_DIR", repr(dockerfile_dir), repr(buildimage))
+        buildimage = re.sub("_DOCKERFILE_DIR", repr(dockerfile_dir), buildimage)
 
         # Edit docker-run.template (f7)
         runcontainer = re.sub("_IMAGE_NAME", courseimage_name, runcontainer)
