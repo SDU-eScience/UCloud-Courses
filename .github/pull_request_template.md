@@ -1,4 +1,9 @@
-# Update Existing Course: 
+# Course: 
+
+Please check the box below that applies: 
+
+- [ ] This pull request is for creating a *new* UCloud course
+- [ ] This pull request is for updating an *existing* UCloud course
 
 Please check all the boxes below before requesting code review.
 
