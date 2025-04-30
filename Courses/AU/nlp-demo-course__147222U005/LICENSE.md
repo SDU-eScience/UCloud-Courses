@@ -1,6 +1,6 @@
 MIT License
 
-Copyright (c) _2024 _Ross Deans Kristensen-McLachlan (_AU)
+Copyright (c) 2024 Ross Deans Kristensen-McLachlan (AU)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
