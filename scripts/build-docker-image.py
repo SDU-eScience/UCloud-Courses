@@ -1,7 +1,8 @@
 __maintainer__ = "SDU eScience Center"
 __email__ = "support@escience.sdu.dk"
 
-import os 
+import os
+import platform
 import argparse 
 import docker 
 import re 
@@ -18,12 +19,6 @@ def parse_arguments():
     parser.add_argument('-d', '--dockerfile_path', type=str, help='Directory of Dockerfile.', required=True)
     return parser.parse_args()
 
-def parse_n(arg_n):
-    return(arg_n.startswith('dreg.cloud.sdu.dk/ucloud-courses/'))
-
-def parse_d(arg_d):
-    return(os.path.exists(arg_d) and os.path.basename(arg_d) == "Dockerfile")
-
 if __name__ == "__main__":
     try:
         client = docker.from_env()
@@ -35,6 +30,11 @@ if __name__ == "__main__":
      
     print("[INFO] Starting build of %s."%(args.dockerfile_path))
     print('[INFO] BE PATIENT ... Building the image may take a while.')
+    
+    # If running on a Windows machine, changing the args.dockerfile_path is necessary
+    if platform.system() == 'Windows':
+        args.dockerfile_path = repr(args.dockerfile_path)
     client.images.build(path = os.path.dirname(args.dockerfile_path), rm = True, tag = args.image_name)
+    
     print("[INFO] Building complete. The image '%s' and available under 'Images' in Docker Desktop."%(args.image_name))
     print("[INFO] Use 'python3 docker-run.py' to start a container.")
