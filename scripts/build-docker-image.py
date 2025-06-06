@@ -30,11 +30,6 @@ if __name__ == "__main__":
      
     print("[INFO] Starting build of %s."%(args.dockerfile_path))
     print('[INFO] BE PATIENT ... Building the image may take a while.')
-    
-    # If running on a Windows machine, changing the args.dockerfile_path is necessary
-    if platform.system() == 'Windows':
-        args.dockerfile_path = repr(args.dockerfile_path)
     client.images.build(path = os.path.dirname(args.dockerfile_path), rm = True, tag = args.image_name)
-    
     print("[INFO] Building complete. The image '%s' and available under 'Images' in Docker Desktop."%(args.image_name))
     print("[INFO] Use 'python3 docker-run.py' to start a container.")
