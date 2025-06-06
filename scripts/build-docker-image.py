@@ -27,9 +27,12 @@ if __name__ == "__main__":
         sys.exit(1)  # Exit the script if Docker client cannot be initialized
 
     args = parse_arguments()
-     
+
+    # Get normalized path from -d
+    dockerfile_dir = os.path.dirname(os.path.normpath(args.dockerfile_path))
+         
     print("[INFO] Starting build of %s."%(args.dockerfile_path))
     print('[INFO] BE PATIENT ... Building the image may take a while.')
-    client.images.build(path = os.path.dirname(args.dockerfile_path), rm = True, tag = args.image_name)
+    client.images.build(path = dockerfile_dir, rm = True, tag = args.image_name)
     print("[INFO] Building complete. The image '%s' and available under 'Images' in Docker Desktop."%(args.image_name))
     print("[INFO] Use 'python3 docker-run.py' to start a container.")
