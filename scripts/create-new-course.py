@@ -214,6 +214,7 @@ if __name__ == "__main__":
 
         course_name = "{}__{}".format(args.name, args.coursecode)
         course_root_dir = os.path.abspath(os.path.join(os.path.split(cwd)[0], 'Courses', args.university.upper(), course_name))
+        course_root_dir = os.path.relpath(course_root_dir, cwd)
         course_release_dir = join_paths(course_root_dir, args.release)
         course_logo_dir = join_paths(course_root_dir, 'logo')
         course_test_dir = join_paths(course_root_dir, 'test')
