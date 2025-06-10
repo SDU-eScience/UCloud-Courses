@@ -2,7 +2,6 @@ __maintainer__ = "SDU eScience Center"
 __email__ = "support@escience.sdu.dk"
 
 import os
-import platform
 import argparse 
 import docker 
 import re 
