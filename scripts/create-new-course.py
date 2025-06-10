@@ -18,15 +18,16 @@ import datetime as dt   # For fetching the current month and year. Part of the s
 import requests         # Portable library for making HTTP requests. Part of the standard library
 import git              # For handling paths relative to root dir of repo 
 
-def join_paths(abspath_head, tail):
+def join_paths(head, tail):
     """
-    Joins and creates absolute path /abspath_head/tail.
+    Joins and creates path head/tail and returns path relative to current working direcoty.
+    Head can be both an absolute and relative path. 
 
-    @param abspath_head: The absolute path include parent folder of tail.
+    @param head: The absolute or relative parent directory of tail.
     @param tail: The folder/file name to be appended to abspath_head.
-    @return: The absolute path /abspath_head/tail.
+    @return: The the path head/tail relative to current working directory.
     """
-    return os.path.abspath(os.path.join(abspath_head, tail))
+    return os.path.relpath(os.path.join(head, tail), get_cwd())
 
 def get_cwd():
     """
@@ -252,7 +253,7 @@ if __name__ == "__main__":
         baseimage_tag = get_baseimage_newest_tag(args.baseimage)
 
         # Get dir of Dockerfile relative to repo root 
-        dockerfile_dir = os.path.relpath(os.path.join(course_release_dir, 'Dockerfile'), start = get_cwd())
+        dockerfile_dir = join_paths(course_release_dir, 'Dockerfile')
 
         # Get name of course's Docker image
         courseimage_name = "dreg.cloud.sdu.dk/ucloud-courses/%s_%s:%s"%(args.university, course_name.lower(), args.release)
