@@ -239,7 +239,6 @@ if __name__ == "__main__":
 
         # Populate the course folders
         templates_dir = join_paths(cwd, 'templates')
-
         template_readme = join_paths(templates_dir, 'README.md.template') 
         template_dockerfile = join_paths(templates_dir, 'Dockerfile.%s_template'%(args.baseimage))
         template_appyml = join_paths(templates_dir, 'template-app.yml')
@@ -254,7 +253,7 @@ if __name__ == "__main__":
         baseimage_tag = get_baseimage_newest_tag(args.baseimage)
 
         # Get dir of Dockerfile relative to repo root 
-        dockerfile_dir = join_paths(course_release_dir, 'Dockerfile')
+        dockerfile_dir = "../Courses/{}/{}/{}/Dockerfile".format(args.university.upper(), course_name.lower(), args.release)
 
         # Get name of course's Docker image
         courseimage_name = "dreg.cloud.sdu.dk/ucloud-courses/%s_%s:%s"%(args.university, course_name.lower(), args.release)
