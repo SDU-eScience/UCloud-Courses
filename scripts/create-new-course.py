@@ -194,7 +194,7 @@ if __name__ == "__main__":
             if (not "create-new-course.py" in files_in_cwd) or (not "templates" in files_in_cwd):
                 raise OSError("[ERROR] Current working directory ({}) is incorrect.\nYou must be in UCloud-Courses/scripts.".format(cwd))
             if (not path_tail == "scripts") or (not path_tail_of_head == "UCloud-Courses"):
-                raise OSError("[ERROR]Current working directory ({}) is incorrect.\nYou must be in UCloud-Courses/scripts.".format(cwd))
+                raise OSError("[ERROR] Current working directory ({}) is incorrect.\nYou must be in UCloud-Courses/scripts.".format(cwd))
         except OSError as e:
                 exit(str(e))
     
