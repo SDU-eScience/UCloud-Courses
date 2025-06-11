@@ -1,0 +1,5 @@
+datasets==2.21.0
+matplotlib==3.9.2
+numpy==1.26.4
+pandas==2.2.2
+gensim==4.3.3
