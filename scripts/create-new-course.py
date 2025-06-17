@@ -57,7 +57,7 @@ def parse_arguments():
     parser.add_argument('-r', '--release', type=str, help='Course start date (YYYY-MM-DD).', required=True) 
     parser.add_argument('-b', '--baseimage', type=str, help='Base image', required=True, choices=['almalinux', 'alpine', 'debian', 'ubuntu', 'conda', 'jupyterlab', 'rstudio', 'ubuntu-xfce', 'almalinux-xfce'])
     parser.add_argument('-u', '--university', type=str, help="University where the course will be taught", required=True, choices=['aau', 'au', 'cbs', 'dtu', 'itu', 'ku', 'ruc', 'sdu', 'other']) 
-    parser.add_argument('-t', '--teacher', type=str, help="Name of the course course responsible teacher", required=True)
+    parser.add_argument('-t', '--teacher', type=str, help="Name of the course responsible teacher", required=True)
     return parser.parse_args()
 
 def check_release_format(release_str):
